@@ -11,6 +11,6 @@ import { first } from 'rxjs/operators';
 })
 
 export class LoginComponent {
-  constructor(public router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
 }
