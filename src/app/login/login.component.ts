@@ -20,7 +20,10 @@ export class LoginComponent {
     this.user = new User();
   }
   onSubmit() {
-    this.service.getUser(this.email).subscribe(data => {this.user = data; });
-    console.log(this.user.email + ' ' + this.user.phoneNumber);
+    this.service.getUser(this.email, this.password).subscribe(data => {this.user = data; });
+    if ( this.user == null) {
+      alert('Login error');
+    }
+    alert( 'logged in user: ' + this.user.firstName + ' ' + this.user.lastName);
   }
 }
