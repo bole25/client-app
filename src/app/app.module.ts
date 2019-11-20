@@ -9,6 +9,7 @@ import { RegistrationComponent} from './registration/registration.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationService} from './registration/registration.service';
+import {LoginService} from './login/login.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     FormsModule
   ],
   providers: [
-    RegistrationService
+    RegistrationService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
