@@ -41,12 +41,12 @@ export class RegistrationComponent {
     } else if (this.user.ssn === '' || this.user.ssn == null) {
       alert('Field ssn can not be empty!');
     } else if (!(this.user.password === this.repeatedPassword)) {
-      alert('Password must matches!');
+      alert('Passwords must match!');
     } else if (!this.user.email.includes('@') || !this.user.email.includes('.')) {
       alert('Email must be format mmm@example.dom!');
     } else {
       this.service.save(this.user).subscribe(result => this.router.navigate(['/users']));
-      location.replace('/login');
+   //
     }
     // refresh sign_up stranicu, i prebaci na neku drugu
   }

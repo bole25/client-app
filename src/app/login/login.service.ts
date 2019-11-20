@@ -11,8 +11,8 @@ export class LoginService {
     this.userUrl = 'http://localhost:8080/users';
   }
 
-  public getUser(email: string): Observable<User> {
-    return this.http.get<User>(this.userUrl + '/' + email);
+  public getUser(email: string, password: string): Observable<User> {
+    return this.http.get<User>(this.userUrl + '/' + email + '/' + password);
   }
 
 }
