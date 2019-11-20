@@ -46,8 +46,8 @@ export class RegistrationComponent {
       alert('Email must be format mmm@example.dom!');
     } else {
       this.service.save(this.user).subscribe(result => this.router.navigate(['/users']));
+      location.replace('/login');
     }
-    location.replace('/login');
     // refresh sign_up stranicu, i prebaci na neku drugu
   }
 }
