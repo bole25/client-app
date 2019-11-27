@@ -10,17 +10,21 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationService} from './registration/registration.service';
 import {LoginService} from './login/login.service';
+import {RequestsComponent} from './requests/requests.component';
+import {RequestsService} from './requests/requests.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent}
+  { path: 'registration', component: RegistrationComponent},
+  { path: 'requests', component: RequestsComponent}
   ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     RegistrationService,
-    LoginService
+    LoginService,
+    RequestsService
   ],
   bootstrap: [AppComponent]
 })
