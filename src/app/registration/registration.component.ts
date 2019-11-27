@@ -12,42 +12,45 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./registration.component.css']
 })
 
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   user: User;
   repeatedPassword: string;
-  constructor(private router: Router, private route: ActivatedRoute, private service: RegistrationService) {
+
+  angForm: FormGroup;
+  submitted = false;
+  constructor(private router: Router, private route: ActivatedRoute, private service: RegistrationService, private fb: FormBuilder) {
     this.user = new User();
+    this.createForm();
   }
+  get f() { return this.angForm.controls; }
   onSubmit(): void {
-    // validation
-    if (this.user.firstName === '' || this.user.firstName == null) {
-      alert('Field firstname can not be empty!');
-    } else if (this.user.lastName === '' || this.user.lastName == null) {
-      alert('Field lastname can not be empty!');
-    } else if (this.user.email === '' || this.user.email == null) {
-      alert('Field email can not be empty!');
-    } else if (this.user.password === '' || this.user.password == null) {
-      alert('Field password can not be empty!');
-    } else if (this.repeatedPassword === '' || this.repeatedPassword == null) {
-      alert('You must confirm the password!');
-    } else if (this.user.address === '' || this.user.address == null) {
-      alert('Field address can not be empty!');
-    } else if (this.user.city === '' || this.user.city == null) {
-      alert('Field city can not be empty!');
-    } else if (this.user.country === '' || this.user.country == null) {
-      alert('Field country can not be empty!');
-    } else if (this.user.phoneNumber === '' || this.user.phoneNumber == null) {
-      alert('Field phone number can not be empty!');
-    } else if (this.user.ssn === '' || this.user.ssn == null) {
-      alert('Field ssn can not be empty!');
-    } else if (!(this.user.password === this.repeatedPassword)) {
-      alert('Passwords must match!');
-    } else if (!this.user.email.includes('@') || !this.user.email.includes('.')) {
-      alert('Email must be format mmm@example.dom!');
-    } else {
+      if (this.angForm.invalid) {
+        alert('Please, fill all fields correctly');
+        return;
+      }
       this.service.save(this.user).subscribe(result => this.router.navigate(['/users']));
-   //
     }
-    // refresh sign_up stranicu, i prebaci na neku drugu
+
+    get checkPassword() {
+    return this.angForm.get('password').value === this.angForm.get('repeatpassword').value ? null : {notSame : true };
+    }
+  // refresh sign_up stranicu, i prebaci na neku drugu
+   private createForm() {
+      this.angForm = this.fb.group({
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      phonenumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
+      repeatpassword: ['', Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+      this.createForm();
   }
 }
