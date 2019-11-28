@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs/operators';
 import {User} from '../models/user.model';
 import {LoginService} from './login.service';
 
@@ -16,14 +16,25 @@ export class LoginComponent {
   email: string;
   password: string;
   user: User;
+
   constructor(private router: Router, private route: ActivatedRoute, private service: LoginService) {
     this.user = new User();
   }
+
   onSubmit() {
-    this.service.getUser(this.email, this.password).subscribe(data => {this.user = data; });
-    if ( this.user == null) {
-      alert('Login error');
-    }
-    alert( 'logged in user: ' + this.user.firstName + ' ' + this.user.lastName);
+    this.service.getUser(this.email, this.password)
+      .subscribe(
+        response => {
+        this.user = response;
+        console.log(this.user.firstName + ' ' + this.user.phoneNumber);
+      },
+        err => {
+          if (err.status === 400) {
+            alert('User with give email dose not exist');
+          } else if (err.status === 406) {
+            alert('Wrong password');
+          }
+        });
+
   }
 }
