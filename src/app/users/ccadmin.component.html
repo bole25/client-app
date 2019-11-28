@@ -1,0 +1,92 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+<!----------OVO JE ZA DODAVANJE ADMINA, ALI SE TAKO NE ZOVE HEH-------------- -->
+<h2 align="center" style="color:#33cabb"> Registration approvals </h2>
+<div class="modal-header">
+  <h5 class="modal-title">Register <b style="color: #33cabb;">new clinic's admin</b></h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="false">&times;</span>
+  </button>
+</div>
+
+<div class="input-group form-group">
+  <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+  </div>
+  <input type="text" class="form-control" name="email" placeholder="Email" required="required"
+         formControlName="email">
+</div>
+
+<div class="input-group form-group">
+  <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+  </div>
+  <input type="password" formControlName="password" id="password" name="password" class="form-control" required placeholder="Password"
+         [(ngModel)]="user.password"/>
+</div>
+
+<div class="input-group form-group">
+  <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+  </div>
+<input type="text" class="form-control" name="clinic" placeholder="Clinic" required="required"
+       formControlName="clinic"/>
+</div>
+
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <input type="submit" class="btn btn-primary" value="Register" />
+</div>
+
+<p align="left" style="color:#33cabb">List of all clinic admins</p>
+
+
+<table class="table table-bordered table-striped">
+  <thead class = "thead dark">
+  <tr>
+    <th scope="col">Email</th>
+    <th scope="col">Clinic</th>
+  </tr>
+
+  </thead>
+
+  <tbody>
+
+  <!--Ovdje nalijepiti listu klinika iz baze -->
+  <tr>
+    <td>a@a.com</td>
+    <td>Klinicki centar Vojvodina</td>
+  </tr>
+
+  <tr>
+    <td>l@l.com</td>
+    <td>Klinicki centar Beograd</td>
+  </tr>
+  </tbody>
+
+</table>
+
+
+
+<div style="margin: 20px; padding: 20px">
+
+  <div class="profile">
+    <!--<div style="display: table-cell; width: auto; background-size: cover;background-image: url(assets/cliniccenter.jpg)"></div>
+    <div style="display: table-cell; width: 800px;background: #ffffff; padding: 10px; position: relative">-->
+
+</div>
+  </div>
+
+</body>
+
+</html>
