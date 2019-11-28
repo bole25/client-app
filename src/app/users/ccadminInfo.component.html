@@ -1,0 +1,72 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+<!----------OVO JE ZA DODAVANJE ADMINA, ALI SE TAKO NE ZOVE HEH-------------- -->
+<h2 align="center" style="color:#33cabb"> Clinic center admin profile</h2>
+
+<div class="split left">
+  <form>
+    <div class="form-group">
+      <h5 class="modal-title">Change <b style="color: #33cabb;">admin's personal info</b></h5>
+    </div>
+
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+      </div>
+      <input type="text" formControlName="firstname" id="firstname" class="form-control"
+             placeholder="First Name"
+             [(ngModel)]="user.firstName"/>
+    </div>
+
+
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+      </div>
+      <input formControlName="lastname" type="text" id="lastname" class="form-control" required placeholder="Last Name"
+             [(ngModel)]="user.lastName"/>
+    </div>
+
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+      </div>
+      <input type="text" [ngModelOptions]="{standalone: true}" id="city" class="form-control input-sm" required placeholder="City"
+             [(ngModel)]="user.city"/>
+    </div>
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+      </div>
+      <input type="text" [ngModelOptions]="{standalone: true}" id="address" class="form-control" required placeholder="Address"
+             [(ngModel)]="user.address"/>
+    </div>
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+          </span>
+      </div>
+      <input type="text" [ngModelOptions]="{standalone: true}" id="country" class="form-control" required placeholder="Country"
+             [(ngModel)]="user.country"/>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-primary" value="Add" />
+    </div>
+
+  </form>
+</div>
+</body>
+</html>
