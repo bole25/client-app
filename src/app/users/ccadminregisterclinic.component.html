@@ -4,21 +4,21 @@
 <br>
 <br>
 <h2 align="center" style="color:#33cabb"> Registration approvals </h2>
-<div class="modal-header">
+<!--<div class="modal-header">
   <h5 class="modal-title">Register <b style="color: #33cabb;">new clinic</b></h5>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="false">&times;</span>
   </button>
 </div>
 
-
-<div class="input-group form-group">
+<div class="form-group input-group">
   <div class="input-group-prepend">
           <span class="input-group-text">
             <i class="fa fa-address-book" aria-hidden="true"></i>
           </span>
   </div>
-  <input type="text" class="form-control" name="clinicName" placeholder="Clinic Name" required="required"
+  <input type="text" class="form-control" name="clinicName" placeholder="Clinic Name" [(ngModel)]="clinic.clinicName"
+
          formControlName="clinicName">
 </div>
 
@@ -35,7 +35,37 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <input type="submit" class="btn btn-primary" value="Add" />
-  </div>
+  </div>-->
+
+<div class="container container-table input-group input-group-sm">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <h2 style="color:#33cabb">Clinic registration</h2>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="clinicName" class="form-control"
+             placeholder="Clinic Name"
+             [(ngModel)]="clinic.clinicName"
+             [ngModelOptions]="{standalone: true}"/>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="address" class="form-control"
+             placeholder="Address"
+             [(ngModel)]="clinic.address"
+             [ngModelOptions]="{standalone: true}"/>
+    </div>
+
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-success">Register</button>
+    </div>
+  </form>
+</div>
+
+
+
+
 
 <p align="left" style="color:#33cabb">List of all clinics</p>
 <table class="table table-bordered table-striped">
@@ -50,15 +80,11 @@
   <tbody>
 
   <!--Ovdje nalijepiti listu klinika iz baze -->
-  <tr>
-    <td>Klinika Novi Sad</td>
-    <td>Kisacka 5</td>
+  <tr *ngFor="let clinic of clinics">
+    <td>{{clinic.clinicName}}</td>
+    <td>{{clinic.address}}</td>
   </tr>
 
-  <tr>
-    <td>Klinika Beograd</td>
-    <td>Vojvode Milenka 44</td>
-  </tr>
   </tbody>
 
 </table>
