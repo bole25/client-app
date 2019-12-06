@@ -17,7 +17,7 @@ export class CcadminRegisterClinicComponent implements OnInit {
   clinic: Clinic;
   listofClinics: Clinic[] = [];
   clinics: Set<Clinic>;
-  angForm: FormGroup;
+
 
 
   constructor(private router: Router, private route: ActivatedRoute, private service: CcadminregisterclinicService) {
@@ -40,5 +40,6 @@ export class CcadminRegisterClinicComponent implements OnInit {
   onSubmit(): void {
 
     this.service.save(this.clinic).subscribe(result => this.router.navigate(['/clinics']));
+    location.reload();
   }
 }
