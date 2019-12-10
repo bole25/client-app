@@ -38,7 +38,6 @@ export class CcadminRegisterClinicComponent implements OnInit {
 
 
   onSubmit(): void {
-
     this.service.save(this.clinic).subscribe(result => this.router.navigate(['/clinics']));
     location.reload();
   }
