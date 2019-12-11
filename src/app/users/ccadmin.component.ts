@@ -19,6 +19,7 @@ export class CcadminComponent implements OnInit {
   email: string;
   password: string;
   user: User;
+  selectedclinic: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: CcadminService) {
     this.user = new User();
@@ -30,4 +31,9 @@ export class CcadminComponent implements OnInit {
       this.clinics = data;
     });
   }
+
+      onSubmit() {
+          this.service.save(this.user, this.selectedclinic).subscribe(result => this.router.navigate(['/ccadmin']));
+          location.reload();
+      }
 }
