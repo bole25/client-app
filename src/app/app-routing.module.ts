@@ -8,6 +8,7 @@ import {CcadminRegisterClinicComponent} from './users/ccadminregisterclinic.comp
 import {CcadminInfoComponent} from './users/ccadminInfo.component';
 import {CcadminCreateDrugCodeComponent} from './users/ccadminCreateDrugCode.component';
 import {CcadminPassComponent} from './users/ccadminPass.component';
+import {AcceptComponent} from './accept/accept.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'users', component: RegistrationComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'deleterequest', component: RequestsComponent},
+  {path: 'acceptrequest', component: RequestsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'users', component: RegistrationComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path: 'registerClinic', component: CcadminRegisterClinicComponent},
   {path: 'ccadminInfo', component: CcadminInfoComponent},
   {path: 'ccadminPass', component: CcadminPassComponent},
-  {path: 'ccadminDrug', component: CcadminCreateDrugCodeComponent}
+  {path: 'ccadminDrug', component: CcadminCreateDrugCodeComponent},
+  {path: 'accept', component: AcceptComponent},
+  {path: 'accept/:id', component: AcceptComponent}
 
 ];
 
