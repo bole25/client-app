@@ -27,5 +27,9 @@ export class RequestsComponent implements OnInit {
   decline_request(email: string) {
     this.service.removeRequest(email, this.emailContent).subscribe(result => this.router.navigate(['/deleterequest']));
   }
+
+  accept_request(email: string) {
+    this.service.acceptRequest(email).subscribe(result => this.router.navigate(['/acceptrequest']));
+  }
 }
 
