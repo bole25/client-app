@@ -8,7 +8,7 @@ export class RegistrationService {
   private readonly userUrl: string;
 
   constructor(private http: HttpClient) {
-    this.userUrl = 'http://localhost:8080/users';
+    this.userUrl = 'http://localhost:8080/users/register';
   }
 
   public save(user: User) {

@@ -7,5 +7,6 @@ export class User {
   city: string;
   country: string;
   ssn: string;
+  role: number;
   phoneNumber: string;
 }

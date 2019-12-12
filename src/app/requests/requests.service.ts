@@ -9,8 +9,8 @@ export class RequestsService {
   private readonly deleterequestUrl: string;
   private readonly acceptUrl: string;
   constructor(private http: HttpClient) {
-    this.requestsUrl = 'http://localhost:8080/getrequests';
-    this.deleterequestUrl = 'http://localhost:8080/deleterequest';
+    this.requestsUrl = 'http://localhost:8080/admin/getrequests';
+    this.deleterequestUrl = 'http://localhost:8080/admin/deleterequest';
     this.acceptUrl = 'http://localhost:8080/acceptrequest';
   }
 
