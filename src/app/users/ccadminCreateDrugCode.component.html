@@ -10,15 +10,15 @@
     <span aria-hidden="false">&times;</span>
   </button>
 </div>
-
+<form (ngSubmit)="onSubmit()">
 <div class="input-group form-group">
   <div class="input-group-prepend">
           <span class="input-group-text">
             <i class="fa fa-address-book" aria-hidden="true"></i>
           </span>
   </div>
-  <input type="text" class="form-control" name="drugName" placeholder="Drugc Name" required="required"
-         formControlName="drugName">
+  <input type="text" class="form-control" name="drugName" placeholder="Drug Name" required="required"
+         [(ngModel)]="drug.drugName" [ngModelOptions]="{standalone: true}" />
 </div>
 
 <div class="input-group form-group">
@@ -28,7 +28,7 @@
           </span>
   </div>
   <input type="text" class="form-control" name="description" placeholder="Description" required="required"
-         formControlName="description">
+         [(ngModel)]="drug.description" [ngModelOptions]="{standalone: true}" />
 </div>
 
 <div class="input-group form-group">
@@ -38,14 +38,14 @@
           </span>
   </div>
   <input type="number" class="form-control" name="price" placeholder="Price" required="required"
-         formControlName="price">
+        [(ngModel)]="drug.price" [ngModelOptions]="{standalone: true}"/>
 </div>
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <input type="submit" class="btn btn-primary" value="Add" />
+  <button [disabled]="isEmpty" type="submit" class="btn btn-primary" value="Add">Add drug</button>
 </div>
-
+</form>
 <p align="left" style="color:#33cabb">List of all drugs</p>
 <table class="table table-bordered table-striped">
   <thead class = "thead dark">
@@ -60,17 +60,12 @@
   <tbody>
 
   <!--Ovdje nalijepiti listu klinika iz baze -->
-  <tr>
-    <td>Cefaleksin</td>
-    <td>CEFALEKSIN kapsule 250 mg i kapsule 500 mg</td>
-    <td>270,45rsd</td>
-  </tr>
+  <tr *ngFor="let dr of drugs; let i = index">
 
-  <tr>
-    <td>Brufen</td>
-    <td>BRUFEN® 600 mg, film tableta
-      ibuprofen </td>
-    <td>350,88rsd</td>
+    <td>{{dr.drugName}}</td>
+    <td>{{dr.description}}</td>
+    <td>{{dr.price}} $</td>
+
   </tr>
   </tbody>
 
