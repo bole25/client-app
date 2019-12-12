@@ -27,9 +27,6 @@ export class CcadminRegisterClinicComponent implements OnInit {
 
   ngOnInit() {
 
-    /*this.service.getAllClinics().subscribe(data => {
-      this.listofClinics = data;
-    });*/
     this.service.getRequests().subscribe(data => {
       this.clinics = data;
     });
@@ -38,7 +35,10 @@ export class CcadminRegisterClinicComponent implements OnInit {
 
 
   onSubmit(): void {
-    this.service.save(this.clinic).subscribe(result => this.router.navigate(['/clinics']));
-    location.reload();
+    this.service.save(this.clinic).subscribe(result => {
+      this.router.navigate(['/clinics']);
+      location.reload();
+    });
+
   }
 }
