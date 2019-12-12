@@ -20,7 +20,7 @@ export class AcceptComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
-    this.service.confirmAcc(this.id).subscribe(result => this.router.navigate(['/loginv']));
+    this.service.confirmAcc(this.id).subscribe(result => this.router.navigate(['/login']));
   }
 }
 

@@ -16,6 +16,7 @@ import {Clinic} from '../models/clinic.model';
 
 export class CcadminComponent implements OnInit {
   clinics: Set<Clinic>;
+  admins: Set<User>;
   email: string;
   password: string;
   user: User;
@@ -24,16 +25,20 @@ export class CcadminComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private service: CcadminService) {
     this.user = new User();
     this.clinics = new Set<Clinic>();
+    this.admins = new Set<User>();
   }
 
   ngOnInit(): void {
     this.service.getClinics().subscribe(data => {
       this.clinics = data;
+      this.service.getCA().subscribe(data1 => {this.admins = data1; });
     });
   }
 
-      onSubmit() {
-          this.service.save(this.user, this.selectedclinic).subscribe(result => this.router.navigate(['/ccadmin']));
-          location.reload();
-      }
+  onSubmit() {
+    this.service.save(this.user, this.selectedclinic).subscribe(result => {
+      this.router.navigate(['/ccadmin']);
+      location.reload();
+      });
+  }
 }

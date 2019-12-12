@@ -9,9 +9,9 @@ export class AcceptService {
   private readonly confirmUrl: string;
 
   constructor(private http: HttpClient) {
-    this.confirmUrl = 'http://localhost:8080/confirm';
+    this.confirmUrl = 'http://localhost:8080/users/confirm';
   }
   public confirmAcc(email: string): Observable<any> {
-    return this.http.put<any>(this.confirmUrl + '/' + email, {});
+    return this.http.post<any>(this.confirmUrl, email);
   }
 }

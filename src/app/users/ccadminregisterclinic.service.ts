@@ -19,8 +19,8 @@ export class CcadminregisterclinicService {
     return this.http.get<Set<Clinic>>(this.clinicUrl);
   }
 
-  public save(clinic: Clinic) {
-    return this.http.post<Clinic>(this.addClinicUrl, clinic);
+  public save(clinic: Clinic): Observable<any> {
+    return this.http.post<any>(this.addClinicUrl, clinic);
   }
 
 

@@ -77,24 +77,21 @@
 <table class="table table-bordered table-striped">
   <thead class = "thead dark">
   <tr>
-    <th scope="col">Admin</th>
-    <th scope="col">Clinic</th>
+    <th scope="col">Admin firstname</th>
+    <th scope="col">Admin lastname</th>
   </tr>
 
   </thead>
 
   <tbody>
+  <tr *ngFor="let dr of admins; let i = index">
 
+    <td>{{dr.firstName}}</td>
+    <td>{{dr.lastName}}</td>
+
+  </tr>
   <!--Ovdje nalijepiti listu klinika iz baze -->
-  <tr>
-    <td>a@a.com</td>
-    <td>Klinicki centar Vojvodina</td>
-  </tr>
 
-  <tr>
-    <td>l@l.com</td>
-    <td>Klinicki centar Beograd</td>
-  </tr>
   </tbody>
 
 </table>

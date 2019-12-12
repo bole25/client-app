@@ -22,8 +22,11 @@ export class CcadminService {
     return this.http.get<Set<Clinic>>(this.clinicsUrl);
   }
 
-  public save(user: User, clinic: string) {
-    return this.http.post<User>(this.clinicAdminUrl + '/' + clinic, user);
+  public save(user: User, clinic: string): Observable<any> {
+    return this.http.post<any>(this.clinicAdminUrl + '/' + clinic, user);
+  }
+  public getCA(): Observable<Set<User>> {
+    return this.http.get<Set<User>>('http://localhost:8080/getadmins');
   }
 
 }

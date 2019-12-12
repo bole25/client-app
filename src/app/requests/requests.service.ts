@@ -11,7 +11,7 @@ export class RequestsService {
   constructor(private http: HttpClient) {
     this.requestsUrl = 'http://localhost:8080/admin/getrequests';
     this.deleterequestUrl = 'http://localhost:8080/admin/deleterequest';
-    this.acceptUrl = 'http://localhost:8080/acceptrequest';
+    this.acceptUrl = 'http://localhost:8080/admin/acceptrequest';
   }
 
   public getRequests(): Observable<Set<User>> {
@@ -19,11 +19,11 @@ export class RequestsService {
   }
 
   public removeRequest(email: string, content: string): Observable<any> {
-    return this.http.delete( this.deleterequestUrl + '/' + email + '/' + content);
+    return this.http.post<any>( this.deleterequestUrl, {email, content});
   }
 
   public acceptRequest(email: string): Observable<any> {
-    return this.http.put<any>(this.acceptUrl + '/' + email, {});
+    return this.http.post<any>(this.acceptUrl, email);
   }
 
 }
