@@ -25,8 +25,8 @@ export class LoginComponent {
     this.service.getUser(this.email, this.password)
       .subscribe(
         response => {
-        this.user = response;
-        console.log(this.user.firstName + ' ' + this.user.phoneNumber);
+        localStorage.setItem('jwt', response.token);
+        console.log(this.user.firstName + ' ' + this.user.phoneNumber + ' ' + this.user.role);
       },
         err => {
           if (err.status === 400) {

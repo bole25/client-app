@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {Router, RouterModule, Routes} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent} from './registration/registration.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationService} from './registration/registration.service';
 import {LoginService} from './login/login.service';
@@ -20,8 +20,9 @@ import {CcadminCreateDrugCodeComponent} from './users/ccadminCreateDrugCode.comp
 import {CcadminCreateDrugCodeService} from './users/ccadminCreateDrugCode.service';
 import {RequestsComponent} from './requests/requests.component';
 import {RequestsService} from './requests/requests.service';
+import {Interceptor} from './intercepter/Interceptor';
 import {AcceptComponent} from './accept/accept.component';
-import {AcceptService} from "./accept/accept.service";
+import {AcceptService} from './accept/accept.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -69,6 +70,11 @@ const appRoutes: Routes = [
     CcadminService,
     CcadminregisterclinicService,
     CcadminCreateDrugCodeService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },
     AcceptService
   ],
   bootstrap: [AppComponent]
