@@ -21,7 +21,7 @@ import {CcadminCreateDrugCodeService} from './users/ccadminCreateDrugCode.servic
 import {RequestsComponent} from './requests/requests.component';
 import {RequestsService} from './requests/requests.service';
 import {AcceptComponent} from './accept/accept.component';
-import {AcceptService} from "./accept/accept.service";
+import {AcceptService} from './accept/accept.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
