@@ -21,6 +21,8 @@ import {CcadminCreateDrugCodeService} from './users/ccadminCreateDrugCode.servic
 import {RequestsComponent} from './requests/requests.component';
 import {RequestsService} from './requests/requests.service';
 import {Interceptor} from './intercepter/Interceptor';
+import {AcceptComponent} from './accept/accept.component';
+import {AcceptService} from './accept/accept.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,7 +33,9 @@ const appRoutes: Routes = [
   { path: 'registerClinic', component: CcadminRegisterClinicComponent},
   {path: 'ccadminInfo', component: CcadminInfoComponent},
   {path: 'ccadminPass', component: CcadminPassComponent},
-  {path: 'ccadminDrug', component: CcadminCreateDrugCodeComponent}
+  {path: 'ccadminDrug', component: CcadminCreateDrugCodeComponent},
+  {path: 'accept', component: AcceptComponent},
+  {path: 'accept/:id', component: AcceptComponent}
   ];
 
 @NgModule({
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
     CcadminRegisterClinicComponent,
     CcadminInfoComponent,
     CcadminPassComponent,
-    CcadminCreateDrugCodeComponent
+    CcadminCreateDrugCodeComponent,
+    AcceptComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,8 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
-    }
+    },
+    AcceptService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,57 +4,80 @@
 <br>
 <br>
 <!----------OVO JE ZA DODAVANJE ADMINA, ALI SE TAKO NE ZOVE HEH-------------- -->
-<h2 align="center" style="color:#33cabb"> Registration approvals </h2>
-<div class="modal-header">
-  <h5 class="modal-title">Register <b style="color: #33cabb;">new clinic's admin</b></h5>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="false">&times;</span>
-  </button>
-</div>
-
-<div class="input-group form-group">
-  <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-address-book" aria-hidden="true"></i>
-          </span>
-  </div>
-  <input type="text" class="form-control" name="email" placeholder="Email" required="required"
-         formControlName="email">
-</div>
-
-<div class="input-group form-group">
-  <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-address-book" aria-hidden="true"></i>
-          </span>
-  </div>
-  <input type="password" formControlName="password" id="password" name="password" class="form-control" required placeholder="Password"
-         [(ngModel)]="user.password"/>
-</div>
-
-<div class="input-group form-group">
-  <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fa fa-address-book" aria-hidden="true"></i>
-          </span>
-  </div>
-<input type="text" class="form-control" name="clinic" placeholder="Clinic" required="required"
-       formControlName="clinic"/>
-</div>
 
 
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <input type="submit" class="btn btn-primary" value="Register" />
+<div class="container container-table input-group input-group-sm">
+  <form  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <h2 style="color:#33cabb">Clinic Admin registration</h2>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="firstname" class="form-control"
+             placeholder="First Name"
+             [(ngModel)]="user.firstName"
+             [ngModelOptions]="{standalone: true}"
+              required
+      />
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="lastname" class="form-control"
+             placeholder="Last Name"
+             [(ngModel)]="user.lastName"
+             [ngModelOptions]="{standalone: true}"
+             required
+      />
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="ssn" class="form-control"
+             placeholder="SSN"
+             [(ngModel)]="user.ssn"
+             [ngModelOptions]="{standalone: true}"
+             required
+      />
+    </div>
+
+    <div class="form-group">
+      <input type="email" id="email" class="form-control"
+             placeholder="Email"
+             [(ngModel)]="user.email"
+             [ngModelOptions]="{standalone: true}"
+             required
+      />
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="passwordca" class="form-control"
+             placeholder="Password"
+             [(ngModel)]="user.password"
+             [ngModelOptions]="{standalone: true}"
+             required
+      />
+    </div>
+
+    <select class="form-control form-group" id="orders" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
+    <option value="" label="-- Select clinic --" disabled selected="selected">
+    </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
+        {{clc.clinicName}}
+      </option>
+    </select>
+
+
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-success">Add admin</button>
+    </div>
+  </form>
 </div>
 
 <p align="left" style="color:#33cabb">List of all clinic admins</p>
 
-
 <table class="table table-bordered table-striped">
   <thead class = "thead dark">
   <tr>
-    <th scope="col">Email</th>
+    <th scope="col">Admin</th>
     <th scope="col">Clinic</th>
   </tr>
 
