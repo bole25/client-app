@@ -6,11 +6,11 @@ import {Clinic} from '../models/clinic.model';
 
 @Injectable()
 export class CcadminService {
-  private readonly userUrl: string;
+  private readonly clinicAdminUrl: string;
   private readonly clinicsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.userUrl = 'http://localhost:8080/users';
+    this.clinicAdminUrl = 'http://localhost:8080/regClinicAdmin';
     this.clinicsUrl = 'http://localhost:8080/getclinics';
   }
 
@@ -20,6 +20,10 @@ export class CcadminService {
 
   public getClinics(): Observable<Set<Clinic>> {
     return this.http.get<Set<Clinic>>(this.clinicsUrl);
+  }
+
+  public save(user: User, clinic: string) {
+    return this.http.post<User>(this.clinicAdminUrl + '/' + clinic, user);
   }
 
 }

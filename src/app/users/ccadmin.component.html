@@ -7,7 +7,7 @@
 
 
 <div class="container container-table input-group input-group-sm">
-  <form>
+  <form  (ngSubmit)="onSubmit()">
     <div class="form-group">
       <h2 style="color:#33cabb">Clinic Admin registration</h2>
     </div>
@@ -15,6 +15,8 @@
     <div class="form-group">
       <input type="text" id="firstname" class="form-control"
              placeholder="First Name"
+             [(ngModel)]="user.firstName"
+             [ngModelOptions]="{standalone: true}"
               required
       />
     </div>
@@ -22,6 +24,8 @@
     <div class="form-group">
       <input type="text" id="lastname" class="form-control"
              placeholder="Last Name"
+             [(ngModel)]="user.lastName"
+             [ngModelOptions]="{standalone: true}"
              required
       />
     </div>
@@ -29,6 +33,8 @@
     <div class="form-group">
       <input type="text" id="ssn" class="form-control"
              placeholder="SSN"
+             [(ngModel)]="user.ssn"
+             [ngModelOptions]="{standalone: true}"
              required
       />
     </div>
@@ -36,17 +42,22 @@
     <div class="form-group">
       <input type="email" id="email" class="form-control"
              placeholder="Email"
+             [(ngModel)]="user.email"
+             [ngModelOptions]="{standalone: true}"
              required
       />
     </div>
 
     <div class="form-group">
-      <input type="password" id="password" class="form-control"
-             placeholder="Password" required
+      <input type="password" id="passwordca" class="form-control"
+             placeholder="Password"
+             [(ngModel)]="user.password"
+             [ngModelOptions]="{standalone: true}"
+             required
       />
     </div>
 
-    <select class="form-control form-group" formControlName="orders" id="orders" [selectedIndex]="0">
+    <select class="form-control form-group" id="orders" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
     <option value="" label="-- Select clinic --" disabled selected="selected">
     </option>
       <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
@@ -66,7 +77,7 @@
 <table class="table table-bordered table-striped">
   <thead class = "thead dark">
   <tr>
-    <th scope="col">Email</th>
+    <th scope="col">Admin</th>
     <th scope="col">Clinic</th>
   </tr>
 
