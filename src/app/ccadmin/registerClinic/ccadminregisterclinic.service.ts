@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
-import {Clinic} from '../models/clinic.model';
+import {Clinic} from '../../models/clinic.model';
 import {Observable} from 'rxjs';
 
 @Injectable()

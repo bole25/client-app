@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../models/user.model';
-import {CcadminService} from './ccadmin.service';
-
+import { User } from '../../models/user.model';
+import {CcadminService} from '../registerClinicAdmin/ccadmin.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-users',
-  templateUrl: './ccadminInfo.component.html'
+  templateUrl: './ccadminPass.component.html'
 })
 
-export class CcadminInfoComponent {
+export class CcadminPassComponent {
   email: string;
-  password: string;
   user: User;
-  city: string;
-  address: string;
-  country: string;
+  repeatedPassword: string;
+  password: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: CcadminService) {
     this.user = new User();

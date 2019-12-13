@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Clinic} from '../models/clinic.model';
+import {Clinic} from '../../models/clinic.model';
 import {CcadminregisterclinicService} from './ccadminregisterclinic.service';
 import {FormGroup} from '@angular/forms';
 
