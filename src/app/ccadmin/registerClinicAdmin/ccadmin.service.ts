@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '../models/user.model';
+import {User} from '../../models/user.model';
 import {Observable} from 'rxjs';
-import {Clinic} from '../models/clinic.model';
+import {Clinic} from '../../models/clinic.model';
 
 @Injectable()
 export class CcadminService {

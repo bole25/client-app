@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Drug} from '../models/drug.model';
+import {Drug} from '../.././models/drug.model';
 import {CcadminCreateDrugCodeService} from './ccadminCreateDrugCode.service';
 
 @Component({

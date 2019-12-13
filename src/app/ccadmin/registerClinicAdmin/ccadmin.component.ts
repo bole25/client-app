@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 import { first } from 'rxjs/operators';
-import {CcadminService} from '../users/ccadmin.service';
-import {Clinic} from '../models/clinic.model';
+import {CcadminService} from './/ccadmin.service';
+import {Clinic} from '../../models/clinic.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
