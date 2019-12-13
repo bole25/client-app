@@ -24,8 +24,10 @@ export class CcadminCreateDrugCodeComponent implements OnInit {
 
 
   onSubmit() {
-    this.service.addDrug(this.drug).subscribe(result => this.router.navigate(['/ccadminDrug']));
-    location.reload();
+    this.service.addDrug(this.drug).subscribe(result => {
+      this.router.navigate(['/ccadminDrug']);
+      location.reload();
+    });
   }
 
   get isEmpty() {
