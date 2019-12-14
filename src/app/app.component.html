@@ -9,11 +9,14 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel='icon' href='h.ico' type='image/x-icon'/>
   <title></title>
+
 </head>
 <!-- Toolbar -->
 <body>
-<div *ngIf="!someoneLoged">
+<div *ngIf="someoneLoged">
+
   <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="#">Clinical center</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -50,6 +53,10 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
+        <li class="nav-item">
+          <a (click)="logout()" class="nav-link" routerLink="/">Logout</a>
+        </li>
+
 
       </ul>
     </div>
@@ -61,24 +68,24 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <!--Log in form-->
-<div id="loginform" *ngIf="loginShow">
+<div id="loginform"  *ngIf="loginShow && !someoneLoged">
   <h3 class="text-center text-white pt-5">Login form</h3>
   <div class="container">
     <div id="login-row" class="row justify-content-center align-items-center">
       <div id="login-column" class="col-md-6">
         <div id="login-box" class="col-md-12">
-          <form id="login-form" class="form" (ngSubmit)="onSubmit()">
+          <form id="login-form"  class="form" (ngSubmit)="onSubmit()">
             <h3 class="text-center text-info">Login</h3>
             <div class="form-group">
               <label class="text-info">Email:</label><br>
-              <input type="text" name="email" id="logemail" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone:true}">
+              <input type="text" name="email" id="logemail" class="form-control" [(ngModel)]="logemail" [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
               <label class="text-info">Password:</label><br>
-              <input type="text" name="password" id="logpassword" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" class="form-control">
+              <input type="password" name="password" id="logpassword" [(ngModel)]="logpassword" [ngModelOptions]="{standalone:true}" class="form-control">
             </div>
             <div class="form-group">
-              <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+
               <button type="submit" name="submitlogin" class="btn btn-info btn-md" value="Log in"> Log In </button>
             </div>
             <div id="register-link" class="text-right">
@@ -92,7 +99,7 @@
 </div>
 
 <!--Registration form-->
-<div class="container register" id="signUpForm" *ngIf="registrationShow">
+<div class="container register" id="signUpForm" *ngIf="registrationShow && !someoneLoged">
   <div class="row">
     <div class="col-md-3 register-left">
       <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
@@ -101,6 +108,7 @@
       <button class="btn btn-success" (click)="showLogin()" role="button" name="" value="Login">Go to Log in</button><br/>
     </div>
     <div class="col-md-9 register-right">
+      <form (ngSubmit)="onSubmit2()" [formGroup]="angForm">
 
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -108,94 +116,63 @@
           <div class="row register-form">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="First Name *" value="" />
+                <input type="text" class="form-control" formControlName="firstname" placeholder="First Name *" value=""
+                       [(ngModel)]="user1.firstName"
+                       [ngClass]="{'is-invalid': (f.firstname.dirty || f.firstname.touched) && f.firstname.errors, 'is-valid': (f.firstname.dirty || f.firstname.touched) && f.firstname.valid}"/>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                <input type="text" class="form-control" formControlName="lastname" placeholder="Last Name *" value=""
+                       [(ngModel)]="user1.lastName"
+                       [ngClass]="{'is-invalid': (f.lastname.dirty || f.lastname.touched) && f.lastname.errors, 'is-valid': (f.lastname.dirty || f.lastname.touched) && f.lastname.valid}"
+                />
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password *" value="" />
+                <input type="password" class="form-control"  formControlName="password" placeholder="Password *" value=""
+                       [(ngModel)]="user1.password"
+                       [ngClass]="{'is-invalid': (f.password.dirty || f.password.touched) && f.password.errors, 'is-valid': (f.password.dirty || f.password.touched) && f.password.valid}"
+                />
               </div>
               <div class="form-group">
-                <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                <input type="password" class="form-control" formControlName="repeatpassword" placeholder="Confirm Password *" value=""
+                       [(ngModel)]="repeatedPassword"
+                       [ngClass]="{'is-invalid': (f.repeatpassword.dirty || f.repeatpassword.touched) && checkPassword, 'is-valid': (f.repeatpassword.dirty || f.repeatpassword.touched) && f.repeatpassword.valid && !checkPassword}"
+
+                />
               </div>
-              <div class="form-group">
-                <div class="maxl">
-                  <label class="radio inline">
-                    <input type="radio" name="gender" value="male" checked>
-                    <span> Male </span>
-                  </label>
-                  <label class="radio inline">
-                    <input type="radio" name="gender" value="female">
-                    <span>Female </span>
-                  </label>
-                </div>
-              </div>
+              <div class="form-group"></div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email *" value="" />
+                <input type="email" formControlName="email" class="form-control" placeholder="Your Email *"
+                       [(ngModel)]="user1.email"
+                       [ngClass]="{'is-invalid': (f.email.dirty || f.email.touched) && f.email.errors, 'is-valid': (f.email.dirty || f.email.touched) && f.email.valid}"
+                />
               </div>
               <div class="form-group">
-                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
+                <input type="text"  name="txtEmpPhone" formControlName="phonenumber" class="form-control" pattern="[0-9]+" placeholder="Your Phone *" value=""
+                       [(ngModel)]="user1.phoneNumber"
+                       [ngClass]="{'is-invalid': (f.phonenumber.dirty || f.phonenumber.touched) && f.phonenumber.errors, 'is-valid': (f.phonenumber.dirty || f.phonenumber.touched) && f.phonenumber.valid}"
+                />
               </div>
               <div class="form-group">
-                <select class="form-control">
-                  <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                  <option>What is your Birthdate?</option>
-                  <option>What is Your old Phone Number</option>
-                  <option>What is your Pet Name?</option>
-                </select>
+                <input type="text" formControlName="ssn" name="ssn" class="form-control" pattern="[0-9]+" placeholder="SSN *" required
+                       [(ngModel)]="user1.ssn"
+                       [ngClass]="{'is-invalid': (f.ssn.dirty || f.ssn.touched) && f.ssn.errors, 'is-valid': (f.ssn.dirty || f.ssn.touched) && f.ssn.valid}"
+                />
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
-              </div>
-              <input type="submit" class="btnRegister"  value="Register"/>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <h3  class="register-heading">Apply as a Hirer</h3>
-          <div class="row register-form">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="First Name *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Last Name *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
+                <input type="text" formControlName="address" class="form-control" placeholder="Enter Your Address *"
+                       [(ngModel)]="user1.address"
+                       [ngClass]="{'is-invalid': (f.address.dirty || f.address.touched) && f.address.errors, 'is-valid': (f.address.dirty || f.address.touched) && f.address.valid}"/>
+
               </div>
 
-
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-              </div>
-              <div class="form-group">
-                <select class="form-control">
-                  <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                  <option>What is your Birthdate?</option>
-                  <option>What is Your old Phone Number</option>
-                  <option>What is your Pet Name?</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="`Answer *" value="" />
-              </div>
-              <input type="submit" class="btnRegister"  value="Register"/>
+              <button [disabled]="angForm.invalid || angForm.pristine || checkPassword" type="subbmit" class="btnRegister"> Sign Up </button>
             </div>
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 

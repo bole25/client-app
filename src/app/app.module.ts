@@ -25,8 +25,8 @@ import {AcceptComponent} from './accept/accept.component';
 import {AcceptService} from './accept/accept.service';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent},
+  // { path: 'login', component: LoginComponent },
+  // { path: 'registration', component: RegistrationComponent},
   { path: 'requests', component: RequestsComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'ccadmin', component: CcadminComponent},
