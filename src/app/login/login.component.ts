@@ -26,6 +26,7 @@ export class LoginComponent {
       .subscribe(
         response => {
         localStorage.setItem('jwt', response.token);
+        localStorage.setItem('firstname', response.firstName);
         console.log(this.user.firstName + ' ' + this.user.phoneNumber + ' ' + this.user.role);
       },
         err => {
