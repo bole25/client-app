@@ -13,7 +13,7 @@
 </head>
 <!-- Toolbar -->
 <body>
-<div>
+<div *ngIf="!someoneLoged">
   <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
     <a class="navbar-brand" href="#">Clinical center</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -26,10 +26,10 @@
         <li class="nav-item" hidden="true">
           <a class="nav-link" routerLink="/">Home</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item" hidden="true">
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item" hidden="true">
           <a class="nav-link" routerLink="/registration">Registration</a>
         </li>
         <li class="nav-item">
@@ -51,14 +51,155 @@
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
 
-
-
-
       </ul>
     </div>
   </nav>
 </div>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<!--Log in form-->
+<div id="loginform" *ngIf="loginShow">
+  <h3 class="text-center text-white pt-5">Login form</h3>
+  <div class="container">
+    <div id="login-row" class="row justify-content-center align-items-center">
+      <div id="login-column" class="col-md-6">
+        <div id="login-box" class="col-md-12">
+          <form id="login-form" class="form" (ngSubmit)="onSubmit()">
+            <h3 class="text-center text-info">Login</h3>
+            <div class="form-group">
+              <label class="text-info">Email:</label><br>
+              <input type="text" name="email" id="logemail" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone:true}">
+            </div>
+            <div class="form-group">
+              <label class="text-info">Password:</label><br>
+              <input type="text" name="password" id="logpassword" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+              <button type="submit" name="submitlogin" class="btn btn-info btn-md" value="Log in"> Log In </button>
+            </div>
+            <div id="register-link" class="text-right">
+              <button role="button" (click)="showRegistration()" class="text-info">Register here</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Registration form-->
+<div class="container register" id="signUpForm" *ngIf="registrationShow">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+      <h3>Welcome</h3>
+      <p></p>
+      <button class="btn btn-success" (click)="showLogin()" role="button" name="" value="Login">Go to Log in</button><br/>
+    </div>
+    <div class="col-md-9 register-right">
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading">Register as a Patient</h3>
+          <div class="row register-form">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+              </div>
+              <div class="form-group">
+                <div class="maxl">
+                  <label class="radio inline">
+                    <input type="radio" name="gender" value="male" checked>
+                    <span> Male </span>
+                  </label>
+                  <label class="radio inline">
+                    <input type="radio" name="gender" value="female">
+                    <span>Female </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Your Email *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
+                  <option>What is your Birthdate?</option>
+                  <option>What is Your old Phone Number</option>
+                  <option>What is your Pet Name?</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
+              </div>
+              <input type="submit" class="btnRegister"  value="Register"/>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <h3  class="register-heading">Apply as a Hirer</h3>
+          <div class="row register-form">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
+              </div>
+
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password *" value="" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+              </div>
+              <div class="form-group">
+                <select class="form-control">
+                  <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
+                  <option>What is your Birthdate?</option>
+                  <option>What is Your old Phone Number</option>
+                  <option>What is your Pet Name?</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="`Answer *" value="" />
+              </div>
+              <input type="submit" class="btnRegister"  value="Register"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
