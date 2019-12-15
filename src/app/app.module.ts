@@ -23,6 +23,15 @@ import {RequestsService} from './requests/requests.service';
 import {Interceptor} from './intercepter/Interceptor';
 import {AcceptComponent} from './accept/accept.component';
 import {AcceptService} from './accept/accept.service';
+import {StaffComponent} from './staff/editStaffInfo/staff.component';
+import {SelectClinicComponent} from './patient/listOfClinics/selectClinic.component';
+import {BsDropdownModule} from 'ngx-bootstrap';
+import {HistoryPatientComponent} from './patient/history/historyPatient.component';
+import {WorkCalendarComponent} from './doctor/workCalendar/workCalendar.component';
+import {HolidayAbsenceComponent} from './doctor/holiday-absence/holiday-absence.component';
+import {BookingComponent} from './doctor/booking/booking.component';
+import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.component';
+import {StaffService} from './staff/editStaffInfo/staff.service';
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -35,7 +44,14 @@ const appRoutes: Routes = [
   {path: 'ccadminPass', component: CcadminPassComponent},
   {path: 'ccadminDrug', component: CcadminCreateDrugCodeComponent},
   {path: 'accept', component: AcceptComponent},
-  {path: 'accept/:id', component: AcceptComponent}
+  {path: 'accept/:id', component: AcceptComponent},
+  {path: 'editStaff', component: StaffComponent},
+  {path: 'selectClinic', component: SelectClinicComponent},
+  {path: 'historyPatient', component: HistoryPatientComponent},
+  {path: 'workCalendar', component: WorkCalendarComponent},
+  {path: 'holidayAbsence', component: HolidayAbsenceComponent},
+  {path: 'booking', component: BookingComponent},
+  {path: 'listOfPatients', component: ListOfPatientsComponent}
   ];
 
 @NgModule({
@@ -51,7 +67,14 @@ const appRoutes: Routes = [
     CcadminInfoComponent,
     CcadminPassComponent,
     CcadminCreateDrugCodeComponent,
-    AcceptComponent
+    AcceptComponent,
+    StaffComponent,
+    SelectClinicComponent,
+    HistoryPatientComponent,
+    WorkCalendarComponent,
+    HolidayAbsenceComponent,
+    BookingComponent,
+    ListOfPatientsComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +83,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes, {enableTracing: true}),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BsDropdownModule
   ],
   providers: [
     RegistrationService,
@@ -70,6 +94,7 @@ const appRoutes: Routes = [
     CcadminService,
     CcadminregisterclinicService,
     CcadminCreateDrugCodeService,
+    StaffService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

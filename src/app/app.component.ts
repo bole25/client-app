@@ -11,6 +11,7 @@ import {$, $$} from 'protractor';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
 
   title = 'my-app';
@@ -113,9 +114,11 @@ export class AppComponent implements OnInit {
       repeatpassword: ['', Validators.required]
     });
   }
+  
   get checkPassword() {
     return this.angForm.get('password').value === this.angForm.get('repeatpassword').value ? null : {notSame : true };
   }
+  
   onSubmit2() {
     if (this.angForm.invalid) {
       alert('Please, fill all fields correctly');

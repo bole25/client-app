@@ -55,9 +55,36 @@
         <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
+        <!--Staff-->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/editStaff">Edit staff's info</a>
+        </li>
+        <!--Patient-->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/selectClinic">Select clinic</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/historyPatient">History of examination</a>
+        </li>
+        <!--Doctor-->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/workCalendar">Work Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/holidayAbsence">Holiday/Absence</a>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link" routerLink="/booking">Booking</a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/listOfPatients">All Patients</a>
+        </li>
+
         <li class="nav-item">
           <a (click)="logout()" class="nav-link" routerLink="/">Logout</a>
         </li>
+
 
 
       </ul>
@@ -204,7 +231,6 @@
 
 </div>
 
-
 </body>
 </html>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -215,3 +241,4 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <router-outlet></router-outlet>
+

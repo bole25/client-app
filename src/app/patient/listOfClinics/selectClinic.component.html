@@ -1,0 +1,81 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+<div class="container container-table input-group input-group-sm">
+  <form >
+    <div class="form-group">
+      <h2 style="color:#33cabb">Patient Profile</h2>
+      <h5 style="color:#33cabb">Clinic list</h5>
+    </div>
+
+    <br>
+    <p>Filter clinics by:</p>
+    <select class="form-control form-group" id="filter" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
+      <option value="" label="-- Filter --" disabled selected="selected">
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
+        {{clc.clinicName}}
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].address">
+        {{clc.address}}
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].rating">
+        {{clc.rating}}
+      </option>
+    </select>
+
+    <br>
+    <p>Sort clinics by:</p>
+    <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
+      <option value="" label="-- Sort --" disabled selected="selected">
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
+        {{clc.clinicName}}
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].address">
+        {{clc.address}}
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].rating">
+        {{clc.rating}}
+      </option>
+    </select>
+
+    <br>
+
+    <p>Search clinic by name: </p>
+    <input type="text" placeholder="Input clinic name..."> <button type="submit">Search</button>
+
+    <br>
+
+    <br>
+
+<p align="left" style="color:#33cabb">List of all clinics</p>
+<table class="table table-bordered table-striped">
+  <thead class = "thead dark">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Address</th>
+    <th scope="col">Rating</th>
+  </tr>
+
+  </thead>
+
+  <tbody>
+
+  <!--Ovdje nalijepiti listu klinika iz baze -->
+  <tr *ngFor="let clinic of clinics">
+    <td>{{clinic.clinicName}}</td>
+    <td>{{clinic.address}}</td>
+    <td>{{clinic.rating}}</td>
+  </tr>
+
+  </tbody>
+
+</table>
+  </form>
+</div>
+</body>
+</html>
+

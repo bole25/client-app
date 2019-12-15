@@ -1,0 +1,51 @@
+<html>
+<body>
+
+<br>
+<br>
+<br>
+<br>
+<div class="container container-table input-group input-group-sm">
+  <form >
+
+  <div class="form-group">
+      <h2 style="color:#33cabb">Patient Profile</h2>
+      <h5 style="color:#33cabb">History of surgeries and examinations</h5>
+    </div>
+  <br>
+  <br>
+
+  <div>
+    <p>Sort history by:</p>
+
+    <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="selectSurgery" [ngModelOptions]="{standalone: true}">
+      <option value="" label="-- Sort --" disabled selected="selected">
+      </option>
+      <option *ngFor="let s of surgeries; let i = index" [value]="surgeries[i].doctor">
+        {{s.doctor}}
+      </option>
+
+    </select>
+  </div>
+
+  <br>
+
+  <br>
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead class = "thead dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Surgeries</th>
+      <th scope="col">Examination</th>
+    </tr>
+    </thead>
+  </table>
+
+
+</form>
+  </div>
+</body>
+</html>
+
+
