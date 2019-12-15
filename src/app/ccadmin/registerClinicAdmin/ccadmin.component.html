@@ -7,67 +7,93 @@
 
 
 <div class="container container-table input-group input-group-sm">
-  <form  (ngSubmit)="onSubmit()">
+  <form  (ngSubmit)="onSubmit()" [formGroup]="createAdmin">
     <div class="form-group">
       <h2 style="color:#33cabb">Clinic Admin registration</h2>
     </div>
 
     <div class="form-group">
-      <input type="text" id="firstname" class="form-control"
+      <input type="text" id="firstnameca" class="form-control"
              placeholder="First Name"
              [(ngModel)]="user.firstName"
-             [ngModelOptions]="{standalone: true}"
+             [ngClass]="{'is-invalid': (f.firstnameca.dirty || f.firstnameca.touched) && f.firstnameca.errors,
+             'is-valid': (f.firstnameca.dirty || f.firstnameca.touched) && f.firstnameca.valid}"
+            formControlName="firstnameca"
               required
       />
+      <span class="text-danger" *ngIf="f.firstnameca.errors && (f.firstnameca.dirty || f.firstnameca.touched)"> First name is required </span>
+
     </div>
 
     <div class="form-group">
-      <input type="text" id="lastname" class="form-control"
+      <input type="text" id="lastnameca" class="form-control"
              placeholder="Last Name"
              [(ngModel)]="user.lastName"
-             [ngModelOptions]="{standalone: true}"
+             [ngClass]="{'is-invalid': (f.lastnameca.dirty || f.lastnameca.touched) && f.lastnameca.errors,
+              'is-valid': (f.lastnameca.dirty || f.lastnameca.touched) && f.lastnameca.valid}"
+            formControlName="lastnameca"
              required
       />
+      <span class="text-danger" *ngIf="f.lastnameca.errors && (f.lastnameca.dirty || f.lastnameca.touched)">Last name is required</span>
     </div>
 
     <div class="form-group">
-      <input type="text" id="ssn" class="form-control"
+      <input type="text" id="ssnca" class="form-control"
              placeholder="SSN"
              [(ngModel)]="user.ssn"
-             [ngModelOptions]="{standalone: true}"
+             [ngClass]="{'is-invalid': (f.ssnca.dirty || f.ssnca.touched) && f.ssnca.errors,
+              'is-valid': (f.ssnca.dirty || f.ssnca.touched) && f.ssnca.valid}"
+             formControlName="ssnca"
              required
       />
+      <span class="text-danger" *ngIf="f.ssnca.errors && (f.ssnca.dirty || f.ssnca.touched)">SSN must containts 13 digits</span>
     </div>
 
     <div class="form-group">
-      <input type="email" id="email" class="form-control"
+      <input type="email" id="emailca" class="form-control"
              placeholder="Email"
              [(ngModel)]="user.email"
-             [ngModelOptions]="{standalone: true}"
+             [ngClass]="{'is-invalid': (f.emailca.dirty || f.emailca.touched) && f.emailca.errors,
+              'is-valid': (f.emailca.dirty || f.emailca.touched) && f.emailca.valid}"
+             formControlName="emailca"
              required
       />
+      <span class="text-danger" *ngIf="f.emailca.errors && (f.emailca.dirty || f.emailca.touched)">Email must be a valid email address</span>
+
     </div>
 
     <div class="form-group">
+
+
       <input type="password" id="passwordca" class="form-control"
              placeholder="Password"
              [(ngModel)]="user.password"
-             [ngModelOptions]="{standalone: true}"
+             [ngClass]="{'is-invalid': (f.passwordca.dirty || f.passwordca.touched) && f.passwordca.errors,
+              'is-valid': (f.passwordca.dirty || f.passwordca.touched) && f.passwordca.valid}"
+            formControlName="passwordca"
              required
       />
-    </div>
+      <span class="text-danger" *ngIf="f.passwordca.errors && (f.passwordca.dirty || f.passwordca.touched)">Password must contains minimum 6 charachters</span>
 
-    <select class="form-control form-group" id="orders" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
-    <option value="" label="-- Select clinic --" disabled selected="selected">
+    </div>
+    <div class="form-group">
+      <span class="text-dark text-center" *ngIf="f.clinicca.pristine"> --Select clinic-- </span>
+    <select class="form-control form-group" id="orders" [selectedIndex]="0" [(ngModel)]="selectedclinic"
+            formControlName="clinicca"
+            [ngClass]="{'is-invalid': (f.clinicca.dirty || f.clinicca.touched) && f.clinicca.errors,
+              'is-valid': (f.clinicca.dirty || f.clinicca.touched) && f.clinicca.valid}"
+    >
+    <option value="" disabled selected="selected">--Select clinic--
     </option>
       <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
         {{clc.clinicName}}
       </option>
     </select>
+    </div>
 
 
     <div class="form-group text-center">
-      <button type="submit" class="btn btn-success">Add admin</button>
+      <button [disabled]="createAdmin.invalid || createAdmin.pristine" type="submit" class="btn btn-success">Add admin</button>
     </div>
   </form>
 </div>

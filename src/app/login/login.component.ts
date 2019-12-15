@@ -13,8 +13,8 @@ import {LoginService} from './login.service';
 })
 
 export class LoginComponent {
-  email: string;
-  password: string;
+  logemail: string;
+  logpassword: string;
   user: User;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: LoginService) {
@@ -22,10 +22,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.service.getUser(this.email, this.password)
+    this.service.getUser(this.logemail, this.logpassword)
       .subscribe(
         response => {
         localStorage.setItem('jwt', response.token);
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('firstName', response.firstName);
+        localStorage.setItem('lastName', response.lastName);
         console.log(this.user.firstName + ' ' + this.user.phoneNumber + ' ' + this.user.role);
       },
         err => {
