@@ -16,15 +16,15 @@ export class AppComponent implements OnInit {
   title = 'my-app';
   public registrationShow = false;
   public loginShow = true;
-  public ulogovani: string;
+  public ulogovani: any;
   user: User;
   logemail: string;
   logpassword: string;
   user1: User;
   repeatedPassword: string;
-
   angForm: FormGroup;
   loginForm: FormGroup;
+  private ulogovanifirstName: string;
 
   constructor(private router: Router, private route: ActivatedRoute,
               private service: LoginService, private fb: FormBuilder, private regservice: RegistrationService) {
@@ -58,9 +58,10 @@ export class AppComponent implements OnInit {
           localStorage.setItem('jwt', response.token);
           localStorage.setItem('role', response.role);
           localStorage.setItem('firstName', response.firstName);
-          localStorage.setItem('lastName', response.lastName);
-          this.ulogovani = this.user.firstName;
-          console.log(this.user.phoneNumber + ' ' + this.user.phoneNumber + ' ' + this.user.role);
+          localStorage.setItem('secondName', response.lastName);
+          this.ulogovani = localStorage.role;
+          this.ulogovanifirstName = localStorage.firstName;
+
         },
         err => {
           if (err.status === 400) {
@@ -69,6 +70,13 @@ export class AppComponent implements OnInit {
             alert('Wrong password');
           }
         });
+    console.log('AAAAAA:' + localStorage.jwt);
+  }
+
+  get ccadminloged() {
+    if (this.ulogovani === 'CLINIC_CENTER_ADMIN') {
+      return true;
+    } else { return false; }
   }
   get someoneLoged() {
     if (localStorage.jwt == null) {
@@ -76,8 +84,16 @@ export class AppComponent implements OnInit {
     } else  { return true; }
   }
 
-  logout() {
+  get homepage() {
+    if (location.pathname === '/') {
+      return true;
+    } else {return false;}
+  }
 
+  logout() {
+    console.log('AAAAAA:' + localStorage.jwt);
+    console.log('Uloga: ' + localStorage.role);
+    console.log('page' + location.pathname);
     localStorage.clear();
   }
 
