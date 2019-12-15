@@ -9,6 +9,14 @@ import {CcadminInfoComponent} from './ccadmin/adminInfo/ccadminInfo.component';
 import {CcadminCreateDrugCodeComponent} from './ccadmin/drugCode/ccadminCreateDrugCode.component';
 import {CcadminPassComponent} from './ccadmin/passwordChanging/ccadminPass.component';
 import {AcceptComponent} from './accept/accept.component';
+import {StaffComponent} from './staff/editStaffInfo/staff.component';
+import {SelectClinicComponent} from './patient/listOfClinics/selectClinic.component';
+import {HistoryPatientComponent} from './patient/history/historyPatient.component';
+import {WorkCalendarComponent} from './doctor/workCalendar/workCalendar.component';
+import {HolidayAbsenceComponent} from './doctor/holiday-absence/holiday-absence.component';
+import {BookingComponent} from './doctor/booking/booking.component';
+import {combineAll} from 'rxjs/operators';
+import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -26,7 +34,14 @@ const routes: Routes = [
   {path: 'ccadminPass', component: CcadminPassComponent},
   {path: 'ccadminDrug', component: CcadminCreateDrugCodeComponent},
   {path: 'accept', component: AcceptComponent},
-  {path: 'accept/:id', component: AcceptComponent}
+  {path: 'accept/:id', component: AcceptComponent},
+  {path: 'editStaff', component: StaffComponent},
+  {path: 'selectClinic', component: SelectClinicComponent},
+  {path: 'historyPatient', component: HistoryPatientComponent},
+  {path: 'workCalendar', component: WorkCalendarComponent},
+  {path: 'holidayAbsence', component: HolidayAbsenceComponent},
+  {path: 'booking', component: BookingComponent},
+  {path: 'listOfPatients', component: ListOfPatientsComponent}
 ];
 
 @NgModule({
