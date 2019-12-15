@@ -11,8 +11,8 @@ import {CcadminPassComponent} from './ccadmin/passwordChanging/ccadminPass.compo
 import {AcceptComponent} from './accept/accept.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
+  // {path: 'login', component: LoginComponent},
+  // {path: 'registration', component: RegistrationComponent},
   {path: 'users', component: RegistrationComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'deleterequest', component: RequestsComponent},
