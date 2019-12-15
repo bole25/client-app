@@ -17,11 +17,12 @@
     <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="sortBy" [ngModelOptions]="{standalone: true}">
       <option value="" label="-- Sort --" disabled selected="selected">
       </option>
-      <option *ngFor="let u of users; let i = index" [value]="users[i].firstName">
-        {{u.firstName}}
+      <option>
+        First Name
       </option>
-      <option *ngFor="let u of users; let i = index" [value]="users[i].ssn">
-        {{u.ssn}}
+
+      <option>
+        SSN
       </option>
     </select>
 

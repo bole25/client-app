@@ -1,25 +1,106 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import * as $ from 'jquery';
 import * as moment from 'moment';
 import 'fullcalendar';
+import {HttpClient} from '@angular/common/http';
 
 
 
 // declare var $: any;
 
 @Component({
-  selector: 'app-users',
+  selector: 'app-full-calendar',
   templateUrl: './workCalendar.component.html'
 })
 
 export class WorkCalendarComponent implements OnInit {
 
+  @Input()
+  eventData: any;
+  defaultConfigurations: any;
+
+  @Input()
+  set configurations(config: any) {
+    if (config) {
+      this.defaultConfigurations = config;
+    }
+  }
+
+  constructor() {
+
+    this.defaultConfigurations = {
+      editable: true,
+      eventLimit: true,
+      titleFormat: 'MMM D YYYY',
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      buttonText: {
+        today: 'Today',
+        month: 'Month',
+        week: 'Week',
+        day: 'Day'
+      },
+      views: {
+        agenda: {
+          eventLimit: 12
+        }
+      },
+      allDaySlot: true,
+      slotDuration: moment.duration('00:15:00'),
+      slotLabelInterval: moment.duration('01:00:00'),
+      firstDay: 1,
+      selectable: true,
+      selectHelper: true,
+      // events: this.eventData,
+      events: this.eventData,
+
+
+      dayClick: (date, jsEvent, activeView) => {
+        this.dayClick(date, jsEvent, activeView);
+      },
+
+      eventDragStart: (timeSheetEntry, jsEvent, ui, activeView) => {
+        this.eventDragStart(
+          timeSheetEntry, jsEvent, ui, activeView
+      );
+      },
+      eventDragStop: (timeSheetEntry, jsEvent, ui, activeView) => {
+        this.eventDragStop(
+          timeSheetEntry, jsEvent, ui, activeView
+        );
+      },
+    };
+
+
+
+
+    this.eventData = [
+      {
+        title: 'event1',
+        date: '2019-05-12'
+      },
+      {
+        title: 'event2',
+        start: moment(),
+        end: moment().add(2, 'days')
+
+      },
+    ];
+
+
+  }
+
+
   ngOnInit(): void {
 
 
-    $('#calendar').fullCalendar({
-      header: {
+    $('#calendar').fullCalendar(this.defaultConfigurations);
+    /*{
+       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
@@ -46,6 +127,17 @@ export class WorkCalendarComponent implements OnInit {
           color: '#57cd5f'
         }
       ],  // request to load current events
-    });
+    });*/
+  }
+
+  dayClick(date, jsEvent, activeView) {
+
+    console.log('day click');
+  }
+  eventDragStart(timeSheetEntry, jsEvent, ui, activeView) {
+    console.log('event drag start');
+  }
+  eventDragStop(timeSheetEntry, jsEvent, ui, activeView) {
+    console.log('event drag end');
   }
 }
