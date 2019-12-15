@@ -12,9 +12,11 @@
   <link rel='icon' href='h.ico' type='image/x-icon'/>
   <title></title>
 
+
 </head>
 <!-- Toolbar -->
 <body>
+
 <div *ngIf="someoneLoged">
 
   <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
@@ -26,7 +28,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item" hidden="true">
+        <li class="nav-item">
           <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li class="nav-item" hidden="true">
@@ -35,22 +37,22 @@
         <li class="nav-item" hidden="true">
           <a class="nav-link" routerLink="/registration">Registration</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="ccadminloged">
          <a class="nav-link" routerLink="/requests">Requests</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadmin">Register Clinic Admin</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/registerClinic">Register clinic</a>
         </li>
-        <li class="nav-item"  hidden="true">
+        <li class="nav-item"  *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadminInfo">CCA Profile</a>
         </li>
-        <li class="nav-item"  hidden="true">
+        <li class="nav-item"  *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadminPass">Change Password</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
         <li class="nav-item">
@@ -62,6 +64,17 @@
     </div>
   </nav>
 </div>
+
+<div *ngIf="someoneLoged && homepage">
+  <br>
+  <br>
+  <br>
+  <br>
+<h2 class="text-center text-dark">WELCOME, {{ulogovanifirstName}}</h2>
+</div>
+
+
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -187,6 +200,8 @@
   </div>
 
 </div>
+
+
 </body>
 </html>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
