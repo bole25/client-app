@@ -105,6 +105,9 @@
               <button role="button" (click)="showRegistration()" class="text-info">Register here</button>
             </div>
           </form>
+          <div>
+            <p *ngIf="activateinfo" class="text-info">Please, activate your account before login!</p>
+          </div>
         </div>
       </div>
     </div>
