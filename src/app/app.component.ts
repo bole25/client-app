@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   angForm: FormGroup;
   loginForm: FormGroup;
   private ulogovanifirstName: string;
+  public activateinfo = false;
 
   constructor(private router: Router, private route: ActivatedRoute,
               private service: LoginService, private fb: FormBuilder, private regservice: RegistrationService) {
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
     this.createForm();
   }
   ngOnInit(): void {
+    this.activateinfo = false;
     this.createForm();
   }
 
@@ -87,13 +89,14 @@ export class AppComponent implements OnInit {
   get homepage() {
     if (location.pathname === '/') {
       return true;
-    } else {return false;}
+    } else {return false; }
   }
 
   logout() {
     console.log('AAAAAA:' + localStorage.jwt);
     console.log('Uloga: ' + localStorage.role);
     console.log('page' + location.pathname);
+    this.activateinfo = false;
     localStorage.clear();
   }
 
@@ -120,6 +123,9 @@ export class AppComponent implements OnInit {
     }
     this.regservice.save(this.user1).subscribe(result => this.router.navigate(['/']));
     this.angForm.reset();
+    this.activateinfo = true;
+    this.loginShow = true;
+    this.registrationShow = false;
   }
 }
 
