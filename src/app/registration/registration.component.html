@@ -17,7 +17,8 @@
       <input type="text" formControlName="firstname" id="firstname" class="form-control"
              placeholder="First Name"
              [(ngModel)]="user.firstName"
-             [ngClass]="{'is-invalid': (f.firstname.dirty || f.firstname.touched) && f.firstname.errors, 'is-valid': (f.firstname.dirty || f.firstname.touched) && f.firstname.valid}"
+             [ngClass]="{'is-invalid': (f.firstname.dirty || f.firstname.touched) && f.firstname.errors,
+             'is-valid': (f.firstname.dirty || f.firstname.touched) && f.firstname.valid}"
              required/>
       <span class="text-danger" *ngIf="f.firstname.errors && (f.firstname.dirty || f.firstname.touched)"> First name is required </span>
     </div>
@@ -26,7 +27,8 @@
     <div class="form-group">
       <input formControlName="lastname" type="text" id="lastname" class="form-control" required placeholder="Last Name"
              [(ngModel)]="user.lastName"
-             [ngClass]="{'is-invalid': (f.lastname.dirty || f.lastname.touched) && f.lastname.errors, 'is-valid': (f.lastname.dirty || f.lastname.touched) && f.lastname.valid}"
+             [ngClass]="{'is-invalid': (f.lastname.dirty || f.lastname.touched) && f.lastname.errors,
+              'is-valid': (f.lastname.dirty || f.lastname.touched) && f.lastname.valid}"
       />
       <span class="text-danger" *ngIf="f.lastname.errors && (f.lastname.dirty || f.lastname.touched)">Last name is required</span>
     </div>
@@ -35,7 +37,8 @@
     <div class="form-group">
       <input type="email" id="email" class="form-control" required placeholder="E-mail" formControlName="email"
              [(ngModel)]="user.email"
-             [ngClass]="{'is-invalid': (f.email.dirty || f.email.touched) && f.email.errors, 'is-valid': (f.email.dirty || f.email.touched) && f.email.valid}"
+             [ngClass]="{'is-invalid': (f.email.dirty || f.email.touched) && f.email.errors,
+              'is-valid': (f.email.dirty || f.email.touched) && f.email.valid}"
 
       />
       <span class="text-danger" *ngIf="f.email.errors && (f.email.dirty || f.email.touched)">Email must be a valid email address</span>
@@ -45,7 +48,8 @@
     <div class="form-group">
       <input type="password" formControlName="password" id="password" name="password" class="form-control" required placeholder="Password"
              [(ngModel)]="user.password"
-             [ngClass]="{'is-invalid': (f.password.dirty || f.password.touched) && f.password.errors, 'is-valid': (f.password.dirty || f.password.touched) && f.password.valid}"
+             [ngClass]="{'is-invalid': (f.password.dirty || f.password.touched) && f.password.errors,
+              'is-valid': (f.password.dirty || f.password.touched) && f.password.valid}"
       />
       <span class="text-danger" *ngIf="f.password.errors && (f.password.dirty || f.password.touched)">Password must contains minimum 6 charachters</span>
     </div>
@@ -88,7 +92,8 @@
     <div class="form-group">
       <input type="text" formControlName="ssn" id="ssn" class="form-control" placeholder="SSN" pattern="[0-9]+"
              [(ngModel)]="user.ssn"
-             [ngClass]="{'is-invalid': (f.ssn.dirty || f.ssn.touched) && f.ssn.errors, 'is-valid': (f.ssn.dirty || f.ssn.touched) && f.ssn.valid}"
+             [ngClass]="{'is-invalid': (f.ssn.dirty || f.ssn.touched) && f.ssn.errors,
+              'is-valid': (f.ssn.dirty || f.ssn.touched) && f.ssn.valid}"
       />
       <span class="text-danger" *ngIf="f.ssn.errors && (f.ssn.dirty || f.ssn.touched)">SSN must containts 13 digits</span>
     </div>

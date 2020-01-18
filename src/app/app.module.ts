@@ -34,8 +34,8 @@ import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.co
 import {StaffService} from './staff/editStaffInfo/staff.service';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent},
+  // { path: 'login', component: LoginComponent },
+  // { path: 'registration', component: RegistrationComponent},
   { path: 'requests', component: RequestsComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'ccadmin', component: CcadminComponent},

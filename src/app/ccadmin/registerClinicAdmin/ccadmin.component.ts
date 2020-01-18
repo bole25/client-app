@@ -21,8 +21,9 @@ export class CcadminComponent implements OnInit {
   password: string;
   user: User;
   selectedclinic: string;
+  createAdmin: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: CcadminService) {
+  constructor(private router: Router, private route: ActivatedRoute, private service: CcadminService, private formBuilder: FormBuilder) {
     this.user = new User();
     this.clinics = new Set<Clinic>();
     this.admins = new Set<User>();
@@ -33,12 +34,29 @@ export class CcadminComponent implements OnInit {
       this.clinics = data;
       this.service.getCA().subscribe(data1 => {this.admins = data1; });
     });
+    this.createForm();
   }
 
   onSubmit() {
+    if (this.createAdmin.invalid) {
+      alert('Please, fill all fields correctly');
+      return;
+    }
     this.service.save(this.user, this.selectedclinic).subscribe(result => {
       this.router.navigate(['/ccadmin']);
       location.reload();
       });
   }
+
+  private createForm() {
+    this.createAdmin = this.formBuilder.group({
+      firstnameca: ['', [Validators.required]],
+      lastnameca: ['', [Validators.required]],
+      emailca: ['', [Validators.required, Validators.email]],
+      passwordca: ['', [Validators.required, Validators.minLength(6)]],
+      ssnca: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      clinicca: ['', [Validators.required]]
+    });
+  }
+  get f() { return this.createAdmin.controls; }
 }

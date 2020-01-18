@@ -19,8 +19,8 @@ import {combineAll} from 'rxjs/operators';
 import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
+  // {path: 'login', component: LoginComponent},
+  // {path: 'registration', component: RegistrationComponent},
   {path: 'users', component: RegistrationComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'deleterequest', component: RequestsComponent},
