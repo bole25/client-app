@@ -56,28 +56,28 @@
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
         <!--Staff-->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/editStaff">Edit staff's info</a>
         </li>
         <!--Patient-->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="patientloged">
           <a class="nav-link" routerLink="/selectClinic">Select clinic</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="patientloged">
           <a class="nav-link" routerLink="/historyPatient">History of examination</a>
         </li>
         <!--Doctor-->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="doctorloged">
           <a class="nav-link" routerLink="/workCalendar">Work Calendar</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="doctorloged">
           <a class="nav-link" routerLink="/holidayAbsence">Holiday/Absence</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="doctorloged">
         <a class="nav-link" routerLink="/booking">Booking</a>
       </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="doctorloged">
           <a class="nav-link" routerLink="/listOfPatients">All Patients</a>
         </li>
 
@@ -98,6 +98,7 @@
   <br>
   <br>
 <h2 class="text-center text-dark">WELCOME, {{ulogovanifirstName}}</h2>
+  <br><h3 class="text-center text-dark">Homepage under construction</h3>
 </div>
 
 
@@ -133,7 +134,7 @@
             </div>
           </form>
           <div>
-            <p *ngIf="activateinfo" class="text-info">Please, activate your account before login!</p>
+            <p *ngIf="activateinfo" class="text-danger">Please, activate your account before login!</p>
           </div>
         </div>
       </div>

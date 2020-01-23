@@ -22,36 +22,4 @@ export class CcadminregisterclinicService {
   public save(clinic: Clinic): Observable<any> {
     return this.http.post<any>(this.addClinicUrl, clinic);
   }
-
-
-
-
-  // Http Headers
-
-  // private httpOptionsWithDataTypes = {
-  //   headers: new HttpHeaders({
-  //     Authorization: 'Basic ' + btoa(this.clinicName),
-  //   }), dataType: 'text/plain; charset=utf-8', responseType: 'text' as 'json'
-  // };
-  // private httpOptions = {
-  //   headers: new HttpHeaders({
-  //     Authorization: 'Basic ' + btoa(this.clinicName),
-  //   })
-  // };
-  //
-
-  //
-
-  //
-  //
-  //
-  // getAllClinics(): Observable<Clinic[]> {
-  //
-  //   return this.http.get<Clinic[]>(this.getUrlAddClinics, this.httpOptions);
-  //
-  //
-  // }
-
-
-
 }

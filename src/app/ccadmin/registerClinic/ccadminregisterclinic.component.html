@@ -29,7 +29,11 @@
   </form>
 </div>
 
-
+<div>
+  <form>
+    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredString" (change)="filterChange()"/>   <button class="btn-info" type="submit">Filter</button>
+  </form>
+</div>
 
 
 
@@ -46,7 +50,7 @@
   <tbody>
 
   <!--Ovdje nalijepiti listu klinika iz baze -->
-  <tr *ngFor="let clinic of clinics">
+  <tr *ngFor="let clinic of filteredClinics">
     <td>{{clinic.clinicName}}</td>
     <td>{{clinic.address}}</td>
   </tr>
