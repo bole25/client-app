@@ -50,11 +50,15 @@
           <a class="nav-link" routerLink="/ccadminInfo">CCA Profile</a>
         </li>
         <li class="nav-item"  *ngIf="ccadminloged">
+          <a class="nav-link" routerLink="/newCCA">New CCA</a>
+        </li>
+        <li class="nav-item"  *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadminPass">Change Password</a>
         </li>
         <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
+
         <!--Staff-->
         <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/editStaff">Edit staff's info</a>
