@@ -12,23 +12,25 @@ import {FormGroup} from '@angular/forms';
 
 export class CcadminRegisterClinicComponent implements OnInit {
 
-  clinicName: string;
   address: string;
   clinic: Clinic;
-  listofClinics: Clinic[] = [];
   clinics: Set<Clinic>;
+  filteredClinics: Set<Clinic>;
+  filteredString: string;
 
 
 
   constructor(private router: Router, private route: ActivatedRoute, private service: CcadminregisterclinicService) {
     this.clinic = new Clinic();
     this.clinics = new Set<Clinic>();
+    this.filteredClinics = new Set<Clinic>();
   }
 
   ngOnInit() {
 
     this.service.getRequests().subscribe(data => {
       this.clinics = data;
+      this.filteredClinics = data;
     });
 
   }
@@ -40,5 +42,14 @@ export class CcadminRegisterClinicComponent implements OnInit {
       location.reload();
     });
 
+  }
+
+  filterChange() {
+    this.filteredClinics = new Set<Clinic>();
+    for (const clc of this.clinics) {
+      if (clc.clinicName.includes(this.filteredString)) {
+        this.filteredClinics.add(clc);
+      }
+    }
   }
 }

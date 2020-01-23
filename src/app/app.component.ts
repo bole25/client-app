@@ -37,6 +37,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.activateinfo = false;
     this.createForm();
+    if (localStorage.jwt != null) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      this.ulogovanifirstName = user.firstName;
+      this.ulogovani = user.role;
+    }
   }
 
   get f() { return this.angForm.controls; }
@@ -59,21 +64,18 @@ export class AppComponent implements OnInit {
       .subscribe(
         response => {
           localStorage.setItem('jwt', response.token);
-          localStorage.setItem('role', response.role);
-          localStorage.setItem('firstName', response.firstName);
-          localStorage.setItem('secondName', response.lastName);
-          this.ulogovani = localStorage.role;
-          this.ulogovanifirstName = localStorage.firstName;
-
+          localStorage.setItem('user', JSON.stringify(response.user));
+          const user = JSON.parse(localStorage.getItem('user'));
+          this.ulogovanifirstName = user.firstName;
+          this.ulogovani = user.role;
         },
         err => {
           if (err.status === 400) {
             alert('User with give email dose not exist');
-          } else if (err.status === 406) {
-            alert('Wrong password');
+          } else if (err.status === 406 || err.status === 403) {
+            alert('Account not activated');
           }
         });
-    console.log('AAAAAA:' + localStorage.jwt);
   }
 
   get ccadminloged() {
@@ -81,6 +83,23 @@ export class AppComponent implements OnInit {
       return true;
     } else { return false; }
   }
+
+  get patientloged() {
+    if (this.ulogovani === 'PATIENT') {
+      return true;
+    } else { return false; }
+  }
+  get doctorloged() {
+    if (this.ulogovani === 'DOCTOR') {
+      return true;
+    } else { return false; }
+  }
+  get cadminloged() {
+    if (this.ulogovani === 'CLINIC_ADMIN') {
+      return true;
+    } else { return false; }
+  }
+
   get someoneLoged() {
     if (localStorage.jwt == null) {
       return false;
@@ -94,9 +113,6 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    console.log('AAAAAA:' + localStorage.jwt);
-    console.log('Uloga: ' + localStorage.role);
-    console.log('page' + location.pathname);
     this.activateinfo = false;
     localStorage.clear();
   }
@@ -114,11 +130,11 @@ export class AppComponent implements OnInit {
       repeatpassword: ['', Validators.required]
     });
   }
-  
+
   get checkPassword() {
     return this.angForm.get('password').value === this.angForm.get('repeatpassword').value ? null : {notSame : true };
   }
-  
+
   onSubmit2() {
     if (this.angForm.invalid) {
       alert('Please, fill all fields correctly');
@@ -127,6 +143,8 @@ export class AppComponent implements OnInit {
     this.regservice.save(this.user1).subscribe(result => this.router.navigate(['/']));
     this.angForm.reset();
     this.activateinfo = true;
+    this.loginShow = true;
+    this.registrationShow = false;
     this.loginShow = true;
     this.registrationShow = false;
   }
