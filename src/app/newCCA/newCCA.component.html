@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New CCA</title>
+</head>
+<body>
+<br>
+<br>
+<br>
+<div class="container container-table input-group input-group-sm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="angForm">
+    <div class="form-group">
+      <h2 style="color:#33cabb">Create new Clinic center admin</h2>
+    </div>
+
+    <div class="form-group">
+      <input type="text" formControlName="firstname" id="firstname" class="form-control"
+             placeholder="First Name"
+             [(ngModel)]="user.firstName"
+             [ngClass]="{'is-invalid': (f.firstname.dirty || f.firstname.touched) && f.firstname.errors,
+             'is-valid': (f.firstname.dirty || f.firstname.touched) && f.firstname.valid}"
+             required/>
+      <span class="text-danger" *ngIf="f.firstname.errors && (f.firstname.dirty || f.firstname.touched)"> First name is required </span>
+    </div>
+
+
+    <div class="form-group">
+      <input formControlName="lastname" type="text" id="lastname" class="form-control" required placeholder="Last Name"
+             [(ngModel)]="user.lastName"
+             [ngClass]="{'is-invalid': (f.lastname.dirty || f.lastname.touched) && f.lastname.errors,
+              'is-valid': (f.lastname.dirty || f.lastname.touched) && f.lastname.valid}"
+      />
+      <span class="text-danger" *ngIf="f.lastname.errors && (f.lastname.dirty || f.lastname.touched)">Last name is required</span>
+    </div>
+
+
+    <div class="form-group">
+      <input type="email" id="email" class="form-control" required placeholder="E-mail" formControlName="email"
+             [(ngModel)]="user.email"
+             [ngClass]="{'is-invalid': (f.email.dirty || f.email.touched) && f.email.errors,
+              'is-valid': (f.email.dirty || f.email.touched) && f.email.valid}"
+
+      />
+      <span class="text-danger" *ngIf="f.email.errors && (f.email.dirty || f.email.touched)">Email must be a valid email address</span>
+    </div>
+
+
+    <div class="form-group">
+      <input type="password" formControlName="password" id="password" name="password" class="form-control" required placeholder="Password"
+             [(ngModel)]="user.password"
+             [ngClass]="{'is-invalid': (f.password.dirty || f.password.touched) && f.password.errors,
+              'is-valid': (f.password.dirty || f.password.touched) && f.password.valid}"
+      />
+      <span class="text-danger" *ngIf="f.password.errors && (f.password.dirty || f.password.touched)">Password must contains minimum 6 charachters</span>
+    </div>
+
+    <div class="form-group">
+      <input type="password" formControlName="repeatpassword" id="repeatpassword" class="form-control" required placeholder="Confirm password"
+             [(ngModel)]="repeatedPassword"
+             [ngClass]="{'is-invalid': (f.repeatpassword.dirty || f.repeatpassword.touched) && checkPassword, 'is-valid': (f.repeatpassword.dirty || f.repeatpassword.touched) && f.repeatpassword.valid && !checkPassword}"
+
+      />
+      <span class="text-danger" *ngIf="(f.repeatpassword.dirty || f.repeatpassword.touched) && checkPassword">Passwords must match</span>
+    </div>
+    <div class="form-group">
+      <input required type="text" formControlName="address" id="address" class="form-control" placeholder="Address"
+             [(ngModel)]="user.address"
+             [ngClass]="{'is-invalid': (f.address.dirty || f.address.touched) && f.address.errors, 'is-valid': (f.address.dirty || f.address.touched) && f.address.valid}"/>
+      <span class="text-danger" *ngIf="f.address.errors && (f.address.dirty || f.address.touched)">Address is required</span>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="city" id="city" class="form-control" required placeholder="City"
+             [(ngModel)]="user.city"
+             [ngClass]="{'is-invalid': (f.city.dirty || f.city.touched) && f.city.errors, 'is-valid': (f.city.dirty || f.city.touched) && f.city.valid}"
+      />
+      <span class="text-danger" *ngIf="f.city.errors && (f.city.dirty || f.city.touched)">City is required</span>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="country" id="country" class="form-control" required placeholder="Country"
+             [(ngModel)]="user.country"
+             [ngClass]="{'is-invalid': (f.country.dirty || f.country.touched) && f.country.errors, 'is-valid': (f.country.dirty || f.country.touched) && f.country.valid}"
+      />
+      <span class="text-danger" *ngIf="f.country.errors && (f.country.dirty || f.country.touched)">Country is required</span>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="phonenumber" id="phoneNumber" class="form-control" placeholder="Phone Number" pattern="[0-9]+"
+             [(ngModel)]="user.phoneNumber"
+             [ngClass]="{'is-invalid': (f.phonenumber.dirty || f.phonenumber.touched) && f.phonenumber.errors, 'is-valid': (f.phonenumber.dirty || f.phonenumber.touched) && f.phonenumber.valid}"
+      />
+      <span class="text-danger" *ngIf="f.phonenumber.errors && (f.phonenumber.dirty || f.phonenumber.touched)">Phone number must contains 9 or 10 digits</span>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="ssn" id="ssn" class="form-control" placeholder="SSN" pattern="[0-9]+"
+             [(ngModel)]="user.ssn"
+             [ngClass]="{'is-invalid': (f.ssn.dirty || f.ssn.touched) && f.ssn.errors,
+              'is-valid': (f.ssn.dirty || f.ssn.touched) && f.ssn.valid}"
+      />
+      <span class="text-danger" *ngIf="f.ssn.errors && (f.ssn.dirty || f.ssn.touched)">SSN must containts 13 digits</span>
+    </div>
+    <div class="form-group text-center">
+      <button [disabled]="angForm.invalid || angForm.pristine || checkPassword" type="submit" class="btn btn-success">ADD CCA</button>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
