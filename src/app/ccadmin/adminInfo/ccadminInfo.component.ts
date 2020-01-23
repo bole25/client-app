@@ -9,15 +9,17 @@ import {CcadminService} from '../registerClinicAdmin/ccadmin.service';
   templateUrl: './ccadminInfo.component.html'
 })
 
-export class CcadminInfoComponent {
-  email: string;
-  password: string;
+export class CcadminInfoComponent implements OnInit {
   user: User;
-  city: string;
-  address: string;
-  country: string;
+  user1: User;
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: CcadminService) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.user = new User();
+    this.user1 = new User();
+    this.user1 = JSON.parse(localStorage.getItem('user'));
+  }
+
+  ngOnInit(): void {
+    this.user1 = JSON.parse(localStorage.getItem('user'));
   }
 }

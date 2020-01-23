@@ -15,14 +15,14 @@
     <select class="form-control form-group" id="filter" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
       <option value="" label="-- Filter --" disabled selected="selected">
       </option>
-      <option>
-       Clinic Name
+      <option *ngFor="let clc of clinics; let i = index" >
+        {{clc.clinicName}}
       </option>
-      <option>
-        Address
+      <option *ngFor="let clc of clinics; let i = index">
+        {{clc.address}}
       </option>
-      <option>
-        Rating
+      <option *ngFor="let clc of clinics; let i = index" >
+        {{clc.rating}}
       </option>
     </select>
 
@@ -31,12 +31,14 @@
     <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
       <option value="" label="-- Sort --" disabled selected="selected">
       </option>
-      <option>Clinic name</option>
-      <option>
-        Address
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
+        {{clc.clinicName}}
       </option>
-      <option>
-        Rating
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].address">
+        {{clc.address}}
+      </option>
+      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].rating">
+        {{clc.rating}}
       </option>
     </select>
 
