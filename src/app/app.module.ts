@@ -32,6 +32,8 @@ import {HolidayAbsenceComponent} from './doctor/holiday-absence/holiday-absence.
 import {BookingComponent} from './doctor/booking/booking.component';
 import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.component';
 import {StaffService} from './staff/editStaffInfo/staff.service';
+import {NewCCAComponent} from './newCCA/newCCA.component';
+import {NewCCAService} from './newCCA/newCCA.service';
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
   {path: 'workCalendar', component: WorkCalendarComponent},
   {path: 'holidayAbsence', component: HolidayAbsenceComponent},
   {path: 'booking', component: BookingComponent},
-  {path: 'listOfPatients', component: ListOfPatientsComponent}
+  {path: 'listOfPatients', component: ListOfPatientsComponent},
+  {path: 'newCCA', component: NewCCAComponent}
   ];
 
 @NgModule({
@@ -74,7 +77,8 @@ const appRoutes: Routes = [
     WorkCalendarComponent,
     HolidayAbsenceComponent,
     BookingComponent,
-    ListOfPatientsComponent
+    ListOfPatientsComponent,
+    NewCCAComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +99,7 @@ const appRoutes: Routes = [
     CcadminregisterclinicService,
     CcadminCreateDrugCodeService,
     StaffService,
+    NewCCAService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
