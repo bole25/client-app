@@ -14,7 +14,12 @@
 
     <br>
     <p>Sort patients by:</p>
-    <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="sortBy" [ngModelOptions]="{standalone: true}">
+    <div>
+      <form>
+        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredString" (change)="filterChange()"/>   <button class="btn-info" type="submit">Filter</button>
+      </form>
+    </div>
+    <!-- <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="sortBy" [ngModelOptions]="{standalone: true}">
       <option value="" label="-- Sort --" disabled selected="selected">
       </option>
       <option>
@@ -24,45 +29,26 @@
       <option>
         SSN
       </option>
-    </select>
+    </select> -->
 
     <p align="left" style="color:#33cabb">List of all patients</p>
 
     <table class="table table-bordered table-striped">
       <thead class = "thead dark">
+
       <tr>
         <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
         <th scope="col">SSN</th>
+        <th></th>
       </tr>
-
       </thead>
-
-      <tbody>
-      <tr *ngFor="let u of users; let i = index">
-
-        <td>{{u.firstName}}</td>
-        <td>{{u.ssn}}</td>
-
+      <tr *ngFor="let user of filteredPatients; let i = index">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.ssn}}</td>
+        <td><button class="btn badge-success" (click)="onSubmit()">Go to Profile</button></td>
       </tr>
-      <tr>
-        <td>Bole</td>
-        <td>1234567890123</td>
-      </tr>
-      <tr>
-        <td>Veljko</td>
-        <td>8475329875325</td>
-      </tr>
-      <tr>
-        <td>Ana</td>
-        <td>2121212121211</td>
-      </tr>
-
-
-
-      <!--Ovdje nalijepiti listu klinika iz baze -->
-
-      </tbody>
-
     </table>
 
   </form>

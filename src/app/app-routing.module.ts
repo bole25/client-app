@@ -18,6 +18,7 @@ import {BookingComponent} from './doctor/booking/booking.component';
 import {combineAll} from 'rxjs/operators';
 import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.component';
 import {NewCCAComponent} from './newCCA/newCCA.component';
+import {DoctorInfoComponent} from './doctor/doctor-info/doctor-info.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -43,7 +44,8 @@ const routes: Routes = [
   {path: 'holidayAbsence', component: HolidayAbsenceComponent},
   {path: 'booking', component: BookingComponent},
   {path: 'listOfPatients', component: ListOfPatientsComponent},
-  {path: 'newCCA', component: NewCCAComponent}
+  {path: 'newCCA', component: NewCCAComponent},
+  {path: 'editDocInfo', component: DoctorInfoComponent}
 ];
 
 @NgModule({
