@@ -36,6 +36,8 @@ import {NewCCAComponent} from './newCCA/newCCA.component';
 import {NewCCAService} from './newCCA/newCCA.service';
 import {DoctorInfoComponent} from './doctor/doctor-info/doctor-info.component';
 import {ListOfPatientsService} from './doctor/listOfPatients/listOfPatients.service';
+import {DarComponent} from './dar/dar.component';
+import {DarService} from './dar/dar.service';
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -58,6 +60,8 @@ const appRoutes: Routes = [
   {path: 'listOfPatients', component: ListOfPatientsComponent},
   {path: 'newCCA', component: NewCCAComponent},
   {path: 'DoctorInfo', component: DoctorInfoComponent}
+  {path: 'newCCA', component: NewCCAComponent},
+  {path: 'dar', component: DarComponent}
   ];
 
 @NgModule({
@@ -83,6 +87,7 @@ const appRoutes: Routes = [
     ListOfPatientsComponent,
     NewCCAComponent,
     DoctorInfoComponent
+    DarComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +110,7 @@ const appRoutes: Routes = [
     StaffService,
     NewCCAService,
     ListOfPatientsService,
+    DarService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<br>
+<br>
+<div *ngIf="showpatients">
+<h1>List of patients</h1>
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>E-mail</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let user of patients; let i = index">
+    <td>{{i + 1}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.email}}</td>
+    <td><button class="btn badge-primary" (click)="addRecipe(user.email, user.firstName)">Add Recipe</button></td>
+    <td><button class="btn badge-secondary">Add Diagnose</button></td>
+  </tr>
+</table>
+</div>
+
+<div class="container container-table input-group input-group-sm" *ngIf="!showpatients">
+  <div class="container container-table input-group input-group-sm">
+  <form  (ngSubmit)="onSubmit()">
+    <div class = form-group>
+      <p>Recipe for {{this.recipefor}}</p>
+    </div>
+  <div class="form-group">
+    <select class="form-control form-group" id="orders"  [(ngModel)]="this.takeDrugFromDropDown" [ngModelOptions]="{standalone: true}">
+      <option value="" disabled selected="selected">--Select drug--
+      </option>
+      <option *ngFor="let drg of drugs; let i = index" [value]="drugs[i].drugName">
+        {{drg.drugName}}
+      </option>
+    </select>
+  </div>
+    <div class="form-group">
+      <button class="btn-info" type="submit">Add drug to recipe</button>
+    </div>
+  </form>
+</div>
+  <div>
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Drug</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>{{drugToRecipe.drugName}}</td>
+        <td>{{drugToRecipe.description}}</td>
+        <td>{{drugToRecipe.price}}$</td>
+        <td><button class="btn btn-danger" (click)="removeDrugFromRecipe(drugToRecipe.drugName)">Remove</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn badge-secondary" (click)="confirmRecipes(this.message)">Create recipe</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>
