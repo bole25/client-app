@@ -20,6 +20,7 @@ import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.co
 import {NewCCAComponent} from './newCCA/newCCA.component';
 import {DoctorInfoComponent} from './doctor/doctor-info/doctor-info.component';
 import {DarComponent} from './dar/dar.component';
+import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -46,9 +47,9 @@ const routes: Routes = [
   {path: 'booking', component: BookingComponent},
   {path: 'listOfPatients', component: ListOfPatientsComponent},
   {path: 'newCCA', component: NewCCAComponent},
-  {path: 'editDocInfo', component: DoctorInfoComponent}
-  {path: 'newCCA', component: NewCCAComponent},
-  {path: 'dar', component: DarComponent}
+  {path: 'editDocInfo', component: DoctorInfoComponent},
+  {path: 'dar', component: DarComponent},
+  {path: 'ccaDiagnose', component: CreatingDiagnoseComponent}
 ];
 
 @NgModule({
