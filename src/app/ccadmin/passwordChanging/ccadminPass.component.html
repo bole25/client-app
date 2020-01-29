@@ -5,6 +5,7 @@
 <br>
 <!----------OVO JE ZA DODAVANJE ADMINA, ALI SE TAKO NE ZOVE HEH-------------- -->
 <h2 align="center" style="color:#33cabb"> Clinic center admin profile</h2>
+<form (ngSubmit)="onSubmit()">
 <div class="modal-header">
   <h5 class="modal-title">Change <b style="color: #33cabb;">password</b></h5>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -18,8 +19,8 @@
             <i class="fa fa-address-book" aria-hidden="true"></i>
           </span>
   </div>
-  <input type="password" formControlName="password" id="password" name="password" class="form-control" required placeholder="Password"
-         [(ngModel)]="user.password"/>
+  <input type="password" [(ngModel)]="this.password" [ngModelOptions]="{standalone: true}" id="password" name="password" class="form-control" required placeholder="Password"
+         />
 </div>
 
 <div class="input-group form-group">
@@ -28,13 +29,16 @@
             <i class="fa fa-address-book" aria-hidden="true"></i>
           </span>
   </div>
-  <input type="password" formControlName="repeatpassword" id="repeatpassword" class="form-control" required placeholder="Confirm password"
-         [(ngModel)]="repeatedPassword"/>
+  <input type="password" [(ngModel)]="this.repeatedPassword" [ngModelOptions]="{standalone: true}" id="repeatpassword" class="form-control" required placeholder="Confirm password"
+         />
 </div>
 
 <div class="modal-footer">
+  <p *ngIf="!passwordsMatch">Passwords must match</p>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <input type="submit" class="btn btn-primary" value="Confirm" />
+  <button [disabled]="!filled || !passwordsMatch" type="submit" class="btn btn-primary" value="Confirm">Confirm</button>
 </div>
+</form>
+<p></p>
 </body>
 </html>
