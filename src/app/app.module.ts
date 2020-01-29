@@ -35,9 +35,16 @@ import {StaffService} from './staff/editStaffInfo/staff.service';
 import {NewCCAComponent} from './newCCA/newCCA.component';
 import {NewCCAService} from './newCCA/newCCA.service';
 import {DarComponent} from './dar/dar.component';
-import {DarService} from "./dar/dar.service";
-import {CreatingDiagnoseComponent} from "./ccadmin/creatingDiagnose/creatingDiagnose.component";
-import {CreatingDiagnoseService} from "./ccadmin/creatingDiagnose/creatingDiagnose.service";
+import {DarService} from './dar/dar.service';
+import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
+import {CreatingDiagnoseService} from './ccadmin/creatingDiagnose/creatingDiagnose.service';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ModalComponent} from './modal/modal.component';
+import {IzmjeniSifruService} from "./ccadmin/passwordChanging/izmjeniSifru.service";
+// import { ModalComponent as ModalComponent } from './modal/modal.component';
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -87,6 +94,7 @@ const appRoutes: Routes = [
     NewCCAComponent,
     DarComponent,
     CreatingDiagnoseComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +104,10 @@ const appRoutes: Routes = [
       appRoutes, {enableTracing: true}),
     ReactiveFormsModule,
     FormsModule,
-    BsDropdownModule
+    BsDropdownModule,
+    MatButtonModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     RegistrationService,
@@ -110,6 +121,7 @@ const appRoutes: Routes = [
     NewCCAService,
     DarService,
     CreatingDiagnoseService,
+    IzmjeniSifruService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
@@ -117,7 +129,8 @@ const appRoutes: Routes = [
     },
     AcceptService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule {
   constructor(router: Router) {}

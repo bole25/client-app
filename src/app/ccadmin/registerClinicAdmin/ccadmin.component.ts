@@ -9,7 +9,7 @@ import {Clinic} from '../../models/clinic.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'app-users',
+  selector: 'app-ccadmin',
   templateUrl: './ccadmin.component.html',
   styleUrls: ['./ccadmin.component.css']
 })
@@ -43,8 +43,8 @@ export class CcadminComponent implements OnInit {
       return;
     }
     this.service.save(this.user, this.selectedclinic).subscribe(result => {
-      this.router.navigate(['/ccadmin']);
-      location.reload();
+      alert('Successfully');
+      this.router.navigate(['/newCCA']);
       });
   }
 
