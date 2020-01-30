@@ -45,11 +45,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalComponent} from './modal/modal.component';
-import {IzmjeniSifruService} from "./ccadmin/passwordChanging/izmjeniSifru.service";
+import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
-import {DarService} from './dar/dar.service';
-import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
-import {CreatingDiagnoseService} from './ccadmin/creatingDiagnose/creatingDiagnose.service';
+
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
