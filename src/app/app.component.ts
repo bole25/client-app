@@ -5,6 +5,8 @@ import {LoginService} from './login/login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegistrationService} from './registration/registration.service';
 import {$, $$} from 'protractor';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ModalComponent} from './modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -23,13 +25,16 @@ export class AppComponent implements OnInit {
   logpassword: string;
   user1: User;
   repeatedPassword: string;
+  firstLogin: boolean;
   angForm: FormGroup;
   loginForm: FormGroup;
   private ulogovanifirstName: string;
   public activateinfo = false;
 
   constructor(private router: Router, private route: ActivatedRoute,
-              private service: LoginService, private fb: FormBuilder, private regservice: RegistrationService) {
+              // tslint:disable-next-line:max-line-length
+              private service: LoginService, private fb: FormBuilder, private regservice: RegistrationService,
+              public matDialog: MatDialog) {
     this.user = new User();
     this.user1 = new User();
     this.createForm();
@@ -41,6 +46,7 @@ export class AppComponent implements OnInit {
       const user = JSON.parse(localStorage.getItem('user'));
       this.ulogovanifirstName = user.firstName;
       this.ulogovani = user.role;
+      this.firstLogin = user.firstLogin;
     }
   }
 
@@ -68,10 +74,11 @@ export class AppComponent implements OnInit {
           const user = JSON.parse(localStorage.getItem('user'));
           this.ulogovanifirstName = user.firstName;
           this.ulogovani = user.role;
+          this.firstLogin = user.firstLogin;
         },
         err => {
           if (err.status === 400) {
-            alert('User with give email dose not exist');
+            alert('User with given email does not exist');
           } else if (err.status === 406 || err.status === 403) {
             alert('Account not activated');
           }
@@ -82,6 +89,10 @@ export class AppComponent implements OnInit {
     if (this.ulogovani === 'CLINIC_CENTER_ADMIN') {
       return true;
     } else { return false; }
+  }
+
+  get need_to_change() {
+    return this.firstLogin;
   }
 
   get patientloged() {
@@ -147,6 +158,17 @@ export class AppComponent implements OnInit {
     this.registrationShow = false;
     this.loginShow = true;
     this.registrationShow = false;
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = 'modal-component';
+    dialogConfig.height = '350px';
+    dialogConfig.width = '600px';
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
 }
 

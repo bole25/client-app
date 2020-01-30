@@ -28,7 +28,11 @@ export class NewCCAComponent implements OnInit {
       alert('Please, fill all fields correctly');
       return;
     }
-    this.service.save(this.user).subscribe(result => this.router.navigate(['/users/newcca']));
+    this.service.save(this.user).subscribe(result => {
+      alert('Successfully');
+      this.router.navigate(['/newCCA']);
+      location.reload();
+      });
   }
 
   get checkPassword() {
