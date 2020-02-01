@@ -46,6 +46,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalComponent} from './modal/modal.component';
 import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
+import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
+import {RecipesValidationService} from './nurse/recipesValidation/recipesValidation.service';
+import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
 
 
@@ -72,7 +75,8 @@ const appRoutes: Routes = [
   {path: 'DoctorInfo', component: DoctorInfoComponent},
   {path: 'newCCA', component: NewCCAComponent},
   {path: 'dar', component: DarComponent},
-  {path: 'ccaDiagnose', component: CreatingDiagnoseComponent}
+  {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
+  {path: 'recipesValidation', component: RecipesValidationComponent},
   ];
 
 @NgModule({
@@ -101,6 +105,7 @@ const appRoutes: Routes = [
     DarComponent,
     CreatingDiagnoseComponent,
     ModalComponent,
+    RecipesValidationComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,6 +134,7 @@ const appRoutes: Routes = [
     DarService,
     CreatingDiagnoseService,
     IzmjeniSifruService,
+    RecipesValidationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
