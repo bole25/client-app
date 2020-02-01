@@ -48,7 +48,6 @@ import {ModalComponent} from './modal/modal.component';
 import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
 import {RecipesValidationService} from './nurse/recipesValidation/recipesValidation.service';
-import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
 
 
