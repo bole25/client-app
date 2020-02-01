@@ -111,6 +111,12 @@ export class AppComponent implements OnInit {
     } else { return false; }
   }
 
+  get nurseloged() {
+    if (this.ulogovani === 'NURSE') {
+      return true;
+    } else { return false; }
+  }
+
   get someoneLoged() {
     if (localStorage.jwt == null) {
       return false;

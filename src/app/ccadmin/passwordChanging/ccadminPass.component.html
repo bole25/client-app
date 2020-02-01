@@ -19,7 +19,7 @@
             <i class="fa fa-address-book" aria-hidden="true"></i>
           </span>
   </div>
-  <input type="password" [(ngModel)]="this.password" [ngModelOptions]="{standalone: true}" id="password" name="password" class="form-control" required placeholder="Password"
+  <input type="password" autocomplete="on" [(ngModel)]="this.password" [ngModelOptions]="{standalone: true}" name="password" class="form-control" required placeholder="Password"
          />
 </div>
 
@@ -29,7 +29,7 @@
             <i class="fa fa-address-book" aria-hidden="true"></i>
           </span>
   </div>
-  <input type="password" [(ngModel)]="this.repeatedPassword" [ngModelOptions]="{standalone: true}" id="repeatpassword" class="form-control" required placeholder="Confirm password"
+  <input type="password" autocomplete="on" [(ngModel)]="this.repeatedPassword" [ngModelOptions]="{standalone: true}" class="form-control" required placeholder="Confirm password"
          />
 </div>
 
