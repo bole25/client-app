@@ -26,7 +26,7 @@ export class DarService {
 
   getUser(email: string) {
     this.params = new HttpParams();
-    this.params.set('email', email)
+    this.params.set('email', email);
     return this.http.get<any>(this.userUrl, {params: this.params});
   }
 
@@ -35,6 +35,6 @@ export class DarService {
   }
 
   makeRecipe(recipe: Drug, email: string): Observable<any> {
-    return this.http.post<any>(this.makeRecipeUrl + '/' + email, recipe, );
+    return this.http.post<any>(this.makeRecipeUrl + '/' + email + '/', recipe);
   }
 }

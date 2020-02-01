@@ -16,15 +16,15 @@ export class RegistrationComponent implements OnInit {
   user: User;
   repeatedPassword: string;
 
-  angForm: FormGroup;
+  angForm11: FormGroup;
   submitted = false;
   constructor(private router: Router, private route: ActivatedRoute, private service: RegistrationService, private fb: FormBuilder) {
     this.user = new User();
-    this.createForm();
+    this.createForm11();
   }
-  get f() { return this.angForm.controls; }
+  get f() { return this.angForm11.controls; }
   onSubmit(): void {
-      if (this.angForm.invalid) {
+      if (this.angForm11.invalid) {
         alert('Please, fill all fields correctly');
         return;
       }
@@ -32,11 +32,11 @@ export class RegistrationComponent implements OnInit {
     }
 
     get checkPassword() {
-    return this.angForm.get('password').value === this.angForm.get('repeatpassword').value ? null : {notSame : true };
+    return this.angForm11.get('password').value === this.angForm11.get('repeatpassword').value ? null : {notSame : true };
     }
   // refresh sign_up stranicu, i prebaci na neku drugu
-   private createForm() {
-      this.angForm = this.fb.group({
+   private createForm11() {
+      this.angForm11 = this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -51,6 +51,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.createForm();
+      this.createForm11();
   }
 }
