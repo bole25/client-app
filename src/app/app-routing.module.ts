@@ -23,6 +23,7 @@ import {DarComponent} from './dar/dar.component';
 import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
 import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
+import {VacationComponent} from "./staff/vacation/vacation.component";
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -54,6 +55,7 @@ const routes: Routes = [
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
   {path: 'surgery', component: SurgeryComponent},
+  {path: 'vacation', component: VacationComponent},
 ];
 
 @NgModule({
