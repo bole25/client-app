@@ -1,9 +1,11 @@
 import {User} from './user.model';
 
 export class Vacationrequest {
-  staff: User;
-  startDate: string;
-  endDate: string;
+  // staff: User;
+  id: number;
+  startDate: Date;
+  endDate: Date;
+  type: string;
 
 
 }

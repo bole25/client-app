@@ -1,0 +1,9 @@
+
+<full-calendar
+  defaultView="dayGridMonth"
+  deepChangeDetection="true"
+  [plugins]="calendarPlugins"
+  (dateClick)="handleDateClick($event)"
+  [weekends]="true"
+  [events]= calendarEvents
+></full-calendar>

@@ -1,0 +1,52 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+
+
+<h1 style="color:#33cabb" align="center">Clinic profile info</h1>
+
+<div class="container container-table input-group input-group-sm">
+  <h5 style="color:#33cabb">Clinic</h5>
+</div>
+
+<div class="input-group form-group">
+  <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book">Clinic Name</i>
+          </span>
+  </div>
+  <input type="text" [ngModelOptions]="{standalone: true}" id="newName" class="form-control"
+         placeholder="{{clinic.clinicName}}"
+         [(ngModel)]="this.newName"/>
+</div>
+
+<div class="input-group form-group">
+  <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book">Address</i>
+          </span>
+  </div>
+  <input type="text" [ngModelOptions]="{standalone: true}" id="address" class="form-control" required placeholder="{{clinic.address}}"
+         [(ngModel)]="clinic.address"/>
+</div>
+
+<div class="input-group form-group">
+  <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book">Description</i>
+          </span>
+  </div>
+  <input type="text" [ngModelOptions]="{standalone: true}" id="description" class="form-control" required placeholder="{{clinic.description}}"
+         [(ngModel)]="clinic.description"/>
+</div>
+
+<div>
+  <label  for="newName">Full Name</label>
+</div>
+
+
+
+</body>
+</html>

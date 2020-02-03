@@ -4,68 +4,54 @@
 <br>
 <br>
 <div class="container container-table input-group input-group-sm">
-  <form >
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <h2 style="color:#33cabb">Doctor's Profile</h2>
       <h5 style="color:#33cabb">Holiday/Absence requests</h5>
     </div>
 
-    <!--Ogranici da mogu samo sestre i doktori-->
+    <!--Ogranici da mogu samo sestre i doktori
     <p>Type of staff:</p>
-    <select class="form-control form-group" id="type" [selectedIndex]="0" [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}">
-      <option value="" label="-- Choose which type --" disabled selected="selected">
-      </option>
-      <option *ngFor="let us of users; let i = index" [value]="users[i].role">
-        {{us.role}}
-      </option>
+    <div class="form-group">
+      <select class="form-control form-group" id="orders">
+        <option value="" disabled selected="selected">--Select type--
+        </option>
+        <option> Doctor </option>
+        <option> Nurse </option>
+      </select>
+    </div>-->
 
-    </select>
+    <p>Type of staff:</p>
+      <div class="form-group">
+      <input type="text" class="form-control" name="selectedType" placeholder="Type"
+             [(ngModel)]="vacationreq.type" [ngModelOptions]="{standalone: true}" />
+      </div>
 
-    <div>
+
+
+    <div class="form-group">
       <p>Start date: </p>
-      <input type="date" >
+      <input type="date" [ngModelOptions]="{standalone: true}" id="startDate" class="form-control input-sm" required placeholder="StartDate"
+             [(ngModel)]="vacationreq.startDate" >
     </div>
 
     <br>
 
-    <div>
+    <div class="form-group">
       <p>End date: </p>
-      <input type="date" >
+      <input type="date" [ngModelOptions]="{standalone: true}" id="endDate" class="form-control input-sm" required placeholder="EndDate"
+               [(ngModel)]="vacationreq.endDate" >
     </div>
 
     <br>
 
     <div class="form-group text-center align-content-center">
-      <button type="submit">Submit</button>
+      <button type="submit" >Submit</button>
     </div>
 
     <br>
 
-    <p align="left" style="color:#33cabb"   >Pending requests for holiday and absence </p>
-    <table class="table table-bordered table-striped">
-      <thead class = "thead dark">
-      <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Start date</th>
-        <th scope="col">End date</th>
-      </tr>
 
-      </thead>
-
-    </table>
-
-    <p align="left" style="color:#33cabb">Approved requests for holiday and absence </p>
-    <table class="table table-bordered table-striped">
-      <thead class = "thead dark">
-      <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Start date</th>
-        <th scope="col">End date</th>
-      </tr>
-
-      </thead>
-
-    </table>
 
   </form>
 </div>

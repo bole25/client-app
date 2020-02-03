@@ -1,0 +1,39 @@
+<html>
+<br>
+<br>
+<br>
+
+<p align="left" style="color:#33cabb">List of all available doctors for this clinic</p>
+
+<div>
+  <form>
+    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredString"  (change)="filterDoctors()"/>   <button class="btn-info" type="submit">Filter</button>
+  </form>
+</div>
+
+<table class="table table-bordered table-striped">
+</table>
+<thead class = "thead dark">
+<tr>
+  <th scope="col">First name</th>
+  <th scope="col">Last name</th>
+  <th scope="col">Rating</th>
+  <th scope="col">Available terms</th>
+</tr>
+
+</thead>
+
+<tbody>
+<tr *ngFor="let dr of filteredDoctors; let i = index">
+
+  <td>{{dr.firstName}}</td>
+  <td>{{dr.lastName}}</td>
+  <td>{{dr.rating}}</td>
+  <!-- Polje za izlistavanje slobodnih termina-->
+
+</tr>
+
+</tbody>
+
+
+</html>

@@ -47,7 +47,7 @@ export class CcadminRegisterClinicComponent implements OnInit {
   filterChange() {
     this.filteredClinics = new Set<Clinic>();
     for (const clc of this.clinics) {
-      if (clc.clinicName.includes(this.filteredString)) {
+      if (clc.clinicName.toLowerCase().includes(this.filteredString.toLowerCase())) {
         this.filteredClinics.add(clc);
       }
     }

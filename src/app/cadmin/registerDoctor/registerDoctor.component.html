@@ -1,0 +1,141 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+
+<!--
+<div class="container container-table input-group input-group-sm">
+  <form  (ngSubmit)="onSubmit()" [formGroup]="registerDoctor">
+    <div class="form-group">
+      <h2 style="color:#33cabb">Register doctor</h2>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="firstnameca" class="form-control"
+             placeholder="First Name"
+             [(ngModel)]="user.firstName"
+             [ngClass]="{'is-invalid': (f.firstnameca.dirty || f.firstnameca.touched) && f.firstnameca.errors,
+             'is-valid': (f.firstnameca.dirty || f.firstnameca.touched) && f.firstnameca.valid}"
+             formControlName="firstnameca"
+             required
+      />
+      <span class="text-danger" *ngIf="f.firstnameca.errors && (f.firstnameca.dirty || f.firstnameca.touched)"> First name is required </span>
+
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="lastnameca" class="form-control"
+             placeholder="Last Name"
+             [(ngModel)]="user.lastName"
+             [ngClass]="{'is-invalid': (f.lastnameca.dirty || f.lastnameca.touched) && f.lastnameca.errors,
+              'is-valid': (f.lastnameca.dirty || f.lastnameca.touched) && f.lastnameca.valid}"
+             formControlName="lastnameca"
+             required
+      />
+      <span class="text-danger" *ngIf="f.lastnameca.errors && (f.lastnameca.dirty || f.lastnameca.touched)">Last name is required</span>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="ssnca" class="form-control"
+             placeholder="SSN"
+             [(ngModel)]="user.ssn"
+             [ngClass]="{'is-invalid': (f.ssnca.dirty || f.ssnca.touched) && f.ssnca.errors,
+              'is-valid': (f.ssnca.dirty || f.ssnca.touched) && f.ssnca.valid}"
+             formControlName="ssnca"
+             required
+      />
+      <span class="text-danger" *ngIf="f.ssnca.errors && (f.ssnca.dirty || f.ssnca.touched)">SSN must containts 13 digits</span>
+    </div>
+
+    <div class="form-group">
+      <input type="email" id="emailca" class="form-control"
+             placeholder="Email"
+             [(ngModel)]="user.email"
+             [ngClass]="{'is-invalid': (f.emailca.dirty || f.emailca.touched) && f.emailca.errors,
+              'is-valid': (f.emailca.dirty || f.emailca.touched) && f.emailca.valid}"
+             formControlName="emailca"
+             required
+      />
+      <span class="text-danger" *ngIf="f.emailca.errors && (f.emailca.dirty || f.emailca.touched)">Email must be a valid email address</span>
+
+    </div>
+
+    <div class="form-group">
+
+
+      <input type="password" id="passwordca" class="form-control"
+             placeholder="Password"
+             [(ngModel)]="user.password"
+             [ngClass]="{'is-invalid': (f.passwordca.dirty || f.passwordca.touched) && f.passwordca.errors,
+              'is-valid': (f.passwordca.dirty || f.passwordca.touched) && f.passwordca.valid}"
+             formControlName="passwordca"
+             required
+      />
+      <span class="text-danger" *ngIf="f.passwordca.errors && (f.passwordca.dirty || f.passwordca.touched)">Password must contains minimum 6 charachters</span>
+
+    </div>
+    <div class="form-group">
+      <span class="text-dark text-center" *ngIf="f.clinicca.pristine"> --Select clinic-- </span>
+      <select class="form-control form-group" id="orders" [selectedIndex]="0" [(ngModel)]="selectedclinic"
+              formControlName="clinicca"
+              [ngClass]="{'is-invalid': (f.clinicca.dirty || f.clinicca.touched) && f.clinicca.errors,
+              'is-valid': (f.clinicca.dirty || f.clinicca.touched) && f.clinicca.valid}"
+      >
+        <option value="" disabled selected="selected">--Select clinic--
+        </option>
+        <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
+          {{clc.clinicName}}
+        </option>
+      </select>
+    </div>
+
+
+    <div class="form-group text-center">
+      <button [disabled]="registerDoctor.invalid || registerDoctor.pristine" type="submit" class="btn btn-success">Register doctor</button>
+    </div>
+  </form>
+</div>
+
+<div>
+  <form>
+    <input/>   <button class="btn-info" type="submit">Filter</button>
+  </form>
+</div>
+<p align="left" style="color:#33cabb">List of all clinic doctors</p>
+
+<table class="table table-bordered table-striped">
+  <thead class = "thead dark">
+  <tr>
+    <th scope="col">Doctor firstname</th>
+    <th scope="col">Doctor lastname</th>
+  </tr>
+
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let dr of doctors; let i = index">
+
+    <td>{{dr.firstName}}</td>
+    <td>{{dr.lastName}}</td>
+
+  </tr>
+
+  </tbody>
+
+</table>
+
+
+
+<div style="margin: 20px; padding: 20px">-->
+<!--
+  <div class="profile">
+    <div style="display: table-cell; width: auto; background-size: cover;background-image: url(assets/cliniccenter.jpg)"></div>
+    <div style="display: table-cell; width: 800px;background: #ffffff; padding: 10px; position: relative">
+
+  </div>
+</div>-->
+
+</body>
+
+</html>

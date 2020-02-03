@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {Appointment} from '../../models/appointment.model';
 import {Surgery} from '../../models/surgery.model';
 import {User} from '../../models/user.model';
+import {Vacationrequest} from '../../models/vacationrequest.model';
+import {HolidayAbscenceService} from './holiday-abscence.service';
 
 @Component({
   selector: 'app-users',
@@ -11,22 +13,36 @@ import {User} from '../../models/user.model';
 
 export class HolidayAbsenceComponent implements OnInit {
 
-  selectedType: string;
-  appointments: Set<Appointment>;
+  type: string;
+  /*appointments: Set<Appointment>;
   surgeries: Set<Surgery>;
-  users: Set<User>;
-  user: User;
+  staff: Set<User>;
+  user: User;*/
+  startDate: Date;
+  endDate: Date;
+  vacationreqs: Set<Vacationrequest>;
+  vacationreq: Vacationrequest;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.appointments = new Set<Appointment>();
+  // submitted = false;
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private service: HolidayAbscenceService) {
+    /*this.appointments = new Set<Appointment>();
     this.surgeries = new Set<Surgery>();
-    this.users = new Set<User>();
-    this.user = new User();
+    this.staff = new Set<User>();
+    this.user = new User();*/
+    this.vacationreqs = new Set<Vacationrequest>();
+    this.vacationreq = new Vacationrequest();
+  }
+  onSubmit(): void {
 
+    this.service.save(this.vacationreq).subscribe(result => this.router.navigate(['/doctor']));
   }
 
 
   ngOnInit(): void {
+    this.service.getReqs().subscribe(data => {this.vacationreqs = data; });
+
   }
 
 

@@ -7,6 +7,7 @@ import {Drug} from '../models/drug.model';
 @Injectable()
 export class DarService {
   private readonly patientsUrl: string;
+  private readonly patientsUrl2: string;
   private readonly userUrl: string;
   private readonly drugsUrl: string;
   private params: HttpParams;
@@ -15,6 +16,7 @@ export class DarService {
 
   constructor(private http: HttpClient) {
     this.patientsUrl = 'http://localhost:8080/doctor/getpatients';
+    this.patientsUrl2 = 'http://localhost:8080/getPatients';
     this.userUrl = 'http://localhost:8080/doctor/getuser';
     this.drugsUrl = 'http://localhost:8080/drugs/getalldrugs';
     this.makeRecipeUrl = 'http://localhost:8080/doctor/makerecipe';

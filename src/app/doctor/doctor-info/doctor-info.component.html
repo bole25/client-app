@@ -6,7 +6,7 @@
 <h2 align="center" style="color:#33cabb"> Doctor's profile</h2>
 
 <div class="split left">
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <h5 class="modal-title">Change <b style="color: #33cabb;">doctor's personal info</b></h5>
     </div>
@@ -17,13 +17,13 @@
             <i class="fa fa-address-book">First Name</i>
           </span>
       </div>
-      <input type="text" [ngModelOptions]="{standalone: true}" id="firstname" class="form-control"
-             placeholder="{{user1.firstName}}"
-             [(ngModel)]="user.firstName"/>
+      <input type="text" [ngModelOptions]="{standalone: true}" id="newfirstName" class="form-control"
+             placeholder="{{user.firstName}}"
+             [(ngModel)]="this.newfirstName"/>
     </div>
 
 
-    <div class="input-group form-group">
+   <!-- <div class="input-group form-group">
       <div class="input-group-prepend">
           <span class="input-group-text">
             <i class="fa fa-address-book" >Last Name</i>
@@ -59,10 +59,11 @@
       </div>
       <input type="text" [ngModelOptions]="{standalone: true}" id="ssn" class="form-control" required placeholder="{{user1.ssn}}"
              [(ngModel)]="user.ssn"/>
-    </div>
+    </div>-->
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <input type="submit" class="btn btn-primary" value="Edit" />
+      <button [disabled]="!filled" type="submit" class="btn btn-primary" value="Edit">Edit</button>
+
     </div>
 
   </form>

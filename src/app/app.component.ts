@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from './login/login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegistrationService} from './registration/registration.service';
-import {$, $$} from 'protractor';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ModalComponent} from './modal/modal.component';
 
