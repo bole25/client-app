@@ -50,6 +50,12 @@ import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValid
 import {RecipesValidationService} from './nurse/recipesValidation/recipesValidation.service';
 import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
 import {SurgeryService} from './clinicadmin/surgery/surgery.service';
+import {VacationComponent} from './staff/vacation/vacation.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {VacationService} from "./staff/vacation/vacation.service";
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
 
 
@@ -79,6 +85,7 @@ const appRoutes: Routes = [
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
   {path: 'surgery', component: SurgeryComponent},
+  {path: 'vacation', component: VacationComponent},
   ];
 
 @NgModule({
@@ -109,6 +116,7 @@ const appRoutes: Routes = [
     ModalComponent,
     RecipesValidationComponent,
     SurgeryComponent,
+    VacationComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +129,13 @@ const appRoutes: Routes = [
     BsDropdownModule,
     MatButtonModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     RegistrationService,
@@ -139,6 +153,8 @@ const appRoutes: Routes = [
     IzmjeniSifruService,
     RecipesValidationService,
     SurgeryService,
+    MatDatepickerModule,
+    VacationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

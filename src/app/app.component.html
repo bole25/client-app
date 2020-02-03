@@ -66,6 +66,10 @@
         <li class="nav-item" *ngIf="ccadminloged&& !need_to_change">
           <a class="nav-link" routerLink="/editStaff">Edit staff's info</a>
         </li>
+        <li class="nav-item" *ngIf="nurseloged || doctorloged">
+          <a class="nav-link" routerLink="/vacation">Vacation request</a>
+        </li>
+
         <!--Patient-->
         <li class="nav-item" *ngIf="patientloged">
           <a class="nav-link" routerLink="/selectClinic">Select clinic</a>
