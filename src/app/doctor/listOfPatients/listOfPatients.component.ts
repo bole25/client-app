@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 import {User} from '../../models/user.model';
 import {ListOfPatientsService} from './listOfPatients.service';
 import {Clinic} from '../../models/clinic.model';
