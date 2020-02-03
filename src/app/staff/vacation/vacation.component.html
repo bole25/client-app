@@ -12,13 +12,13 @@
   <br>
   <h3>Request for vacation</h3>
 <mat-form-field>
-  <input matInput [matDatepicker]="picker1" placeholder="Start Date" [(ngModel)]="this.vacReq.startDate">
+  <input matInput [matDatepicker]="picker1" [min]="minDate" placeholder="Start Date" [(ngModel)]="this.vacReq.startDate">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
 
 <mat-form-field>
-  <input matInput [matDatepicker]="picker2" placeholder="End Date" [(ngModel)]="this.vacReq.endDate">
+  <input matInput [matDatepicker]="picker2" [min]="minDate" placeholder="End Date" [(ngModel)]="this.vacReq.endDate">
   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
   <mat-datepicker #picker2></mat-datepicker>
 </mat-form-field>
