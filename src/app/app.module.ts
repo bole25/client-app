@@ -53,6 +53,14 @@ import {ModalComponent} from './modal/modal.component';
 import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
 import {RecipesValidationService} from './nurse/recipesValidation/recipesValidation.service';
+import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
+import {SurgeryService} from './clinicadmin/surgery/surgery.service';
+import {VacationComponent} from './staff/vacation/vacation.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {VacationService} from "./staff/vacation/vacation.service";
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
 import {RegisterDoctorService} from './cadmin/registerDoctor/registerDoctor.service';
 import {RegisterDoctorComponent} from './cadmin/registerDoctor/registerDoctor.component';
@@ -98,6 +106,7 @@ const appRoutes: Routes = [
   {path: 'dar', component: DarComponent},
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
+
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'holidayReq', component: HolidayRequestComponent},
   {path: 'registerDoctor', component: RegisterDoctorComponent},
@@ -109,6 +118,9 @@ const appRoutes: Routes = [
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
   {path: 'clinicProfileCA', component: ClinicProfileComponent}
+
+  {path: 'surgery', component: SurgeryComponent},
+  {path: 'vacation', component: VacationComponent},
   ];
 
 @NgModule({
@@ -138,6 +150,7 @@ const appRoutes: Routes = [
     CreatingDiagnoseComponent,
     ModalComponent,
     RecipesValidationComponent,
+
     HolidayRequestComponent,
     RegisterDoctorComponent,
     ChangePassComponent,
@@ -148,6 +161,10 @@ const appRoutes: Routes = [
     AvailableDocsComponent,
     RoomsComponent,
     ClinicProfileComponent
+
+    SurgeryComponent,
+    VacationComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -161,10 +178,18 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+
     DayPilotModule,
     FullCalendarModule
   ],
   exports: [SchedulerComponent
+
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
 
 providers: [
@@ -182,6 +207,7 @@ providers: [
     CreatingDiagnoseService,
     IzmjeniSifruService,
     RecipesValidationService,
+
     HolidayRequestService,
     HolidayAbscenceService,
     RegisterDoctorService,
@@ -191,6 +217,11 @@ providers: [
     SchedulerService,
     ScheduleAppService,
     RoomsService,
+
+    SurgeryService,
+    MatDatepickerModule,
+    VacationService,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

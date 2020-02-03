@@ -99,6 +99,7 @@ export class AppComponent implements OnInit {
       return true;
     } else { return false; }
   }
+
   get doctorloged() {
     if (this.ulogovani === 'DOCTOR') {
       return true;
@@ -143,7 +144,9 @@ export class AppComponent implements OnInit {
 
       ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
       phonenumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
-      repeatpassword: ['', Validators.required]
+      repeatpassword: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
     });
   }
 

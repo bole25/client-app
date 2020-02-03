@@ -22,6 +22,7 @@ import {DoctorInfoComponent} from './doctor/doctor-info/doctor-info.component';
 import {DarComponent} from './dar/dar.component';
 import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
+
 import {HolidayRequestComponent} from './cadmin/holiday-request/holiday-request.component';
 import {RegisterDoctorComponent} from './cadmin/registerDoctor/registerDoctor.component';
 import {ChangePassComponent} from './cadmin/changePass/changePass.component';
@@ -31,6 +32,9 @@ import {ScheduleAppComponent} from './patient/scheduleApp/scheduleApp.component'
 import {AvailableDocsComponent} from './patient/availableDocs/availableDocs.component';
 import { RoomsComponent} from './cadmin/rooms/rooms.component';
 import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.component';
+
+import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
+import {VacationComponent} from "./staff/vacation/vacation.component";
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -61,6 +65,7 @@ const routes: Routes = [
   {path: 'dar', component: DarComponent},
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
+
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'newCCA', component: NewCCAComponent},
   {path: 'holidayReq', component: HolidayRequestComponent},
@@ -72,6 +77,10 @@ const routes: Routes = [
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
   {path: 'clinicProfileCA', component: ClinicProfileComponent}
+
+
+  {path: 'surgery', component: SurgeryComponent},
+  {path: 'vacation', component: VacationComponent},
 
 ];
 

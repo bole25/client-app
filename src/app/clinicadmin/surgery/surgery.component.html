@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Surgery</title>
+</head>
+<body>
+<br>
+<br>
+<br>
+
+<div *ngIf="!apr">
+  <h1>List of surgery requests</h1>
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Surgery for</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let sur of surgeries;">
+      <td>{{sur.id}}</td>
+      <td>{{sur.patient.firstName}} {{sur.patient.ssn}}</td>
+      <td>{{sur.startTime| date:'MM/dd/yyyy, h:mm' : 'UTC'}}</td>
+      <td>{{sur.endTime| date:'MM/dd/yyyy, h:mm' : 'UTC'}}</td>
+      <td><button class="btn btn-success" (click)="approving(sur)">Approve</button></td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="apr" >
+  <h3>Organizing surgery for patient {{this.title}}</h3>
+  <br>
+  <br>
+  <div class="form-group">
+    <span class="text-dark text-center">Select doctor</span>
+    <select class="form-control form-group" id="orders" [selectedIndex]="0">
+      <option value="" disabled selected="selected">--Select doctor--
+      </option>
+      <option *ngFor="let doc of doctors; let i = index">
+      {{doc.firstName}}
+      </option>
+    </select>
+  </div>
+</div>
+</body>
+</html>

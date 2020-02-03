@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vacation Request</title>
+</head>
+<body>
+
+<div id = wraper>
+  <br>
+  <br>
+  <br>
+  <h3>Request for vacation</h3>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" [min]="minDate" placeholder="Start Date" [(ngModel)]="this.vacReq.startDate">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput [matDatepicker]="picker2" [min]="minDate" placeholder="End Date" [(ngModel)]="this.vacReq.endDate">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+<br>
+  <select class="form-control form-group" id="vac" [(ngModel)]="this.vacReq.type">
+    <option value="" disabled selected="selected">--Type of vacation--
+    </option>
+    <option>
+     Holiday
+    </option>
+    <option>
+      Absence
+    </option>
+  </select>
+  <br>
+  <div>
+    <button [disabled]="empty" class="btn btn-success" (click)="confirmVacation()">Request Vacation</button>
+  </div>
+</div>
+</body>
+</html>
