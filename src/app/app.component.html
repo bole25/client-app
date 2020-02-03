@@ -98,6 +98,10 @@
           <a class="nav-link" routerLink="/recipesValidation">Recipes validation</a>
         </li>
 
+        <li class="nav-item" *ngIf="cadminloged">
+          <a class="nav-link" routerLink="/surgery">Show surgery requests</a>
+        </li>
+
         <li class="nav-item">
           <a (click)="logout()" class="nav-link" routerLink="/">Logout</a>
         </li>
@@ -203,7 +207,16 @@
                        [ngClass]="{'is-invalid': (f.repeatpassword.dirty || f.repeatpassword.touched) && checkPassword, 'is-valid': (f.repeatpassword.dirty || f.repeatpassword.touched) && f.repeatpassword.valid && !checkPassword}"
 
                 />
+
                 <span class="text-danger" *ngIf="(f.repeatpassword.dirty || f.repeatpassword.touched) && checkPassword">Passwords must match</span>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="city" placeholder="Enter Your City *"
+                       [(ngModel)]="user1.city"
+                       [ngClass]="{'is-invalid': (f.city.dirty || f.city.touched) && f.city.errors, 'is-valid': (f.city.dirty || f.city.touched) && f.city.valid}"
+                > <span class="text-danger" *ngIf="f.city.errors && (f.city.dirty || f.city.touched)">Please enter your city</span>
+
+
               </div>
               <div class="form-group"></div>
             </div>
@@ -235,6 +248,15 @@
                        [(ngModel)]="user1.address"
                        [ngClass]="{'is-invalid': (f.address.dirty || f.address.touched) && f.address.errors, 'is-valid': (f.address.dirty || f.address.touched) && f.address.valid}"/>
                 <span class="text-danger" *ngIf="f.address.errors && (f.address.dirty || f.address.touched)">Address is required</span>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="country" placeholder="Enter Your Country *"
+                       [(ngModel)]="user1.country"
+                       [ngClass]="{'is-invalid': (f.country.dirty || f.country.touched) && f.country.errors, 'is-valid': (f.country.dirty || f.country.touched) && f.country.valid}"
+
+                ><span class="text-danger" *ngIf="f.country.errors && (f.country.dirty || f.country.touched)">Please enter your country</span>
+
+
               </div>
 
               <button [disabled]="angForm.invalid || angForm.pristine || checkPassword" type="subbmit" class="btnRegister"> Sign Up </button>

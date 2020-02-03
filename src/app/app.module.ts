@@ -48,6 +48,8 @@ import {ModalComponent} from './modal/modal.component';
 import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.service';
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
 import {RecipesValidationService} from './nurse/recipesValidation/recipesValidation.service';
+import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
+import {SurgeryService} from './clinicadmin/surgery/surgery.service';
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
 
 
@@ -76,6 +78,7 @@ const appRoutes: Routes = [
   {path: 'dar', component: DarComponent},
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
+  {path: 'surgery', component: SurgeryComponent},
   ];
 
 @NgModule({
@@ -105,6 +108,7 @@ const appRoutes: Routes = [
     CreatingDiagnoseComponent,
     ModalComponent,
     RecipesValidationComponent,
+    SurgeryComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,6 +138,7 @@ const appRoutes: Routes = [
     CreatingDiagnoseService,
     IzmjeniSifruService,
     RecipesValidationService,
+    SurgeryService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
