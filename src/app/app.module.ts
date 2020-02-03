@@ -34,6 +34,8 @@ import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.co
 import {StaffService} from './staff/editStaffInfo/staff.service';
 import {NewCCAComponent} from './newCCA/newCCA.component';
 import {NewCCAService} from './newCCA/newCCA.service';
+import {DoctorInfoComponent} from './doctor/doctor-info/doctor-info.component';
+import {ListOfPatientsService} from './doctor/listOfPatients/listOfPatients.service';
 import {DarComponent} from './dar/dar.component';
 import {DarService} from './dar/dar.service';
 import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
@@ -47,6 +49,7 @@ import {IzmjeniSifruService} from './ccadmin/passwordChanging/izmjeniSifru.servi
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
 import {RecipesValidationService} from './nurse/recipesValidation/recipesValidation.service';
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
+
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -67,6 +70,8 @@ const appRoutes: Routes = [
   {path: 'holidayAbsence', component: HolidayAbsenceComponent},
   {path: 'booking', component: BookingComponent},
   {path: 'listOfPatients', component: ListOfPatientsComponent},
+  {path: 'newCCA', component: NewCCAComponent},
+  {path: 'DoctorInfo', component: DoctorInfoComponent},
   {path: 'newCCA', component: NewCCAComponent},
   {path: 'dar', component: DarComponent},
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
@@ -95,6 +100,7 @@ const appRoutes: Routes = [
     BookingComponent,
     ListOfPatientsComponent,
     NewCCAComponent,
+    DoctorInfoComponent,
     DarComponent,
     CreatingDiagnoseComponent,
     ModalComponent,
@@ -123,6 +129,7 @@ const appRoutes: Routes = [
     CcadminCreateDrugCodeService,
     StaffService,
     NewCCAService,
+    ListOfPatientsService,
     DarService,
     CreatingDiagnoseService,
     IzmjeniSifruService,

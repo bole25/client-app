@@ -18,6 +18,7 @@ import {BookingComponent} from './doctor/booking/booking.component';
 import {combineAll} from 'rxjs/operators';
 import {ListOfPatientsComponent} from './doctor/listOfPatients/listOfPatients.component';
 import {NewCCAComponent} from './newCCA/newCCA.component';
+import {DoctorInfoComponent} from './doctor/doctor-info/doctor-info.component';
 import {DarComponent} from './dar/dar.component';
 import {CreatingDiagnoseComponent} from './ccadmin/creatingDiagnose/creatingDiagnose.component';
 import {RecipesValidationComponent} from './nurse/recipesValidation/recipesValidation.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'booking', component: BookingComponent},
   {path: 'listOfPatients', component: ListOfPatientsComponent},
   {path: 'newCCA', component: NewCCAComponent},
+  {path: 'editDocInfo', component: DoctorInfoComponent},
   {path: 'dar', component: DarComponent},
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
