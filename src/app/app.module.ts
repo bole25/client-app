@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DayPilotModule} from 'daypilot-pro-angular';
 import {Router, RouterModule, Routes} from '@angular/router';
-import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent} from './registration/registration.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -58,9 +58,9 @@ import {SurgeryService} from './clinicadmin/surgery/surgery.service';
 import {VacationComponent} from './staff/vacation/vacation.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
-import {VacationService} from "./staff/vacation/vacation.service";
+import {VacationService} from './staff/vacation/vacation.service';
 // import { ModalComponent as ModalComponent } from './modal/modal.component';
 import {RegisterDoctorService} from './cadmin/registerDoctor/registerDoctor.service';
 import {RegisterDoctorComponent} from './cadmin/registerDoctor/registerDoctor.component';
@@ -79,7 +79,9 @@ import {RoomsComponent} from './cadmin/rooms/rooms.component';
 import {Room} from './models/room.model';
 import {RoomsService} from './cadmin/rooms/rooms.service';
 import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.component';
-
+import {FullCalendarModule} from '@fullcalendar/angular';
+import {WorkCalFInalService} from './doctor/WorkCalFinal/WorkCalFInal.service';
+import {DatePipe} from "@angular/common";
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -106,7 +108,6 @@ const appRoutes: Routes = [
   {path: 'dar', component: DarComponent},
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'recipesValidation', component: RecipesValidationComponent},
-
   {path: 'ccaDiagnose', component: CreatingDiagnoseComponent},
   {path: 'holidayReq', component: HolidayRequestComponent},
   {path: 'registerDoctor', component: RegisterDoctorComponent},
@@ -117,8 +118,7 @@ const appRoutes: Routes = [
   {path: 'scheduleApp', component: ScheduleAppComponent},
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
-  {path: 'clinicProfileCA', component: ClinicProfileComponent}
-
+  {path: 'clinicProfileCA', component: ClinicProfileComponent},
   {path: 'surgery', component: SurgeryComponent},
   {path: 'vacation', component: VacationComponent},
   ];
@@ -150,7 +150,6 @@ const appRoutes: Routes = [
     CreatingDiagnoseComponent,
     ModalComponent,
     RecipesValidationComponent,
-
     HolidayRequestComponent,
     RegisterDoctorComponent,
     ChangePassComponent,
@@ -160,11 +159,9 @@ const appRoutes: Routes = [
     ScheduleAppComponent,
     AvailableDocsComponent,
     RoomsComponent,
-    ClinicProfileComponent
-
+    ClinicProfileComponent,
     SurgeryComponent,
     VacationComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -178,18 +175,24 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatDialogModule,
     BrowserAnimationsModule,
-
     DayPilotModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
   ],
-  exports: [SchedulerComponent
-
+  exports: [SchedulerComponent,
     MatDatepickerModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
+    MatRippleModule,
   ],
 
 providers: [
@@ -207,7 +210,6 @@ providers: [
     CreatingDiagnoseService,
     IzmjeniSifruService,
     RecipesValidationService,
-
     HolidayRequestService,
     HolidayAbscenceService,
     RegisterDoctorService,
@@ -217,11 +219,11 @@ providers: [
     SchedulerService,
     ScheduleAppService,
     RoomsService,
-
     SurgeryService,
     MatDatepickerModule,
     VacationService,
-
+    WorkCalFInalService,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

@@ -34,7 +34,7 @@ import { RoomsComponent} from './cadmin/rooms/rooms.component';
 import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.component';
 
 import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
-import {VacationComponent} from "./staff/vacation/vacation.component";
+import {VacationComponent} from './staff/vacation/vacation.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -76,9 +76,7 @@ const routes: Routes = [
   {path: 'scheduleApp', component: ScheduleAppComponent},
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
-  {path: 'clinicProfileCA', component: ClinicProfileComponent}
-
-
+  {path: 'clinicProfileCA', component: ClinicProfileComponent},
   {path: 'surgery', component: SurgeryComponent},
   {path: 'vacation', component: VacationComponent},
 
