@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accepting appointments</title>
+</head>
+<body>
+<div *ngIf="!showrooms">
+  <h1>List of appointment requests</h1>
+  <table class="table table-light">
+    <tr>
+      <th>Appointment type</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let a of appointments">
+      <td>{{a.type.type}}</td>
+      <td>{{a.doctor.firstName}} {{a.patient.lastName}}</td>
+      <td>{{a.patient.firstName}} {{a.patient.lastName}}</td>
+      <td>{{this.converttostr(a.startTime)}}</td>
+      <td><button class="btn badge-primary" (click)="getfreerooms(a.id)">Assign Room</button></td>
+      <td><button class="btn badge-danger" (click)="reject(a.id)">Reject</button></td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="showrooms">
+  <h1>Free rooms</h1>
+  <table class="table table-light">
+    <tr>
+      <th>Room Name</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let r of freerooms">
+      <td>{{r.name}}</td>
+      <td><button class="btn badge-success" (click)="bookRoom(r.id, this.idclicked)">Book</button></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button class="btn badge-dark" (click)="back()">Back</button></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
