@@ -6,7 +6,7 @@
 <br>
 <br>
 <div class="container container-table input-group input-group-sm">
-  <form >
+  <form>
     <div class="form-group">
       <h2 style="color:#33cabb">Doctor's Profile</h2>
       <h5 style="color:#33cabb">List of all patients</h5>
@@ -16,7 +16,8 @@
     <p>Sort patients by:</p>
     <div>
       <form>
-        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredString" (change)="filterChange()"/>   <button class="btn-info" type="submit">Filter</button>
+        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredString" (change)="filterChange()"/>
+        <button class="btn-info" type="submit">Filter</button>
       </form>
     </div>
     <!-- <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="sortBy" [ngModelOptions]="{standalone: true}">
@@ -34,7 +35,7 @@
     <p align="left" style="color:#33cabb">List of all patients</p>
 
     <table class="table table-bordered table-striped">
-      <thead class = "thead dark">
+      <thead class="thead dark">
 
       <tr>
         <th scope="col">First Name</th>
@@ -47,7 +48,9 @@
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.ssn}}</td>
-        <td><button class="btn badge-success" (click)="onSubmit()">Go to Profile</button></td>
+        <td>
+          <button class="btn badge-success" (click)="onSubmit()">Go to Profile</button>
+        </td>
       </tr>
     </table>
 
