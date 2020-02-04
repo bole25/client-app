@@ -81,7 +81,9 @@ import {RoomsService} from './cadmin/rooms/rooms.service';
 import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {WorkCalFInalService} from './doctor/WorkCalFinal/WorkCalFInal.service';
-import {DatePipe} from "@angular/common";
+import {DatePipe} from '@angular/common';
+import {AcceptingAppComponent} from './cadmin/acceptingApp/acceptingApp.component';
+import {AcceptingAppService} from "./cadmin/acceptingApp/acceptingApp.service";
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -121,6 +123,7 @@ const appRoutes: Routes = [
   {path: 'clinicProfileCA', component: ClinicProfileComponent},
   {path: 'surgery', component: SurgeryComponent},
   {path: 'vacation', component: VacationComponent},
+  {path: 'appointments', component: AcceptingAppComponent},
   ];
 
 @NgModule({
@@ -162,6 +165,7 @@ const appRoutes: Routes = [
     ClinicProfileComponent,
     SurgeryComponent,
     VacationComponent,
+    AcceptingAppComponent,
   ],
   imports: [
     BrowserModule,
@@ -224,6 +228,7 @@ providers: [
     VacationService,
     WorkCalFInalService,
     DatePipe,
+    AcceptingAppService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

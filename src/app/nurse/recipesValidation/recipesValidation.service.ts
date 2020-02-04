@@ -13,11 +13,12 @@ export class RecipesValidationService {
     this.validateRecipeUrl = 'http://localhost:8080/validateRecipe';
   }
 
-  getRecipes(): Observable<Set<Recipe>> {
-    return this.http.get<Set<Recipe>>(this.getRecipesUrl);
+  getRecipes(email: string): Observable<Set<Recipe>> {
+    return this.http.get<Set<Recipe>>(this.getRecipesUrl + '/' + email + '/');
   }
 
-  validateRecipe(id: BigInteger, email: string): Observable<any> {
-    return this.http.post<any>(this.validateRecipeUrl + '/' + id.toString() + '/' + email + '/', {});
+  validateRecipe(id: BigInteger): Observable<any> {
+    this.ret = id.toString();
+    return this.http.post<any>(this.validateRecipeUrl + '/' + this.ret + '/', {});
   }
 }

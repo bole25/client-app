@@ -23,11 +23,13 @@ export class RecipesValidationComponent implements OnInit {
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
     this.user = user;
-    this.service.getRecipes().subscribe(data => {this.recipes = data; });
+    this.service.getRecipes(this.user.email).subscribe(data => {this.recipes = data; });
   }
 
-  validateRecipe(id: BigInteger, email: string) {
-      this.service.validateRecipe(id, email).subscribe(result => { this.service.getRecipes().subscribe(data => {this.recipes = data; });
-                                                                   alert('Successfully validated recipe!'); });
+  validateRecipe(id: BigInteger) {
+    // tslint:disable-next-line:max-line-length
+      this.service.validateRecipe(id).subscribe(result => {
+        this.service.getRecipes(this.user.email).subscribe(data => {this.recipes = data; });
+        alert('Successfully validated recipe!'); });
   }
 }

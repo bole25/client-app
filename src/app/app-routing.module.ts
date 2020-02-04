@@ -35,6 +35,7 @@ import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.compo
 
 import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
 import {VacationComponent} from './staff/vacation/vacation.component';
+import {AcceptingAppComponent} from './cadmin/acceptingApp/acceptingApp.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -79,6 +80,7 @@ const routes: Routes = [
   {path: 'clinicProfileCA', component: ClinicProfileComponent},
   {path: 'surgery', component: SurgeryComponent},
   {path: 'vacation', component: VacationComponent},
+  {path: 'appointments', component: AcceptingAppComponent},
 
 ];
 
