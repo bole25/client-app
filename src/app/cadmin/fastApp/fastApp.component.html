@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fast Appointments</title>
+</head>
+<body>
+
+<div id = wraper>
+  <table class="table table-borderless table-active">
+    <tr>
+      <td>
+<select class="form-control form-group" id="orders" [(ngModel)]="appt">
+  <option value="" disabled selected="selected">--Select appointment type--
+  </option>
+  <option *ngFor="let tp of appointmenttypes; let i = index" [ngValue]="tp">
+    {{tp.type}}
+  </option>
+</select>
+      </td>
+      <td></td>
+    </tr>
+    <tr><td>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" [min]="mindate" placeholder="Select Date" [(ngModel)]="startDate">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field></td>
+<td>
+  <ngb-timepicker [(ngModel)]="time" [minuteStep]="30" ></ngb-timepicker>
+</td>
+    </tr>
+    <tr>
+      <td> <button [disabled]="activeconfirm" (click)="showDoctors()" class="btn btn-dark"> Find doctors and rooms </button>  </td>
+      <td></td>
+    </tr>
+</table>
+
+  <select *ngIf="this.doctors.size != 0" class="form-control form-group" id="dc" [(ngModel)]="doctor">
+    <option value="" disabled selected="selected">--Select doctor --
+    </option>
+    <option *ngFor="let tp of doctors; let i = index" [ngValue]="tp">
+      {{tp.firstName}} {{tp.lastName}}
+    </option>
+  </select>
+
+  <select *ngIf="this.freerooms.size != 0" class="form-control form-group" id="rm" [(ngModel)]="room">
+    <option value="" disabled selected="selected">--Select room --
+    </option>
+    <option *ngFor="let tp of freerooms; let i = index" [ngValue]="tp">
+      {{tp.name}}
+    </option>
+  </select>
+
+  <button *ngIf="selectedboth" class="btn btn-success" (click)="makefa()">Make fast appointment</button>
+</div>
+</body>
+</html>

@@ -83,7 +83,13 @@ import {FullCalendarModule} from '@fullcalendar/angular';
 import {WorkCalFInalService} from './doctor/WorkCalFinal/WorkCalFInal.service';
 import {DatePipe} from '@angular/common';
 import {AcceptingAppComponent} from './cadmin/acceptingApp/acceptingApp.component';
-import {AcceptingAppService} from "./cadmin/acceptingApp/acceptingApp.service";
+import {AcceptingAppService} from './cadmin/acceptingApp/acceptingApp.service';
+import {FastAppComponent} from './cadmin/fastApp/fastApp.component';
+import {FastAppService} from './cadmin/fastApp/fastApp.service';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
+
 
 const appRoutes: Routes = [
   // { path: 'login', component: LoginComponent },
@@ -124,6 +130,7 @@ const appRoutes: Routes = [
   {path: 'surgery', component: SurgeryComponent},
   {path: 'vacation', component: VacationComponent},
   {path: 'appointments', component: AcceptingAppComponent},
+  {path: 'fastapp', component: FastAppComponent},
   ];
 
 @NgModule({
@@ -166,6 +173,7 @@ const appRoutes: Routes = [
     SurgeryComponent,
     VacationComponent,
     AcceptingAppComponent,
+    FastAppComponent,
   ],
   imports: [
     BrowserModule,
@@ -187,6 +195,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
+    NgxMaterialTimepickerModule,
+    NgbTimepickerModule,
   ],
   exports: [SchedulerComponent,
     MatDatepickerModule,
@@ -197,6 +207,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatRippleModule,
+    DlDateTimePickerModule,
+    DlDateTimeDateModule,
   ],
 
 providers: [
@@ -229,6 +241,7 @@ providers: [
     WorkCalFInalService,
     DatePipe,
     AcceptingAppService,
+  FastAppService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

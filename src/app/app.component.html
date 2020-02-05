@@ -147,6 +147,9 @@
         <li class="nav-item" *ngIf="cadminloged">
           <a class="nav-link" routerLink="/appointments">Appointment requests</a>
         </li>
+        <li class="nav-item" *ngIf="cadminloged">
+          <a class="nav-link" routerLink="/fastapp">Create fast appointment</a>
+        </li>
 
         <li class="nav-item">
           <a (click)="logout()" class="nav-link" routerLink="/">Logout</a>
