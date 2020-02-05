@@ -40,7 +40,7 @@
     <select class="form-control form-group" id="orders"  [(ngModel)]="this.takeDrugFromDropDown" [ngModelOptions]="{standalone: true}">
       <option value="" disabled selected="selected">--Select drug--
       </option>
-      <option *ngFor="let drg of drugs; let i = index" [value]="drugs[i].drugName">
+      <option *ngFor="let drg of drugs; let i = index" [ngValue]="drg">
         {{drg.drugName}}
       </option>
     </select>
