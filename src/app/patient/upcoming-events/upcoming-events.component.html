@@ -1,0 +1,35 @@
+<html>
+<body>
+  <title>Upcoming Appointments</title>
+<br>
+<br>
+<br>
+<div class="container container-table input-group input-group-sm">
+  <mat-progress-spinner
+    class="example-margin"
+    style="position:fixed;left: 50%;top: 50%;width: 100px;height: 100px;margin-top:-50px;margin-left:-50px"
+    [color]="color"
+    [mode]="mode" *ngIf="loading">
+  </mat-progress-spinner>
+  <div style="width: 100%; text-align: center" *ngIf="!loading">
+    <h1 style="margin-bottom: 20px;font-weight: bold;">Past Appointments and Surgeries</h1>
+    <table class="table table-light" style="border-color: lightblue;border-style: solid;border-width: thick;">
+      <tr>
+        <th>Appointment type</th>
+        <th>Doctor</th>
+        <th>Clinic Name</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let a of appointmentsSurgeries">
+        <td style="vertical-align: middle">{{a.appointmentType}}</td>
+        <td style="vertical-align: middle">{{a.doctorsName}}</td>
+        <td style="vertical-align: middle">{{a.clinicName}}</td>
+        <td style="vertical-align: middle">{{a.dateString}}</td>
+        <td style="vertical-align: middle"><button class="btn badge-danger" id="{{a.id}}">Cancel</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>
