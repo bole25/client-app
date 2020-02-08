@@ -7,7 +7,7 @@ import {UpcomingEventsService} from '../patient/upcoming-events/upcoming-events.
 import {DarService} from './dar.service';
 import {Drug} from '../models/drug.model';
 import {toString} from '@ng-bootstrap/ng-bootstrap/util/util';
-import {Diagnose} from "../models/diagnose.model";
+import {Diagnose} from '../models/diagnose.model';
 
 @Component({
   selector: 'app-dar',
