@@ -1,66 +1,79 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user.model';
+import {AppointmentSurgeryDto} from '../models/dto/appointmentSurgeryDto';
+import {ThemePalette} from '@angular/material/core';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RequestsService} from '../requests/requests.service';
+import {UpcomingEventsService} from '../patient/upcoming-events/upcoming-events.service';
 import {DarService} from './dar.service';
 import {Drug} from '../models/drug.model';
+import {toString} from '@ng-bootstrap/ng-bootstrap/util/util';
+import {Diagnose} from "../models/diagnose.model";
 
 @Component({
   selector: 'app-dar',
   templateUrl: './dar.component.html',
   styleUrls: ['./dar.component.css']
 })
-
 export class DarComponent implements OnInit {
-  patients: Set<User>;
+
+  appointmentsSurgeries: Array<AppointmentSurgeryDto>;
   drugs: Set<Drug>;
-  drugToRecipe: Drug;
-  user: User;
-  showpatients: boolean;
-  mail: string;
-  recipefor: string;
-  takeDrugFromDropDown: string;
-  message: string;
-
+  diagnoses: Set<Diagnose>;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  loading = true;
+  show = false;
+  idDrug: string;
+  idApp: string;
+  idDiagnose: string;
+  tipzakazivanja: string;
+  startDate: Date;
+  mindate: Date;
+  time: {hour: 13, minute: 30};
   constructor(private router: Router, private route: ActivatedRoute, private service: DarService) {
-    this.patients = new Set<User>();
-    this.user = new User();
+    this.appointmentsSurgeries = new Array<AppointmentSurgeryDto>();
     this.drugs = new Set<Drug>();
+    this.diagnoses = new Set<Diagnose>();
+    this.mindate = new Date();
   }
-  ngOnInit(): void {
-    this.showpatients = true;
-    this.service.getDrugs().subscribe(data => {this.drugs = data; });
-    this.service.getPatients().subscribe(data => {this.patients = data;
+
+  ngOnInit() {
+    this.service.getFuture().subscribe(data => {
+      this.appointmentsSurgeries = Array.from(data);
+      this.loading = false;
     });
+    this.service.getDrugs().subscribe(data => { this.drugs = data; });
+    this.service.getDiagnoses().subscribe(data => { this.diagnoses = data; });
   }
 
-  addRecipe(email: string, name: string) {
-    this.mail = email;
-    this.recipefor = name;
-    this.message = 'Successfully created recipe for ' + this.recipefor;
-    this.showpatients = false;
+  addToRecipe() {
+    this.service.addToRecipe(this.idApp, this.idDrug).subscribe(result => { alert('Recipe added'); });
   }
 
-  onSubmit() {
-    if (this.takeDrugFromDropDown != null) {
-      this.drugToRecipe = this.finddrug(this.takeDrugFromDropDown);
-    }
+  selectAppointment(id: string) {
+    this.idApp = id;
+    this.show = true;
   }
 
-  finddrug(name: string) {
-     for (const drug of this.drugs) {
-       if (name === drug.drugName) {
-         return drug;
-       }
-     }
+  back() {
+    this.idApp = null;
+    this.show = false;
   }
 
-  confirmRecipes(message?: string) {
-    this.service.makeRecipe(this.drugToRecipe, this.mail).subscribe(result => {
-      this.router.navigate(['/dar']);  alert(message); });
+  selectOption(id: string) {
+    this.idDrug = id;
   }
 
-  removeDrugFromRecipe(drugName: string) {
-    this.drugToRecipe = new Drug();
+  selectDiagnose(idDiag: string) {
+      this.idDiagnose = idDiag;
+  }
+
+  addDiagnose() {
+    this.service.addDiagnose(this.idApp, this.idDiagnose).subscribe(result => { alert('Diagnose added'); });
+  }
+
+  selectRequest(tip: string) {
+    this.tipzakazivanja = tip;
+    alert(this.tipzakazivanja);
   }
 }

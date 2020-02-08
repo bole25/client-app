@@ -67,7 +67,7 @@
           <a class="nav-link" routerLink="/editStaff">Edit staff's info</a>
         </li>
         <li class="nav-item" *ngIf="nurseloged || doctorloged">
-          <a class="nav-link" routerLink="/vacation">Vacation request</a>
+          <a class="nav-link" routerLink="/vacation">Request Vacation</a>
         </li>
 
         <!--Patient-->
@@ -91,31 +91,16 @@
         </li> -->
 
         <li class="nav-item" *ngIf="doctorloged">
-          <a class="nav-link" routerLink="/holidayAbsence">Holiday/Absence</a>
-        </li>
-        <li class="nav-item" *ngIf="doctorloged">
-          <a class="nav-link" routerLink="/dar">Show Patients</a>
+          <a class="nav-link" routerLink="/dar">Appointments</a>
         </li>
 
-        <li class="nav-item" *ngIf="doctorloged">
-        <a class="nav-link" routerLink="/booking">Booking</a>
-      </li>
-        <li class="nav-item" *ngIf="doctorloged">
-          <a class="nav-link" routerLink="/listOfPatients">All Patients</a>
-        </li>
-        <li class="nav-item" *ngIf="doctorloged">
-          <a class="nav-link" routerLink="/editDocInfo">Edit info</a>
-        </li>
         <li class="nav-item" *ngIf="doctorloged">
           <a class="nav-link" routerLink="/docChangePass">Change password</a>
         </li>
 
-        <li class="nav-item" *ngIf="doctorloged">
-          <a class="nav-link" routerLink="/scheduler">Scheduler</a>
-        </li>
 
         <li class="nav-item" *ngIf="doctorloged || nurseloged">
-          <a class="nav-link" routerLink="/workCal">WC</a>
+          <a class="nav-link" routerLink="/workCal">Calendar</a>
         </li>
 
         <!-- Clinic admin -->
@@ -156,7 +141,7 @@
       </ul>
       <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item" *ngIf="patientloged">
+        <li class="nav-item" *ngIf="patientloged || doctorloged">
           <a class="nav-link" routerLink="/profile">Profile</a>
         </li>
         <li class="nav-item">

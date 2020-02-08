@@ -1,78 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
 <body>
+<title>Upcoming Appointments</title>
 <br>
 <br>
 <br>
-<div *ngIf="showpatients">
-<h1>List of patients</h1>
-<table class="table">
-  <tr>
-    <th>#</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>E-mail</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let user of patients; let i = index">
-    <td>{{i + 1}}</td>
-    <td>{{user.firstName}}</td>
-    <td>{{user.lastName}}</td>
-    <td>{{user.email}}</td>
-    <td><button class="btn badge-primary" (click)="addRecipe(user.email, user.firstName)">Add Recipe</button></td>
-    <td><button class="btn badge-secondary">Add Diagnose</button></td>
-  </tr>
-</table>
-</div>
 
-<div class="container container-table input-group input-group-sm" *ngIf="!showpatients">
-  <div class="container container-table input-group input-group-sm">
-  <form  (ngSubmit)="onSubmit()">
-    <div class = form-group>
-      <p>Recipe for {{this.recipefor}}</p>
-    </div>
-  <div class="form-group">
-    <select class="form-control form-group" id="orders"  [(ngModel)]="this.takeDrugFromDropDown" [ngModelOptions]="{standalone: true}">
-      <option value="" disabled selected="selected">--Select drug--
-      </option>
-      <option *ngFor="let drg of drugs; let i = index" [ngValue]="drg">
-        {{drg.drugName}}
-      </option>
-    </select>
-  </div>
-    <div class="form-group">
-      <button class="btn-info" type="submit">Add drug to recipe</button>
-    </div>
-  </form>
-</div>
-  <div>
-    <table class="table">
+<div class="container container-table input-group input-group-sm" *ngIf="!show">
+  <mat-progress-spinner
+    class="example-margin"
+    style="position:fixed;left: 50%;top: 50%;width: 100px;height: 100px;margin-top:-50px;margin-left:-50px"
+    [color]="color"
+    [mode]="mode" *ngIf="loading">
+  </mat-progress-spinner>
+  <div style="width: 100%; text-align: center" *ngIf="!loading">
+    <h1 style="margin-bottom: 20px;font-weight: bold;">Upcoming Appointments and Surgeries</h1>
+    <table class="table table-light" style="border-color: lightblue;border-style: solid;border-width: thick;">
       <tr>
-        <th>#</th>
-        <th>Drug</th>
-        <th>Description</th>
+        <th>Appointment type</th>
+        <th>Patient</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
       </tr>
-      <tr>
-        <td></td>
-        <td>{{drugToRecipe.drugName}}</td>
-        <td>{{drugToRecipe.description}}</td>
-        <td>{{drugToRecipe.price}}$</td>
-        <td><button class="btn btn-danger" (click)="removeDrugFromRecipe(drugToRecipe.drugName)">Remove</button></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><button class="btn badge-secondary" (click)="confirmRecipes(this.message)">Create recipe</button></td>
+      <tr *ngFor="let a of appointmentsSurgeries">
+        <td style="vertical-align: middle">{{a.appointmentType}}</td>
+        <td style="vertical-align: middle">{{a.patientName}}</td>
+        <td style="vertical-align: middle">{{a.dateString}}</td>
+        <td style="vertical-align: middle"><button class="btn badge-success" (click)="selectAppointment(a.id)">Start</button></td>
       </tr>
     </table>
   </div>
+</div>
+<br>
+<div *ngIf="show">
+  <table class="table-light">
+    <tr>
+    <th>
+      <form (ngSubmit)="addToRecipe()">
+      <div class="form-group">
+      <span class="text-dark text-center"> --Select drug-- </span>
+      <select class="form-control form-group" id="orders" [selectedIndex]="0" (change)="selectOption($event.target.value)">
+        <option value="" disabled selected="selected">--Select drug--
+        </option>
+        <option *ngFor="let drg of drugs; let i = index" [value]=drg.id>
+          {{drg.drugName}}
+        </option>
+      </select>
+      </div>
+      <button class="btn btn-dark" type="submit" value="ADD">Add</button>
+</form></th>
+      <th>
+  <form (ngSubmit)="addDiagnose()">
+    <div class="form-group">
+      <span class="text-dark text-center"> --Select diagnose-- </span>
+      <select class="form-control form-group" id="dgs" [selectedIndex]="0" (change)="selectDiagnose($event.target.value)">
+        <option value="" disabled selected="selected">--Select diagnose--
+        </option>
+        <option *ngFor="let dgs of diagnoses; let i = index" [value]=dgs.id>
+          {{dgs.name}}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-dark" type="submit" value="ADD">Add</button>
+  </form>
+      </th>
+    </tr>
+    <tr>
+      <th>
+  <div class="container container-table input-group input-group-sm" style="margin-top: 50px">
+  <h5 style="margin-right: 15px">Request</h5>
+  <select class="form-control form-group" (change)="selectRequest($event.target.value)">
+    <option value="Appointment">
+      Appointment
+    </option>
+    <option value="Surgery">
+      Surgery
+    </option>
+  </select>
+    <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" [min]="mindate" placeholder="Select Date" [(ngModel)]="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    </div>
+    <div>
+        <ngb-timepicker [(ngModel)]="time" [minuteStep]="30" ></ngb-timepicker>
+    </div>
+  </div>
+  <button class="btn btn-dark" (click)="back()">Back</button>
+    </th>
+      <th></th>
+    </tr>
+  </table>
 </div>
 </body>
 </html>
