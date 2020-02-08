@@ -1,42 +1,42 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {User} from '../models/user.model';
+import {HttpClient} from '@angular/common/http';
+import {AppointmentSurgeryDto} from '../models/dto/appointmentSurgeryDto';
 import {Drug} from '../models/drug.model';
+import {Observable} from 'rxjs';
+import {Diagnose} from "../models/diagnose.model";
 
 @Injectable()
 export class DarService {
-  private readonly patientsUrl: string;
-  private readonly patientsUrl2: string;
-  private readonly userUrl: string;
-  private readonly drugsUrl: string;
-  private params: HttpParams;
-  private readonly makeRecipeUrl: string;
-  private paramsforrecipe: HttpParams;
-
+  private readonly getFutureUrl: string;
+  private readonly getDrugsUrl: string;
+  private readonly createRecipeUrl: string;
+  private readonly addDgsUrl: string;
+  private readonly getDiagnosesUrl: string;
   constructor(private http: HttpClient) {
-    this.patientsUrl = 'http://localhost:8080/doctor/getpatients';
-    this.patientsUrl2 = 'http://localhost:8080/getPatients';
-    this.userUrl = 'http://localhost:8080/doctor/getuser';
-    this.drugsUrl = 'http://localhost:8080/drugs/getalldrugs';
-    this.makeRecipeUrl = 'http://localhost:8080/doctor/makerecipe';
+    this.getFutureUrl = 'http://localhost:8080/doctor/getFutureAppointmentsAndSurgeries';
+    this.getDrugsUrl = 'http://localhost:8080/drugs/getalldrugs';
+    this.createRecipeUrl = 'http://localhost:8080/drugs/drugToPatient';
+    this.addDgsUrl = 'http://localhost:8080/diagnoseToPatient';
+    this.getDiagnosesUrl = 'http://localhost:8080/getDiagnoses';
   }
 
-  public getPatients(): Observable<Set<User>> {
-    return this.http.get<Set<User>>(this.patientsUrl);
-  }
-
-  getUser(email: string) {
-    this.params = new HttpParams();
-    this.params.set('email', email);
-    return this.http.get<any>(this.userUrl, {params: this.params});
+  getFuture() {
+    return this.http.get<Set<AppointmentSurgeryDto>>(this.getFutureUrl);
   }
 
   getDrugs() {
-    return this.http.get<Set<Drug>>(this.drugsUrl);
+    return this.http.get<Set<Drug>>(this.getDrugsUrl);
   }
 
-  makeRecipe(recipe: Drug, email: string): Observable<any> {
-    return this.http.post<any>(this.makeRecipeUrl + '/' + email + '/', recipe);
+  addToRecipe(appId: string, drugId: string): Observable<any> {
+      return this.http.post(this.createRecipeUrl + '/' + appId + '/' + drugId + '/', {});
+  }
+
+  addDiagnose(appId: string, diagnoseId: string) {
+    return this.http.post(this.addDgsUrl + '/' + appId + '/' + diagnoseId + '/', {});
+  }
+
+  getDiagnoses() {
+    return this.http.get<Set<Diagnose>>(this.getDiagnosesUrl);
   }
 }

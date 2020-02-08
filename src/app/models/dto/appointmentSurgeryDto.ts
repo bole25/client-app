@@ -5,6 +5,7 @@ export class AppointmentSurgeryDto {
   clinicName: string;
   clinicId: number;
   patientId: number;
+  patientEmail: string;
   id: string;
   doctorsName: string;
   doctorId: number;

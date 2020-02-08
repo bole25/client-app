@@ -15,7 +15,8 @@ export class Interceptor implements HttpInterceptor {
       }
     });
   }
-  return next.handle(request).pipe(
+  return next.handle(request);
+  /*return next.handle(request).pipe(
     // @ts-ignore
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
@@ -24,7 +25,7 @@ export class Interceptor implements HttpInterceptor {
         }
       }
     })
-  );
+  );*/
 }
 
 }
