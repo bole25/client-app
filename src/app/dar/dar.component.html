@@ -67,29 +67,7 @@
     </tr>
     <tr>
       <th>
-  <div class="container container-table input-group input-group-sm" style="margin-top: 50px">
-  <h5 style="margin-right: 15px">Request</h5>
-  <select class="form-control form-group" (change)="selectRequest($event.target.value)">
-    <option value="Appointment">
-      Appointment
-    </option>
-    <option value="Surgery">
-      Surgery
-    </option>
-  </select>
-    <div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker1" [min]="mindate" placeholder="Select Date" [(ngModel)]="startDate">
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-    </div>
-    <div>
-        <ngb-timepicker [(ngModel)]="time" [minuteStep]="30" ></ngb-timepicker>
-    </div>
-  </div>
-  <button class="btn btn-dark" (click)="back()">Back</button>
-    </th>
+      <th><h2>Request next appointment or surgery</h2></th>
       <th></th>
     </tr>
   </table>
