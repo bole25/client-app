@@ -1,64 +1,40 @@
 <html>
 <body>
-
+  <title>Appointment History</title>
 <br>
 <br>
 <br>
 <br>
 <div class="container container-table input-group input-group-sm">
-  <form >
-
-  <div class="form-group">
-      <h2 style="color:#33cabb">Patient Profile</h2>
-      <h5 style="color:#33cabb">History of surgeries and examinations</h5>
-    </div>
-  <br>
-  <br>
-
-  <div>
-    <p>Sort history by:</p>
-
-    <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="selectSurgery" [ngModelOptions]="{standalone: true}">
-      <option value="" label="-- Sort --" disabled selected="selected">
-      </option>
-      <option *ngFor="let s of surgeries; let i = index" [value]="surgeries[i].doctor">
-        {{s.doctor}}
-      </option>
-
-    </select>
+    <mat-progress-spinner
+      class="example-margin"
+      style="position:fixed;left: 50%;top: 50%;width: 100px;height: 100px;margin-top:-50px;margin-left:-50px"
+      [color]="color"
+      [mode]="mode" *ngIf="loading">
+    </mat-progress-spinner>
+  <div style="width: 100%; text-align: center" *ngIf="!loading">
+    <h1 style="margin-bottom: 20px;font-weight: bold;">Past Appointments and Surgeries</h1>
+    <table class="table table-light" style="border-color: lightblue;border-style: solid;border-width: thick;">
+      <tr>
+        <th>Appointment type</th>
+        <th>Doctor</th>
+        <th>Clinic Name</th>
+        <th>Date</th>
+        <th>ReviewDoctor</th>
+        <th>ReviewClinic</th>
+      </tr>
+      <tr *ngFor="let a of appointmentsSurgeries">
+        <td>{{a.appointmentType}}</td>
+        <td>{{a.doctorsName}}</td>
+        <td>{{a.clinicName}}</td>
+        <td>{{a.dateString}}</td>
+        <td>
+          <ngb-rating [(rate)]="a.doctorGrade" (rateChange)="rate(a.doctorId,null, $event)"></ngb-rating>
+        </td>
+        <td><ngb-rating [(rate)]="a.clinicGrade" (rateChange)="rate(null, a.clinicId, $event)"></ngb-rating></td>
+      </tr>
+    </table>
   </div>
-
-  <br>
-
-  <br>
-  <br>
-  <table class="table table-bordered table-striped">
-    <thead class = "thead dark">
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Surgeries</th>
-      <th scope="col">Examination</th>
-    </tr>
-    <tr>
-      <th>08.04.2019</th>
-      <th>/</th>
-      <th>Lungs</th>
-    </tr>
-    <tr>
-      <th>09.07.2019</th>
-      <th>Heart</th>
-      <th>/</th>
-    </tr>
-    <tr>
-      <th>15.03.2008</th>
-      <th>/</th>
-      <th>Blood pressure</th>
-    </tr>
-    </thead>
-  </table>
-
-
-</form>
   </div>
 </body>
 </html>

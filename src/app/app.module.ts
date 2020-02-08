@@ -88,12 +88,15 @@ import {FastAppComponent} from './cadmin/fastApp/fastApp.component';
 import {FastAppService} from './cadmin/fastApp/fastApp.service';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbRatingModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import {HistoryPatientService} from './patient/history/historyPatient.service';
+import {UpcomingEventsService} from './patient/upcoming-events/upcoming-events.service';
+import {SelectClinicServise} from './patient/listOfClinics/selectClinic.servise';
+import {MatProgressSpinnerModule} from '@angular/material';
+import { UpcomingEventsComponent } from './patient/upcoming-events/upcoming-events.component';
 
 
 const appRoutes: Routes = [
-  // { path: 'login', component: LoginComponent },
-  // { path: 'registration', component: RegistrationComponent},
   { path: 'requests', component: RequestsComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'ccadmin', component: CcadminComponent},
@@ -124,6 +127,7 @@ const appRoutes: Routes = [
   {path: 'scheduler', component: SchedulerComponent},
   {path: 'workCal', component: WorkCalFinalComponent},
   {path: 'scheduleApp', component: ScheduleAppComponent},
+  {path: 'upcomingEvents', component: UpcomingEventsComponent},
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
   {path: 'clinicProfileCA', component: ClinicProfileComponent},
@@ -174,6 +178,7 @@ const appRoutes: Routes = [
     VacationComponent,
     AcceptingAppComponent,
     FastAppComponent,
+    UpcomingEventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -197,6 +202,8 @@ const appRoutes: Routes = [
     MatRippleModule,
     NgxMaterialTimepickerModule,
     NgbTimepickerModule,
+    MatProgressSpinnerModule,
+    NgbRatingModule,
   ],
   exports: [SchedulerComponent,
     MatDatepickerModule,
@@ -241,7 +248,10 @@ providers: [
     WorkCalFInalService,
     DatePipe,
     AcceptingAppService,
-  FastAppService,
+    HistoryPatientService,
+    UpcomingEventsService,
+    SelectClinicServise,
+    FastAppService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

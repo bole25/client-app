@@ -1,80 +1,70 @@
 <html>
 <body>
+<title>Browse Clinics</title>
 <br>
 <br>
 <br>
 <div class="container container-table input-group input-group-sm">
-  <form >
-    <div class="form-group">
-      <h2 style="color:#33cabb">Patient Profile</h2>
-      <h5 style="color:#33cabb">Clinic list</h5>
+  <mat-progress-spinner
+    class="example-margin"
+    style="position:fixed;left: 50%;top: 50%;width: 100px;height: 100px;margin-top:-50px;margin-left:-50px"
+    [color]="color"
+    [mode]="mode" *ngIf="loading">
+  </mat-progress-spinner>
+  <div style="width: 100%; text-align: center;margin-bottom: 30px;" *ngIf="!loading">
+    <h1 style="margin-bottom: 20px;font-weight: bold;">Clinics</h1>
+    <form>
+      <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Clinic Name"
+             [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinic"  (change)="filterClinic()"/>
+      <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Minimum rating"
+             [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinicRating"  (change)="filterClinic()"/>
+      <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Country"
+             [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinicCountry"  (change)="filterClinic()"/>
+      <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="City"
+             [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinicCity"  (change)="filterClinic()"/>
+      <button style="border-radius: 5px;" class="btn-info" type="submit">Filter</button>
+    </form>
+  </div>
+
+  <div style="width: 1000px; text-align: center;margin:auto;margin-bottom: 30px" *ngIf="!loading">
+
+    <!-- SAMO FILTRIRANE KLINIKE CE BITI -->
+    <table class="table table-light" style="margin:auto; border-color: lightblue;border-style: solid;border-width: thick;">
+      <thead class = "thead dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Country</th>
+        <th scope="col">City</th>
+        <th scope="col">Address</th>
+        <th scope="colgroup">Rating</th>
+        <th></th>
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let clinic of filteredClinicsByField">
+        <td style="vertical-align: middle">{{clinic.clinicName}}</td>
+        <td style="vertical-align: middle">{{clinic.country}}</td>
+        <td style="vertical-align: middle">{{clinic.city}}</td>
+        <td style="vertical-align: middle">{{clinic.address}}</td>
+        <td style="vertical-align: middle">{{clinic.rating}}</td>
+        <td style="vertical-align: middle">
+          <button class="btn badge-success" id="{{clinic.clinicName}}" (click)="fullProfile($event)">Full Profile</button>
+        </td>
+      </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+  <div style="width: 1000px; text-align: center;margin:auto;margin-bottom: 30px" *ngIf="profile">
+    <h1 style="margin-bottom: 20px;font-weight: bold;">Random naziv</h1>
+    <div>
+
     </div>
-
-    <br>
-    <p>Filter clinics by:</p>
-    <select class="form-control form-group" id="filter" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
-      <option value="" label="-- Filter --" disabled selected="selected">
-      </option>
-      <option *ngFor="let clc of clinics; let i = index" >
-        {{clc.clinicName}}
-      </option>
-      <option *ngFor="let clc of clinics; let i = index">
-        {{clc.address}}
-      </option>
-      <option *ngFor="let clc of clinics; let i = index" >
-        {{clc.rating}}
-      </option>
-    </select>
-
-    <br>
-    <p>Sort clinics by:</p>
-    <select class="form-control form-group" id="sort" [selectedIndex]="0" [(ngModel)]="selectedclinic" [ngModelOptions]="{standalone: true}">
-      <option value="" label="-- Sort --" disabled selected="selected">
-      </option>
-      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].clinicName">
-        {{clc.clinicName}}
-      </option>
-      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].address">
-        {{clc.address}}
-      </option>
-      <option *ngFor="let clc of clinics; let i = index" [value]="clinics[i].rating">
-        {{clc.rating}}
-      </option>
-    </select>
-
-    <br>
-
-    <p>Search clinic by name: </p>
-    <input type="text" placeholder="Input clinic name..."> <button type="submit">Search</button>
-
-    <br>
-
-    <br>
-
-<p align="left" style="color:#33cabb">List of all clinics</p>
-<table class="table table-bordered table-striped">
-  <thead class = "thead dark">
-  <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Address</th>
-    <th scope="col">Rating</th>
-  </tr>
-
-  </thead>
-
-  <tbody>
-
-  <!--Ovdje nalijepiti listu klinika iz baze -->
-  <tr *ngFor="let clinic of clinics">
-    <td>{{clinic.clinicName}}</td>
-    <td>{{clinic.address}}</td>
-    <td>{{clinic.rating}}</td>
-  </tr>
-
-  </tbody>
-
-</table>
-  </form>
+  </div>
 </div>
 </body>
 </html>

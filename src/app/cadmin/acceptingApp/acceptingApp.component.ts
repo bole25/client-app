@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DarService} from '../../dar/dar.service';
 import {User} from '../../models/user.model';
-import {Drug} from '../../models/drug.model';
 import {AcceptingAppService} from './acceptingApp.service';
 import {Appointment} from '../../models/appointment.model';
 import {DatePipe} from '@angular/common';
 import {Room} from '../../models/room.model';
+import {Surgery} from '../../models/surgery.model';
 
 @Component({
   selector: 'app-appointments',
@@ -17,9 +16,11 @@ import {Room} from '../../models/room.model';
 export class AcceptingAppComponent implements OnInit {
   showrooms: boolean;
   appointments: Set<Appointment>;
+  surgeries: Set<Surgery>;
   freerooms: Set<Room>;
   idclicked: string;
   user: User;
+
   constructor(private router: Router, private route: ActivatedRoute, private service: AcceptingAppService, private datepipe: DatePipe) {
     this.showrooms = false;
     this.appointments = new Set<Appointment>();
@@ -30,19 +31,27 @@ export class AcceptingAppComponent implements OnInit {
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
     this.user = user;
-    this.service.getAppRequests(this.user.email).subscribe(data => { this.appointments = data; });
+    this.service.getAppRequests(this.user.email).subscribe(data => {
+      this.appointments = data;
+    });
+    this.service.getSurgeries(this.user.email).subscribe(data => {
+      this.surgeries = data;
+    });
+
   }
 
   converttostr(apt: any) {
     const preuzmi = (new Date(apt));
-    return preuzmi.getFullYear() + '-' + preuzmi.getMonth() + '-' + preuzmi.getDate() + '\n' + preuzmi.getHours() +
-       ':' + preuzmi.getMinutes();
+    return preuzmi.getFullYear() + '-' + preuzmi.getMonth() + 1 + '-' + preuzmi.getDate() + '\n' + preuzmi.getHours() +
+      ':' + preuzmi.getMinutes();
   }
 
-  getfreerooms(id: string) {
+  getfreerooms(id: string, type: string) {
     this.idclicked = id;
-    this.service.getFreeRooms(id).subscribe( data => {this.freerooms = data;
-                                                      this.showrooms = true; });
+    this.service.getFreeRooms(id, type).subscribe(data => {
+      this.freerooms = data;
+      this.showrooms = true;
+    });
   }
 
   back() {
@@ -51,11 +60,35 @@ export class AcceptingAppComponent implements OnInit {
 
   bookRoom(id: number, idclicked: string) {
     // tslint:disable-next-line:max-line-length
-    this.service.bookRoom(id, idclicked).subscribe( data => { alert('Room booked');  this.service.getAppRequests(this.user.email).subscribe(data1 => { this.appointments = data1; }); this.showrooms = false; });
+    this.service.bookRoom(id, idclicked).subscribe(data => {
+      alert('Room booked');
+      this.service.getAppRequests(this.user.email).subscribe(data1 => {
+        this.appointments = data1;
+      });
+      this.showrooms = false;
+    });
   }
 
-  reject(id: string) {
+  reject(id: string, app: boolean) {
     // tslint:disable-next-line:max-line-length
-    this.service.rejectApp(id).subscribe( data => { this.service.getAppRequests(this.user.email).subscribe(data1 => { this.appointments = data1; }); });
+    if (app) {
+      this.service.rejectApp(id).subscribe(data => {
+        this.service.getAppRequests(this.user.email).subscribe(data1 => {
+          this.appointments = data1;
+        });
+        this.service.getSurgeries(this.user.email).subscribe(data1 => {
+          this.surgeries = data1;
+        });
+      });
+    } else {
+      this.service.rejectSurgery(id).subscribe(data => {
+        this.service.getAppRequests(this.user.email).subscribe(data1 => {
+          this.appointments = data1;
+        });
+        this.service.getSurgeries(this.user.email).subscribe(data1 => {
+          this.surgeries = data1;
+        });
+      });
+    }
   }
 }

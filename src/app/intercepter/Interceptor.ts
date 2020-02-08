@@ -1,6 +1,7 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {Injectable} from '@angular/core';
+import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
@@ -14,6 +15,16 @@ export class Interceptor implements HttpInterceptor {
       }
     });
   }
-  return next.handle(request);
+  return next.handle(request).pipe(
+    // @ts-ignore
+    catchError((err: any) => {
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 403 || err.status === 406) {
+          alert('Your token has expired, please log in again');
+        }
+      }
+    })
+  );
 }
+
 }

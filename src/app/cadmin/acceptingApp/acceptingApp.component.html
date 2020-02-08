@@ -18,11 +18,19 @@
     </tr>
     <tr *ngFor="let a of appointments">
       <td>{{a.type.type}}</td>
-      <td>{{a.doctor.firstName}} {{a.patient.lastName}}</td>
+      <td>{{a.doctor.firstName}} {{a.doctor.lastName}}</td>
       <td>{{a.patient.firstName}} {{a.patient.lastName}}</td>
       <td>{{this.converttostr(a.startTime)}}</td>
-      <td><button class="btn badge-primary" (click)="getfreerooms(a.id)">Assign Room</button></td>
-      <td><button class="btn badge-danger" (click)="reject(a.id)">Reject</button></td>
+      <td><button class="btn badge-primary" (click)="getfreerooms(a.id,'APPOINTMENT')">Assign Room</button></td>
+      <td><button class="btn badge-danger" (click)="reject(a.id,true)">Reject</button></td>
+    </tr>
+    <tr *ngFor="let a of surgeries">
+      <td>'Surgery'</td>
+      <td>{{a.doctors.values().next().value.firstName}}</td>
+      <td>{{a.patient.firstName}} {{a.patient.lastName}}</td>
+      <td>{{this.converttostr(a.startTime)}}</td>
+      <td><button class="btn badge-primary" (click)="getfreerooms(a.id,'SURGERY')">Assign Room</button></td>
+      <td><button class="btn badge-danger" (click)="reject(a.id,false)">Reject</button></td>
     </tr>
   </table>
 </div>
