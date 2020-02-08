@@ -14,7 +14,8 @@ import {CcadminService} from '../../ccadmin/registerClinicAdmin/ccadmin.service'
 
 @Component({
   selector: 'app-clinic',
-  templateUrl: './scheduleApp.component.html'
+  templateUrl: './scheduleApp.component.html',
+  styleUrls: ['./scheduleApp.component.css']
 })
 
 export class ScheduleAppComponent implements OnInit {
@@ -22,8 +23,6 @@ export class ScheduleAppComponent implements OnInit {
   appType: AppointmentType;
   selectedType: string;
   selectedDate: string;
-  emailContentPatient: string;
-  emailContentDoctor: string;
 
   clinics: Set<Clinic>;
   clinic: Clinic;
@@ -31,14 +30,14 @@ export class ScheduleAppComponent implements OnInit {
   filteredDoctors: Set<DoctorFreeTimes>;
   filteredClinics: Set<Clinic>;
   filteredClinicsByField: Set<Clinic>;
-  // appointmentTypePriceDisc: AppTypePriceDiscModel;
   appointmentTypePriceDiscounts: Set<AppTypePriceDiscModel>;
   selectedATPD: AppTypePriceDiscModel;
 
-
-
-  filteredString: string;
-  filteredString2: string;
+  filteredStringClinic = '';
+  filteredStringClinicRating = '';
+  filteredStringClinicMaxPrice = '';
+  filteredStringDoctor = '';
+  filteredStringDoctorRating = '';
   requests: string;
 
   showClinics: boolean;
@@ -47,16 +46,11 @@ export class ScheduleAppComponent implements OnInit {
   showClinicFilter: boolean;
   showDoctorFilter: boolean;
 
-
-
   takeTimeFromDropDown: string;
   appointments: Set<Appointment>;
   schedule: FormGroup;
 
-  // pretraga za kliniku
-
-  // tslint:disable-next-line:max-line-length
-  constructor(protected router: Router, protected route: ActivatedRoute, protected service: ScheduleAppService, private formBuilder: FormBuilder) {
+  constructor(protected router: Router, protected route: ActivatedRoute, protected service: ScheduleAppService) {
     this.appTypes = new Set<AppointmentType>();
     this.appType = new AppointmentType();
     this.appointments = new Set<Appointment>();
@@ -71,34 +65,29 @@ export class ScheduleAppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-        this.service.getAppTypes().subscribe(data1 => {
-        this.appTypes = data1;
-        });
+    this.service.getAppTypes().subscribe(data1 => {
+      this.appTypes = data1;
+    });
   }
 
-  // TODO: provjeriti dal je izabran datum i tip
   filterChange(): void {
-    this.showClinics = true;
-    this.showDoctors = false;
-    this.showClinicFilter = true;
-    this.showDoctors = false;
-    this.filteredClinics = new Set<Clinic>();
+    if (this.selectedDate === undefined) {
+      alert('date must be selected');
+      return;
+    }
     let filteredType: AppointmentType;
     for (const t of this.appTypes) {
       if (t.type.includes(this.selectedType)) {
         filteredType = t;
         this.appType = t;
       }
-  }
+    }
     if (filteredType === undefined) {
       alert('Appointment type must be selected');
       return;
     }
-    if (this.selectedDate === undefined) {
-      alert('date must be selected');
-      return;
-    }
+
+    this.filteredClinics = new Set<Clinic>();
     this.service.getFilteredClinics(filteredType, this.selectedDate).subscribe(result => {
       this.filteredClinics = result;
       const selectedAppType = this.appType;
@@ -110,9 +99,15 @@ export class ScheduleAppComponent implements OnInit {
         });
       });
       this.filteredClinicsByField = this.filteredClinics;
+      this.showClinics = true;
+      this.showDoctors = false;
+      this.showClinicFilter = true;
+      const scrollingElement = (document.scrollingElement || document.body);
+      scrollingElement.scrollTop = scrollingElement.scrollHeight;
   });
   }
   // za dobavljanje doktora koji imaju slobodan termin
+
   onSubmit(event) {
     this.showClinics = true;
     this.showDoctors = true;
@@ -122,12 +117,14 @@ export class ScheduleAppComponent implements OnInit {
     const elementId: string = (event.target as Element).id;
     this.service.getDoctors(this.appType, this.selectedDate, elementId).subscribe(data1 => {
       this.filteredDoctors = data1;
-      // this.router.navigate(['/availableDocs']);
+      this.filterDoctorsByField = data1;
+      this.showDoctors = true;
+      const scrollingElement = (document.scrollingElement || document.body);
+      scrollingElement.scrollTop = scrollingElement.scrollHeight;
     });
 
 
   }
-
 
   filterClinic() {
     this.showDoctors = false;
@@ -135,41 +132,38 @@ export class ScheduleAppComponent implements OnInit {
     this.showDoctorFilter = false;
     this.showClinicFilter = true;
     this.filteredClinicsByField = new Set<Clinic>();
-    alert('tuuu je');
+    const clinicRating = parseFloat(this.filteredStringClinicRating);
+    const clinicPrice = parseFloat(this.filteredStringClinicMaxPrice);
     for (const clc of this.filteredClinics) {
-        if (clc.clinicName.toLowerCase().includes(this.filteredString.toLowerCase())) {
-          this.filteredClinicsByField.add(clc);
-          alert('hoce li mooozda');
+        if (clc.clinicName.toLowerCase().includes(this.filteredStringClinic.toLowerCase())) {
+          if (isNaN(clinicRating) || clc.rating >= clinicRating) {
+            if (isNaN(clinicPrice) || clc.selectedATPD.price <= clinicPrice) {
+              this.filteredClinicsByField.add(clc);
+            }
+          }
         }
       }
   }
 
   filterDoctors() {
-    this.showDoctors = true;
-    this.showClinics = false;
     this.filterDoctorsByField = new Set<DoctorFreeTimes>();
-    alert('unisao');
+    const doctorRating = parseFloat(this.filteredStringDoctorRating);
+    // tslint:disable-next-line:no-debugger
+    debugger;
     for (const doc of this.filteredDoctors) {
-      if (doc.doctor.firstName.toLowerCase().includes(this.filteredString2.toLowerCase())) {
-        this.filterDoctorsByField.add(doc);
+      if (doc.doctor.firstName.toLowerCase().includes(this.filteredStringDoctor.toLowerCase())) {
+        if (isNaN(doctorRating) || doc.doctor.rating >= doctorRating) {
+          this.filterDoctorsByField.add(doc);
+        }
       }
     }
 
   }
 
   clickSchedule(event) {
-    // tslint:disable-next-line:no-debugger
-    debugger;
-    const user = JSON.parse(localStorage.user);
     this.service.requestApp(this.appType, this.selectedDate + ' ' + this.takeTimeFromDropDown + ':00',
       event.target.id, JSON.parse(localStorage.user).email).subscribe(response => {
-        alert('usao');
-    });
-  }
-  private createForm() {
-    this.schedule = this.formBuilder.group({
-
-      timeSchedule: ['', [Validators.required]]
+        alert('Request for the Appointment successfully sent');
     });
   }
 

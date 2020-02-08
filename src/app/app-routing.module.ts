@@ -36,7 +36,8 @@ import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.compo
 import {SurgeryComponent} from './clinicadmin/surgery/surgery.component';
 import {VacationComponent} from './staff/vacation/vacation.component';
 import {AcceptingAppComponent} from './cadmin/acceptingApp/acceptingApp.component';
-import {FastAppComponent} from "./cadmin/fastApp/fastApp.component";
+import {FastAppComponent} from './cadmin/fastApp/fastApp.component';
+import {UpcomingEventsComponent} from './patient/upcoming-events/upcoming-events.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -76,6 +77,7 @@ const routes: Routes = [
   {path: 'docChangePass', component: DocChangePassComponent},
   {path: 'scheduler', component: SchedulerComponent},
   {path: 'scheduleApp', component: ScheduleAppComponent},
+  {path: 'upcomingEvents', component: UpcomingEventsComponent},
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
   {path: 'clinicProfileCA', component: ClinicProfileComponent},
