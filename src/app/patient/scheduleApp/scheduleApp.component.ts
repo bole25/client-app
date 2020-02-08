@@ -65,9 +65,10 @@ export class ScheduleAppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getAppTypes().subscribe(data1 => {
-      this.appTypes = data1;
-    });
+
+        this.service.getAppTypes().subscribe(data1 => {
+        this.appTypes = data1;
+        });
   }
 
   filterChange(): void {
@@ -148,8 +149,6 @@ export class ScheduleAppComponent implements OnInit {
   filterDoctors() {
     this.filterDoctorsByField = new Set<DoctorFreeTimes>();
     const doctorRating = parseFloat(this.filteredStringDoctorRating);
-    // tslint:disable-next-line:no-debugger
-    debugger;
     for (const doc of this.filteredDoctors) {
       if (doc.doctor.firstName.toLowerCase().includes(this.filteredStringDoctor.toLowerCase())) {
         if (isNaN(doctorRating) || doc.doctor.rating >= doctorRating) {

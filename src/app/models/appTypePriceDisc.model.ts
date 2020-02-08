@@ -5,6 +5,4 @@ export class AppTypePriceDiscModel {
   appointmentType: AppointmentType;
   price: number;
   discount: number;
-
-
 }
