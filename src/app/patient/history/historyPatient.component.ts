@@ -36,8 +36,6 @@ export class HistoryPatientComponent implements OnInit {
     rating.clinicId = clinicId;
     rating.rating = grade;
     this.service.rate(rating).subscribe(data => {
-      // tslint:disable-next-line:no-debugger
-      debugger;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.appointmentsSurgeries.length; i++) {
         if (doctorId != null && doctorId === this.appointmentsSurgeries[i].doctorId) {

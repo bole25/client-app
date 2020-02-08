@@ -61,7 +61,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {VacationService} from './staff/vacation/vacation.service';
-// import { ModalComponent as ModalComponent } from './modal/modal.component';
 import {RegisterDoctorService} from './cadmin/registerDoctor/registerDoctor.service';
 import {RegisterDoctorComponent} from './cadmin/registerDoctor/registerDoctor.component';
 import {ChangePassComponent} from './cadmin/changePass/changePass.component';
@@ -76,7 +75,6 @@ import {ScheduleAppComponent} from './patient/scheduleApp/scheduleApp.component'
 import {ScheduleAppService} from './patient/scheduleApp/scheduleApp.service';
 import {AvailableDocsComponent} from './patient/availableDocs/availableDocs.component';
 import {RoomsComponent} from './cadmin/rooms/rooms.component';
-import {Room} from './models/room.model';
 import {RoomsService} from './cadmin/rooms/rooms.service';
 import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
@@ -94,6 +92,7 @@ import {UpcomingEventsService} from './patient/upcoming-events/upcoming-events.s
 import {SelectClinicServise} from './patient/listOfClinics/selectClinic.servise';
 import {MatProgressSpinnerModule} from '@angular/material';
 import { UpcomingEventsComponent } from './patient/upcoming-events/upcoming-events.component';
+import {EditInfoComponent} from './patient/edit-info/edit-info.component';
 
 
 const appRoutes: Routes = [
@@ -127,6 +126,7 @@ const appRoutes: Routes = [
   {path: 'scheduler', component: SchedulerComponent},
   {path: 'workCal', component: WorkCalFinalComponent},
   {path: 'scheduleApp', component: ScheduleAppComponent},
+  {path: 'editProfile', component: EditInfoComponent},
   {path: 'upcomingEvents', component: UpcomingEventsComponent},
   {path: 'availableDocs', component: AvailableDocsComponent},
   {path: 'rooms', component: RoomsComponent},
@@ -179,6 +179,7 @@ const appRoutes: Routes = [
     AcceptingAppComponent,
     FastAppComponent,
     UpcomingEventsComponent,
+    EditInfoComponent
   ],
   imports: [
     BrowserModule,

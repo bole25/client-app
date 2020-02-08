@@ -51,7 +51,7 @@
         <td style="vertical-align: middle">{{clinic.address}}</td>
         <td style="vertical-align: middle">{{clinic.rating}}</td>
         <td style="vertical-align: middle">
-          <button class="btn badge-success" id="{{clinic.clinicName}}" (click)="fullProfile($event)">Full Profile</button>
+          <button class="btn badge-success" (click)="fullProfile(clinic.id)">Full Profile</button>
         </td>
       </tr>
 
@@ -60,9 +60,60 @@
     </table>
   </div>
   <div style="width: 1000px; text-align: center;margin:auto;margin-bottom: 30px" *ngIf="profile">
-    <h1 style="margin-bottom: 20px;font-weight: bold;">Random naziv</h1>
-    <div>
 
+    <h1 style="margin-bottom: 20px;font-weight: bold;">{{clinic.clinicName}}</h1>
+    <div style="text-align: center; margin-bottom: 20px">
+      <label style="float:left">{{clinic.address}}</label>
+      <label style="float:right">Rating: {{clinic.rating}}</label>
+    </div>
+    <div>
+      <label>{{clinic.description}}</label>
+    </div>
+
+    <div *ngIf="showDoctors">
+      <h1 style="margin-bottom: 20px;margin-top: 20px;font-weight: bold;">Doctors</h1>
+      <table style="width: 900px" class="table table-bordered table-striped">
+        <thead class = "thead dark">
+          <tr>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let dr of filterDoctorsByField; let i = index">
+            <td style="vertical-align: middle">{{dr.firstName}}</td>
+            <td style="vertical-align: middle">{{dr.lastName}}</td>
+            <td style="vertical-align: middle">{{dr.rating}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div  *ngIf="showAppointments">
+      <h1 style="margin-bottom: 20px;margin-top: 20px;font-weight: bold;">Predefined Appointments</h1>
+      <table style="width: 900px" class="table table-bordered table-striped">
+        <thead class = "thead dark">
+        <tr>
+          <th scope="col">Appointment Type</th>
+          <th scope="col">Doctor</th>
+          <th scope="col">Price</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let a of filteredAppointments; let i = index">
+          <td style="vertical-align: middle">{{a.appointmentType}}</td>
+          <td style="vertical-align: middle">{{a.doctorsName}}</td>
+          <td style="vertical-align: middle">{{a.price}}</td>
+          <td style="vertical-align: middle">
+            <button class="btn btn-success" (click)="bookAppointment(a.id)">Book</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

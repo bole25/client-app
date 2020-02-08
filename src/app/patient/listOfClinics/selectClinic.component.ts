@@ -3,6 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {Clinic} from '../../models/clinic.model';
 import {ProgressSpinnerMode, ThemePalette} from '@angular/material';
 import {SelectClinicServise} from './selectClinic.servise';
+import {DoctorFreeTimes} from '../../models/dto/doctorFreeTimes.model';
+import {Doctor} from '../../models/doctor.model';
+import {AppointmentSurgeryDto} from '../../models/dto/appointmentSurgeryDto';
 
 @Component({
   selector: 'app-users',
@@ -18,16 +21,28 @@ export class SelectClinicComponent implements OnInit {
   filteredStringClinicRating = '';
   filteredStringClinicCountry = '';
   filteredStringClinicCity = '';
+  clinic: Clinic;
   loading = true;
   profile = false;
+  showDoctors = false;
+  showAppointments = false;
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
+  Doctors: Set<Doctor>;
+  filterDoctorsByField: Set<Doctor>;
+  Appointments: Set<AppointmentSurgeryDto>;
+  filteredAppointments: Set<AppointmentSurgeryDto>;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private service: SelectClinicServise) {
     this.clinics = new Set<Clinic>();
     this.filteredClinics = new Set<Clinic>();
     this.filteredClinicsByField = new Set<Clinic>();
+    this.clinic = new Clinic();
+    this.filterDoctorsByField = new Set<Doctor>();
+    this.Doctors = new Set<Doctor>();
+    this.Appointments = new Set<AppointmentSurgeryDto>();
+    this.filteredAppointments = new Set<AppointmentSurgeryDto>();
   }
 
   ngOnInit(): void {
@@ -39,9 +54,27 @@ export class SelectClinicComponent implements OnInit {
     });
   }
 
-  fullProfile(event) {
-    const elementId: string = (event.target as Element).id;
-    alert(elementId);
+  fullProfile(id: string) {
+    this.showDoctors = false
+    for (const clc of this.filteredClinics) {
+      if (clc.id === id) {
+        this.clinic = clc;
+        break;
+      }
+    }
+    this.profile = true;
+
+    this.service.getDoctors(id).subscribe(data => {
+      this.Doctors = data;
+      this.filterDoctorsByField = data;
+      this.showDoctors = true;
+    });
+
+    this.service.getPredefinedAppointments(id).subscribe(data => {
+      this.Appointments = data;
+      this.filteredAppointments = data;
+      this.showAppointments = true;
+    });
   }
 
   filterClinic() {
@@ -56,6 +89,17 @@ export class SelectClinicComponent implements OnInit {
         }
       }
     }
+  }
+
+  bookAppointment(id: string) {
+    this.service.bookFastAppointment(id).subscribe(response => {
+      alert('Appointment successfully booked');
+      this.service.getPredefinedAppointments(id).subscribe(data => {
+        this.Appointments = data;
+        this.filteredAppointments = data;
+        this.showAppointments = true;
+      });
+    });
   }
 }
 
