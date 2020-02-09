@@ -21,12 +21,24 @@ export class WorkCalFinalComponent implements  OnInit {
   appointments: Set<Appointment>;
   vacations: Set<Vacationrequest>;
   surgeries: Set<Surgery>;
+  defaultConfigurations: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: WorkCalFInalService, public datepipe: DatePipe) {
     this.user = new User();
     this.appointments = new Set<Appointment>();
     this.vacations = new Set<Vacationrequest>();
     this.surgeries = new Set<Surgery>();
+    this.defaultConfigurations = {
+
+      editable: true,
+      eventLimit: true,
+      titleFormat: 'MMM D YYYY',
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      }
+    };
   }
 
   calendarEvents = [

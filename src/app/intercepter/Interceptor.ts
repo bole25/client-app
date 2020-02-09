@@ -20,7 +20,7 @@ export class Interceptor implements HttpInterceptor {
     // @ts-ignore
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
-        if (err.status === 403 || err.status === 406) {
+        if (err.status === 401 || err.status === 403) {
           alert('Your token has expired, please log in again');
         }
       }

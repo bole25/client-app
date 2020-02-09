@@ -34,6 +34,7 @@ export class ScheduleAppService {
   }
 
   public requestApp(appType: AppointmentType, date: string, email: string , email2: string): Observable<string> {
+
     return this.http.post<string>(this.reqUrl + '/' + date + '/' + email + '/' + email2 + '/' , appType);
   }
 

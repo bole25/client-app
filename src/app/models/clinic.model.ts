@@ -3,6 +3,7 @@ import {AppTypePriceDiscModel} from './appTypePriceDisc.model';
 
 export class Clinic {
   clinicName: string;
+  id: string;
   address: string;
   city: string;
   country: string;
@@ -10,5 +11,4 @@ export class Clinic {
   appointmentTypePriceDiscounts: Set<AppTypePriceDiscModel>;
   selectedATPD: AppTypePriceDiscModel;
   description: string;
-
 }
