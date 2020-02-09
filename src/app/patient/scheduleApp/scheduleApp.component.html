@@ -4,7 +4,7 @@
 <br>
 <br>
 <br>
-<div style="text-align: center;" class="container container-table input-group input-group-sm">
+<div style="text-align: center" class="container container-table input-group input-group-sm">
   <h1 style="margin-bottom: 20px;font-weight: bold; width:100%">Schedule an appointment</h1>
   <form style="margin:auto">
     <div style = "text-align: center" class="form-group">
@@ -21,7 +21,7 @@
 
     <div class="form-group">
       <p style="color:darkcyan">Appointment date:</p>
-      <input style="border-style:groove;border-radius: 5px;height: 35px;width: 170px;margin: auto" type="date" id="startDate" required placeholder="StartDate"
+      <input style="border-style:groove;border-radius: 5px;height: 35px;width: 170px;margin: auto" type="date" [min]="today" id="startDate" required placeholder="StartDate"
              [(ngModel)]="selectedDate" [ngModelOptions]="{standalone: true}" class="form-control input-sm">
     </div>
 
@@ -31,6 +31,7 @@
       </form>
     </div>
 
+    <!-- *ngIf="showClinicFilter" -->
     <div style="margin-bottom: 30px" *ngIf="showClinicFilter">
       <h3 style="margin-bottom: 20px;font-weight: bold; width:100%">Available Clinics</h3>
       <form id = "filterClinicsForm">
@@ -44,7 +45,7 @@
       </form>
     </div>
 
-    <div >
+    <div *ngIf="showClinics">
 
     <!-- *ngIf="showClinics"SAMO FILTRIRANE KLINIKE CE BITI -->
     <table style="width: 900px" class="table table-bordered table-striped" id="clinicsTable">
@@ -77,7 +78,8 @@
     </table>
     </div>
 
-    <div style="margin-bottom: 30px" *ngIf="showDoctorFilter">
+    <!-- *ngIf="showDoctorFilter"-->
+    <div *ngIf="showDoctorFilter" style="margin-bottom: 30px" >
       <h3 style="margin-bottom: 20px;font-weight: bold; width:100%">Available doctors for the given date</h3>
 
       <form id="searchDoctorsForm">
@@ -89,6 +91,7 @@
       </form>
     </div>
 
+    <!-- *ngIf="showDoctors" -->
     <div *ngIf="showDoctors">
 
     <table style="width: 900px" class="table table-bordered table-striped" id="doctorsTable">

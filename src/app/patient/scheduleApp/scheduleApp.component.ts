@@ -49,8 +49,22 @@ export class ScheduleAppComponent implements OnInit {
   takeTimeFromDropDown: string;
   appointments: Set<Appointment>;
   schedule: FormGroup;
+  today: string;
 
   constructor(protected router: Router, protected route: ActivatedRoute, protected service: ScheduleAppService) {
+    const date = new Date();
+    const day2 = date.getDate();
+    const month2 = date.getMonth() + 1;
+    const year2 = date.getFullYear();
+    let day: string;
+    if (day2 < 10) {
+      day = '0' + day2.toString();
+    }
+    let month: string;
+    if (month2 < 10) {
+      month = '0' + month2.toString();
+    }
+    this.today = year2.toString() + '-' + month + '-' + day;
     this.appTypes = new Set<AppointmentType>();
     this.appType = new AppointmentType();
     this.appointments = new Set<Appointment>();
@@ -117,8 +131,6 @@ export class ScheduleAppComponent implements OnInit {
     this.filteredDoctors = new Set<DoctorFreeTimes>();
     const elementId: string = (event.target as Element).id;
     this.service.getDoctors(this.appType, this.selectedDate, elementId).subscribe(data1 => {
-      // tslint:disable-next-line:no-debugger
-      debugger;
       this.filteredDoctors = data1;
       this.filterDoctorsByField = data1;
       this.showDoctors = true;
@@ -164,6 +176,10 @@ export class ScheduleAppComponent implements OnInit {
   clickSchedule(event) {
     this.service.requestApp(this.appType, this.selectedDate + ' ' + this.takeTimeFromDropDown + ':00',
       event.target.id, JSON.parse(localStorage.user).email).subscribe(response => {
+        this.showClinics = false;
+        this.showDoctors = false;
+        this.showClinicFilter = false;
+        this.showDoctorFilter = false;
         alert('Request for the Appointment successfully sent');
     });
   }

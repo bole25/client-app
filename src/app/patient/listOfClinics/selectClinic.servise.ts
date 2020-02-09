@@ -15,7 +15,7 @@ export class SelectClinicServise {
     this.getClinicsUrl = 'http://localhost:8080/patient/getAllClinics';
     this.getClinicDoctorsUrl = 'http://localhost:8080/patient/getDoctors';
     this.getPredefinedUrl = 'http://localhost:8080/patient/getPredefinedAppointments';
-    this.bookFastAppointmentUrl = 'http://localhost:8080/patient/getPredefinedAppointments';
+    this.bookFastAppointmentUrl = 'http://localhost:8080/patient/bookFastAppointment';
   }
 
   getClinics() {

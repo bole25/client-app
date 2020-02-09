@@ -151,12 +151,13 @@
   </nav>
 </div>
 
-<div *ngIf="someoneLoged && homepage">
+<div style="background-image: url('../images/bck.jpg')" *ngIf="someoneLoged && homepage">
   <br>
   <br>
   <br>
   <br>
-<h2 class="text-center text-dark">WELCOME, {{ulogovanifirstName}}</h2>
+<h2 class="text-center text-dark">Welcome to the Clinical System, {{ulogovanifirstName}}.</h2>
+  <h3 class="text-center text-dark">To access any of app's functions, use the navigation bar</h3>
   <br><h3 *ngIf="ccadminloged && need_to_change" class="text-center text-dark">To use your account you must change password</h3>
 </div>
 
