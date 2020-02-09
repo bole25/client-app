@@ -11,7 +11,7 @@ export class SurgeryService {
   private readonly surgeryRoomsUrl: string;
   private readonly doctorsUrl: string;
   constructor(private http: HttpClient) {
-    this.surgeryUrl = 'http://localhost:8080/surgery';
+    this.surgeryUrl = 'http://localhost:8080/admin/getSurgeryRequests';
     this.surgeryRoomsUrl = 'http://localhost:8080/rooms';
     this.doctorsUrl = 'http://localhost:8080/doctorssurgery';
   }

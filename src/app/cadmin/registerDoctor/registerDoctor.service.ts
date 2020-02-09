@@ -8,10 +8,13 @@ import {Clinic} from '../../models/clinic.model';
 export class RegisterDoctorService {
   private readonly clinicDoctorUrl: string;
   private readonly clinicsUrl: string;
+  private readonly deleteDocUrl: string;
 
   constructor(private http: HttpClient) {
-    this.clinicDoctorUrl = 'http://localhost:8080/cadmin/regClinicDoctor';
+    this.clinicDoctorUrl = 'http://localhost:8080/admin/regClinicDoctor';
     this.clinicsUrl = 'http://localhost:8080/getclinicsByCA';
+    this.deleteDocUrl = 'http://localhost:8080/admin/deleteDoctor';
+
   }
 
   /*public getUser(email: string, password: string): Observable<User> {
@@ -26,7 +29,11 @@ export class RegisterDoctorService {
     return this.http.post<any>(this.clinicDoctorUrl + '/' + clinic, user);
   }
   public getDoctors(): Observable<Set<User>> {
-    return this.http.get<Set<User>>('http://localhost:8080/cadmin/getDoctors');
+    return this.http.get<Set<User>>('http://localhost:8080/admin/getDoctors');
+  }
+
+  public removeDoctor(email: string, content: string): Observable<any> {
+    return this.http.post<any>( this.deleteDocUrl, {email, content});
   }
 
 }

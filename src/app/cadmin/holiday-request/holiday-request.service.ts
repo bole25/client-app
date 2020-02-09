@@ -11,10 +11,10 @@ export class HolidayRequestService {
   private readonly acceptUrl: string;
   private readonly getReqUrl: string;
   constructor(private http: HttpClient) {
-    this.requestsUrl = 'http://localhost:8080/cadmin/getHolidayRequests';
-    this.deleterequestUrl = 'http://localhost:8080/cadmin/deleteHolidayRequest';
-    this.acceptUrl = 'http://localhost:8080/cadmin/acceptHolidayRequest';
-    this.getReqUrl = 'http://localhost:8080/cadmin/getHolidayRequests';
+    this.requestsUrl = 'http://localhost:8080/admin/getHolidayRequests';
+    this.deleterequestUrl = 'http://localhost:8080/admin/deleteHolidayRequest';
+    this.acceptUrl = 'http://localhost:8080/admin/acceptHolidayRequest';
+    this.getReqUrl = 'http://localhost:8080/admin/getHolidayRequests';
 
   }
 

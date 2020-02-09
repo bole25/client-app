@@ -58,7 +58,7 @@
         <li class="nav-item" *ngIf="ccadminloged&& !need_to_change">
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
-        <li class="nav-item" *ngIf="ccadminloged">
+        <li class="nav-item" *ngIf="ccadminloged&& !need_to_change">
           <a class="nav-link" routerLink="/ccaDiagnose">Add diagnose</a>
         </li>
 
@@ -66,8 +66,8 @@
         <li class="nav-item" *ngIf="ccadminloged&& !need_to_change">
           <a class="nav-link" routerLink="/editStaff">Edit staff's info</a>
         </li>
-        <li class="nav-item" *ngIf="nurseloged || doctorloged">
-          <a class="nav-link" routerLink="/vacation">Request Vacation</a>
+        <li class="nav-item" *ngIf="(nurseloged || doctorloged)&& !need_to_change ">
+          <a class="nav-link" routerLink="/vacation">Vacation request</a>
         </li>
 
         <!--Patient-->
@@ -78,7 +78,11 @@
           <a class="nav-link" routerLink="/historyPatient">History</a>
         </li>
         <li class="nav-item" *ngIf="patientloged">
-          <a class="nav-link" id="scheduleAppA" routerLink="/scheduleApp">Schedule an appointment</a>
+          <a class="nav-link" routerLink="/historyPatient">History of examination</a>
+        </li>
+
+        <li class="nav-item" *ngIf="patientloged">
+          <a class="nav-link" routerLink="/scheduleApp">Schedule an appointment</a>
         </li>
         <li class="nav-item" *ngIf="patientloged">
           <a class="nav-link" routerLink="/upcomingEvents">Upcoming appointments</a>
@@ -90,10 +94,24 @@
           <a class="nav-link" routerLink="/workCalendar">Work Calendar</a>
         </li> -->
 
+        <li class="nav-item" *ngIf="doctorloged&& !need_to_change">
+          <a class="nav-link" routerLink="/holidayAbsence">Holiday/Absence</a>
         <li class="nav-item" *ngIf="doctorloged">
           <a class="nav-link" routerLink="/dar">Appointments</a>
         </li>
+        <li class="nav-item" *ngIf="doctorloged&& !need_to_change">
+          <a class="nav-link" routerLink="/dar">Show Patients</a>
+        </li>
 
+        <li class="nav-item" *ngIf="doctorloged&& !need_to_change">
+        <a class="nav-link" routerLink="/booking">Booking</a>
+      </li>
+        <li class="nav-item" *ngIf="doctorloged&& !need_to_change">
+          <a class="nav-link" routerLink="/listOfPatients">All Patients</a>
+        </li>
+        <li class="nav-item" *ngIf="doctorloged&& !need_to_change">
+          <a class="nav-link" routerLink="/editDocInfo">Edit info</a>
+        </li>
         <li class="nav-item" *ngIf="doctorloged">
           <a class="nav-link" routerLink="/docChangePass">Change password</a>
         </li>
@@ -101,6 +119,8 @@
 
         <li class="nav-item" *ngIf="doctorloged || nurseloged">
           <a class="nav-link" routerLink="/full-calendar">Calendar</a>
+        <li class="nav-item" *ngIf="(doctorloged || nurseloged)&& !need_to_change">
+          <a class="nav-link" routerLink="/workCal">WC</a>
         </li>
 
         <!-- Clinic admin -->
@@ -112,13 +132,23 @@
           <a class="nav-link" routerLink="/registerDoctor">Register Doctor</a>
         </li>
         <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/changePass">Change password</a>
+        <a class="nav-link" routerLink="/changePass">Change password</a>
+      </li>
+        <li class="nav-item" *ngIf="cadminloged">
+          <a class="nav-link" routerLink="/scheduleConfirm">Confirm schedule</a>
         </li>
         <li class="nav-item" *ngIf="cadminloged">
           <a class="nav-link" routerLink="/rooms">Rooms</a>
         </li>
+
+        <li class="nav-item" *ngIf="cadminloged">
+          <a class="nav-link" routerLink="/appTypes">Appointment types</a>
+        </li>
         <li class="nav-item" *ngIf="cadminloged">
           <a class="nav-link" routerLink="/clinicProfileCA">Clinic profile</a>
+        </li>
+        <li class="nav-item" *ngIf="cadminloged">
+          <a class="nav-link" routerLink="/vacApprove">Vac req</a>
         </li>
 
 
@@ -128,12 +158,14 @@
           <a class="nav-link" routerLink="/recipesValidation">Recipes validation</a>
         </li>
         <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/appointments">App Requests</a>
+          <a class="nav-link" routerLink="/surgery">Surgery requests</a>
         </li>
         <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/fastapp">Fast appointment</a>
+          <a class="nav-link" routerLink="/appointments">Appointment requests</a>
         </li>
-
+        <li class="nav-item" *ngIf="cadminloged">
+          <a class="nav-link" routerLink="/fastapp">Create fast appointment</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
 
@@ -157,7 +189,7 @@
   <br>
   <br>
 <h2 class="text-center text-dark">WELCOME, {{ulogovanifirstName}}</h2>
-  <br><h3 *ngIf="ccadminloged && need_to_change" class="text-center text-dark">To use your account you must change password</h3>
+  <br><h3 *ngIf="(ccadminloged || doctorloged) && need_to_change" class="text-center text-dark">To use your account you must change password</h3>
 </div>
 
 

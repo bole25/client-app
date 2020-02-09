@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {User} from '../../models/user.model';
 import {StaffService} from './staff.service';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -12,6 +13,8 @@ export class StaffComponent implements OnInit {
 
   users: Set<User>;
   user: User;
+  editStaffForm: FormBuilder;
+  selectedField: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: StaffService) {
     this.user = new User();
@@ -24,4 +27,11 @@ export class StaffComponent implements OnInit {
   }
 
 
+  onSubmit() {
+    this.service.changeName(this.user, this.selectedField).subscribe(result => {this.users = result; });
+    location.reload();
+
+
+
+  }
 }

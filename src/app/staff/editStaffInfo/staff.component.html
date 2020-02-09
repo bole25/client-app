@@ -9,10 +9,10 @@
 <h2 align="center" style="color:#33cabb"> Edit staff personal information</h2>
 
 <div class="split left">
-  <form>
     <div class="form-group">
       <h5 class="modal-title">Edit <b style="color: #33cabb;">staff's personal information</b></h5>
     </div>
+    <form name="form" [formGroup]="editStaffForm" (validSubmit)="onSubmit()">
 
     <!--<div class="input-group form-group">
       <div class="input-group-prepend">
@@ -22,10 +22,11 @@
       </div>
       <input type="text" formControlName="firstname" id="firstname" class="form-control"
              placeholder="First Name"/>
-    </div>
+    </div>-->
 
 
-    <div class="input-group form-group">
+
+   <!-- <div class="input-group form-group">
       <div class="input-group-prepend">
           <span class="input-group-text">
             <i class="fa fa-address-book" aria-hidden="true"></i>

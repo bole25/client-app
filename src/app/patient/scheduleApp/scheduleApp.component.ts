@@ -14,8 +14,7 @@ import {CcadminService} from '../../ccadmin/registerClinicAdmin/ccadmin.service'
 
 @Component({
   selector: 'app-clinic',
-  templateUrl: './scheduleApp.component.html',
-  styleUrls: ['./scheduleApp.component.css']
+  templateUrl: './scheduleApp.component.html'
 })
 
 export class ScheduleAppComponent implements OnInit {
@@ -23,6 +22,8 @@ export class ScheduleAppComponent implements OnInit {
   appType: AppointmentType;
   selectedType: string;
   selectedDate: string;
+  emailContentPatient: string;
+  emailContentDoctor: string;
 
   clinics: Set<Clinic>;
   clinic: Clinic;
@@ -32,6 +33,7 @@ export class ScheduleAppComponent implements OnInit {
   filteredClinicsByField: Set<Clinic>;
   appointmentTypePriceDiscounts: Set<AppTypePriceDiscModel>;
   selectedATPD: AppTypePriceDiscModel;
+  filteredAppointments: Set<Appointment>;
 
   filteredStringClinic = '';
   filteredStringClinicRating = '';
@@ -49,8 +51,13 @@ export class ScheduleAppComponent implements OnInit {
   takeTimeFromDropDown: string;
   appointments: Set<Appointment>;
   schedule: FormGroup;
+  showAppointments: boolean;
+  showRooms: boolean;
+  data: string;
 
-  constructor(protected router: Router, protected route: ActivatedRoute, protected service: ScheduleAppService) {
+
+  constructor(protected router: Router, protected route: ActivatedRoute, protected service: ScheduleAppService,
+              private formBuilder: FormBuilder) {
     this.appTypes = new Set<AppointmentType>();
     this.appType = new AppointmentType();
     this.appointments = new Set<Appointment>();
@@ -62,6 +69,7 @@ export class ScheduleAppComponent implements OnInit {
     this.filteredDoctors = new Set<DoctorFreeTimes>();
     this.appointmentTypePriceDiscounts = new Set<AppTypePriceDiscModel>();
     this.selectedATPD = new AppTypePriceDiscModel();
+    this.filteredAppointments = new Set<Appointment>();
   }
 
   ngOnInit(): void {

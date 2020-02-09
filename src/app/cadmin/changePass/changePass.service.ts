@@ -7,8 +7,8 @@ export class ChangePassService {
   private readonly updatePassCCAUrl: string;
   private readonly justUpdatePassUrl: string;
   constructor(private http: HttpClient) {
-    this.updatePassCCAUrl = 'http://localhost:8080/cadmin/updatePassword';
-    this.justUpdatePassUrl = 'http://localhost:8080/cadmin/justUpdatePassword';
+    this.updatePassCCAUrl = 'http://localhost:8080/admin/updatePassword';
+    this.justUpdatePassUrl = 'http://localhost:8080/admin/justUpdatePassword';
   }
   updatePassword(email: string, newpassword: string): Observable<any> {
     return this.http.post<any>( this.updatePassCCAUrl, {email, newpassword});

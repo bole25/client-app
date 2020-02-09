@@ -39,6 +39,9 @@ import {VacationComponent} from './staff/vacation/vacation.component';
 import {AcceptingAppComponent} from './cadmin/acceptingApp/acceptingApp.component';
 import {FastAppComponent} from './cadmin/fastApp/fastApp.component';
 import {UpcomingEventsComponent} from './patient/upcoming-events/upcoming-events.component';
+import {ScheduleConfirmationComponent} from './cadmin/scheduleConfirmation/scheduleConfirmation.component';
+import {VacationApproveComponent} from './cadmin/vacationApprove/vacationApprove.component';
+import {AppTypesComponent} from './cadmin/appTypes/appTypes.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -47,6 +50,8 @@ const routes: Routes = [
   {path: 'requests', component: RequestsComponent},
   {path: 'deleterequest', component: RequestsComponent},
   {path: 'acceptrequest', component: RequestsComponent},
+  {path: 'deleteDoctor', component: RegisterDoctorComponent},
+  {path: 'deleteRoom', component: RoomsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'users', component: RegistrationComponent },
@@ -86,6 +91,10 @@ const routes: Routes = [
   {path: 'vacation', component: VacationComponent},
   {path: 'appointments', component: AcceptingAppComponent},
   {path: 'fastapp', component: FastAppComponent},
+  {path: 'scheduleConfirm', component: ScheduleConfirmationComponent},
+  {path: 'vacApprove', component: VacationApproveComponent},
+  {path: 'appTypes', component: AppTypesComponent},
+
   {path: 'full-calendar', component: WorkCalFinalComponent},
 ];
 

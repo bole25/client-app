@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Room} from '../../models/room.model';
 import {RoomsService} from './rooms.service';
+import {Clinic} from '../../models/clinic.model';
 
 @Component({
   selector: 'app-rooms',
@@ -16,6 +17,7 @@ export class RoomsComponent implements OnInit {
   name: string;
   filteredString: string;
   filteredRooms: Set<Room>;
+  nameContent: string;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private service: RoomsService) {
@@ -28,15 +30,37 @@ export class RoomsComponent implements OnInit {
   ngOnInit() {
     this.service.getRooms().subscribe(data => {
       this.rooms = data;
+      this.filteredRooms = data;
     });
 
   }
 
   filterChange() {
+    this.filteredRooms = new Set<Room>();
+    for (const r of this.rooms) {
+      if (r.name.toLowerCase().includes(this.filteredString.toLowerCase())) {
+        this.filteredRooms.add(r);
+      }
+    }
 
   }
 
   onSubmit() {
+    this.service.addRoom(this.room).subscribe(result => {
+      alert('Success!');
+      location.reload();
+
+    });
+
+  }
+
+  delete_Room(name: string) {
+    this.service.removeRoom(name, this.nameContent).subscribe(result => this.router.navigate(['deleteRoom']));
+
+  }
+
+  delete_Room2(id: number) {
+    this.service.removeRoom2(id, this.nameContent).subscribe(result => this.router.navigate(['deleteRoom2']));
 
   }
 }

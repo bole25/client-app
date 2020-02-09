@@ -5,6 +5,62 @@
 <br>
 <br>
 <body>
-<h1> Schedule information </h1>
+
+<h2 style="color:#33cabb">Appointment requests</h2>
+
+  <div>
+
+    <table class="table table-bordered table-striped">
+      <thead class = "thead dark">
+      <tr>
+        <th scope="col">Appointment type</th>
+        <th scope="col">Doctor name</th>
+        <th scope="col">Time</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let ap of appointments; let i = index">
+
+        <td>{{ap.id}}</td>
+        <td>{{ap.docName}}</td>
+        <td>{{ap.startTime}}</td>
+        <td><button class="btn badge-success" id="{{ap.type}}" (click)="assign($event)">Assign room</button></td>
+        <td><button class="btn badge-danger" (click) = "reject($event)">Reject</button></td>
+     </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+<div>
+
+  <table class="table table-bordered table-striped">
+    <thead class = "thead dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Room name</th>
+      <th scope="col">Room type</th>
+      <th scope="col"></th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let r of rooms; let i = index">
+
+      <td>{{r.id}}</td>
+      <td>{{r.name}}</td>
+      <td>{{r.type}}</td>
+      <td><button class="btn badge-success" id="{{r.id}}" (click)="bookRoom($event)">Book</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
 </body>
 </html>

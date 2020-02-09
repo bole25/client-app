@@ -75,6 +75,7 @@ import {ScheduleAppComponent} from './patient/scheduleApp/scheduleApp.component'
 import {ScheduleAppService} from './patient/scheduleApp/scheduleApp.service';
 import {AvailableDocsComponent} from './patient/availableDocs/availableDocs.component';
 import {RoomsComponent} from './cadmin/rooms/rooms.component';
+import {Room} from './models/room.model';
 import {RoomsService} from './cadmin/rooms/rooms.service';
 import {ClinicProfileComponent} from './cadmin/clinicProfile/clinicProfile.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
@@ -94,8 +95,18 @@ import {MatProgressSpinnerModule} from '@angular/material';
 import { UpcomingEventsComponent } from './patient/upcoming-events/upcoming-events.component';
 import {EditInfoComponent} from './patient/edit-info/edit-info.component';
 
+import {ScheduleConfirmationComponent} from './cadmin/scheduleConfirmation/scheduleConfirmation.component';
+import {ScheduleConfirmationService} from './cadmin/scheduleConfirmation/scheduleConfirmation.service';
+
+import {VacationApproveComponent} from './cadmin/vacationApprove/vacationApprove.component';
+import {VacationApproveService} from './cadmin/vacationApprove/vacationApprove.service';
+
+import {AppTypesComponent} from './cadmin/appTypes/appTypes.component';
+import {AppTypesService} from './cadmin/appTypes/appTypes.service';
 
 const appRoutes: Routes = [
+  // { path: 'login', component: LoginComponent },
+  // { path: 'registration', component: RegistrationComponent},
   { path: 'requests', component: RequestsComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'ccadmin', component: CcadminComponent},
@@ -124,7 +135,7 @@ const appRoutes: Routes = [
   {path: 'changePass', component: ChangePassComponent},
   {path: 'docChangePass', component: DocChangePassComponent},
   {path: 'scheduler', component: SchedulerComponent},
-  {path: 'full-calendar', component: WorkCalFinalComponent},
+  {path: 'workCal', component: WorkCalFinalComponent},
   {path: 'scheduleApp', component: ScheduleAppComponent},
   {path: 'editProfile', component: EditInfoComponent},
   {path: 'upcomingEvents', component: UpcomingEventsComponent},
@@ -135,6 +146,9 @@ const appRoutes: Routes = [
   {path: 'vacation', component: VacationComponent},
   {path: 'appointments', component: AcceptingAppComponent},
   {path: 'fastapp', component: FastAppComponent},
+  {path: 'scheduleConfirm', component: ScheduleConfirmationComponent},
+  {path: 'vacApprove', component: VacationApproveComponent},
+  {path: 'appTypes', component: AppTypesComponent}
   ];
 
 @NgModule({
@@ -179,7 +193,10 @@ const appRoutes: Routes = [
     AcceptingAppComponent,
     FastAppComponent,
     UpcomingEventsComponent,
-    EditInfoComponent
+    EditInfoComponent,
+    ScheduleConfirmationComponent,
+    VacationApproveComponent,
+    AppTypesComponent,
   ],
   imports: [
     BrowserModule,
@@ -247,12 +264,16 @@ providers: [
     MatDatepickerModule,
     VacationService,
     WorkCalFInalService,
+    ScheduleConfirmationService,
     DatePipe,
     AcceptingAppService,
     HistoryPatientService,
     UpcomingEventsService,
     SelectClinicServise,
     FastAppService,
+    VacationApproveService,
+    FastAppService,
+    AppTypesService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

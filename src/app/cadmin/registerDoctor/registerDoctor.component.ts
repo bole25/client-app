@@ -6,6 +6,8 @@ import { User } from '../../models/user.model';
 import { first } from 'rxjs/operators';
 import {Clinic} from '../../models/clinic.model';
 import {RegisterDoctorService} from './registerDoctor.service';
+import {Room} from '../../models/room.model';
+import {Doctor} from '../../models/doctor.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -21,29 +23,31 @@ export class RegisterDoctorComponent implements OnInit {
   user: User;
   selectedclinic: string;
   registerDoctor: FormGroup;
+  filteredString: string;
+  filteredDoctors: Set<User>;
+  emailcontent: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: RegisterDoctorService) {
     this.user = new User();
     this.clinics = new Set<Clinic>();
     this.doctors = new Set<User>();
+    this.filteredDoctors = new Set<User>();
   }
 
   ngOnInit(): void {
     this.service.getClinics().subscribe(data => {
       this.clinics = data;
-      this.service.getDoctors().subscribe(data1 => {this.doctors = data1; });
+      this.service.getDoctors().subscribe(data1 => {this.doctors = data1; this.filteredDoctors = data1; });
     });
     // this.createForm();
   }
 
   onSubmit() {
-    if (this.registerDoctor.invalid) {
-      alert('Please, fill all fields correctly');
-      return;
-    }
+
     this.service.save(this.user, this.selectedclinic).subscribe(result => {
       alert('Successfully');
       this.router.navigate(['/registerDoctor']);
+      location.reload();
     });
   }
 
@@ -58,4 +62,20 @@ export class RegisterDoctorComponent implements OnInit {
     });
   }
   get f() { return this.registerDoctor.controls; }*/
+  filterChange() {
+    this.filteredDoctors = new Set<User>();
+    for (const d of this.doctors) {
+      if (d.firstName.toLowerCase().includes(this.filteredString.toLowerCase())) {
+        this.filteredDoctors.add(d);
+      }
+    }
+
+
+
+  }
+
+  delete_Doctor(email: string) {
+    this.service.removeDoctor(email, this.emailcontent).subscribe(result => this.router.navigate(['deleteDoctor']));
+
+  }
 }

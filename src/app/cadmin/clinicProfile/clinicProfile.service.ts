@@ -8,7 +8,7 @@ export class ClinicProfileService {
 
   private readonly updateClinicInfoUrl: string;
   constructor(private http: HttpClient) {
-    this.updateClinicInfoUrl = 'http://localhost:8080/cadmin/....';
+    this.updateClinicInfoUrl = 'http://localhost:8080/admin/....';
   }
 
 }
