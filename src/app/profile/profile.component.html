@@ -1,0 +1,70 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+<h2 align="center" style="color:#33cabb"> Profile page</h2>
+
+<div class="split left">
+  <form>
+    <div class="form-group">
+      <h5 class="modal-title"> <b style="color: #33cabb;">Profile info</b></h5>
+    </div>
+
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book">First Name</i>
+          </span>
+      </div>
+      <input type="text" contenteditable="false" class="form-control"
+             placeholder="{{user.firstName}}"
+             />
+    </div>
+
+
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" >Last Name</i>
+          </span>
+      </div>
+      <input  type="text" id="lastname" contenteditable="false" class="form-control" required
+              placeholder="{{user.lastName}}"/>
+    </div>
+
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book" >Email</i>
+          </span>
+      </div>
+      <input type="text" contenteditable="false" class="form-control input-sm" required placeholder="{{user.email}}"
+             />
+    </div>
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book">Address</i>
+          </span>
+      </div>
+      <input type="text"  contenteditable="false" class="form-control" required placeholder="{{user.address}}"
+             />
+    </div>
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-address-book">SSN</i>
+          </span>
+      </div>
+      <input type="text" class="form-control" contenteditable="false" required placeholder="{{user.ssn}}"
+             />
+    </div>
+    <div class="modal-footer">
+
+    </div>
+
+  </form>
+</div>
+</body>
+</html>
