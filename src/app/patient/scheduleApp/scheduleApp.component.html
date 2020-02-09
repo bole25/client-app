@@ -1,0 +1,135 @@
+<html>
+<body>
+<br>
+<br>
+<br>
+<div style="text-align: center;" class="container container-table input-group input-group-sm">
+  <h1 style="margin-bottom: 20px;font-weight: bold; width:100%">Schedule an appointment</h1>
+  <form style="margin:auto">
+    <div style = "text-align: center" class="form-group">
+      <p style="color:darkcyan">Appointment type: </p>
+      <select style="border-style:groove;border-radius: 5px;height: 35px;width: 170px;margin: auto;" id="selectedType" [selectedIndex]="0"
+              [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}" class = "form-group input-group-sm">
+        <option value="" disabled selected="selected">--Appointment type--
+        </option>
+        <option *ngFor="let at of appTypes; let i = index" [value]="appTypes[i].type" class="appTypeOptions">
+          {{at.type}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p style="color:darkcyan">Appointment date:</p>
+      <input style="border-style:groove;border-radius: 5px;height: 35px;width: 170px;margin: auto" type="date" id="startDate" required placeholder="StartDate"
+             [(ngModel)]="selectedDate" [ngModelOptions]="{standalone: true}" class="form-control input-sm">
+    </div>
+
+    <div style="margin-top: 25px; margin-bottom: 40px">
+      <form>
+        <input id = "searchBtn" class="btn badge-success" type="submit" (click)="filterChange()" value="Search" style="width: 90px;"/>
+      </form>
+    </div>
+
+    <div style="margin-bottom: 30px" *ngIf="showClinicFilter">
+      <h3 style="margin-bottom: 20px;font-weight: bold; width:100%">Available Clinics</h3>
+      <form id = "filterClinicsForm">
+        <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Clinic Name"
+               [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinic"  (change)="filterClinic()"/>
+        <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Minimum rating"
+               [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinicRating"  (change)="filterClinic()"/>
+        <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Maximum price" id="maximumPriceInputField"
+               [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringClinicMaxPrice"  (change)="filterClinic()"/>
+        <button style="border-radius: 5px;" class="btn-info" type="submit" id="filterClinicsBtn">Filter</button>
+      </form>
+    </div>
+
+    <div *ngIf="showClinics">
+
+    <!-- SAMO FILTRIRANE KLINIKE CE BITI -->
+    <table style="width: 900px" class="table table-bordered table-striped" id="clinicsTable">
+      <thead class = "thead dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="colgroup">Rating</th>
+        <th scope = colgroup>Price</th>
+        <th scope = colgroup>Discount</th>
+        <th scope = colgroup>Doctors</th>
+
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let clinic of filteredClinicsByField" class="ClinicRow">
+        <td style="vertical-align: middle">{{clinic.clinicName}}</td>
+        <td style="vertical-align: middle">{{clinic.address}}</td>
+        <td style="vertical-align: middle">{{clinic.rating}}</td>
+        <td style="vertical-align: middle">{{clinic.selectedATPD.price}}</td>
+        <td style="vertical-align: middle">{{100 - (100 * clinic.selectedATPD.discount)}}%</td>
+        <td style="vertical-align: middle"><button class="doctorsBtn btn badge-success" id="{{clinic.clinicName}}" (click)="onSubmit($event)">Choose doctor</button></td>
+      </tr>
+
+      </tbody>
+
+    </table>
+    </div>
+
+    <div style="margin-bottom: 30px" *ngIf="showDoctorFilter">
+      <h3 style="margin-bottom: 20px;font-weight: bold; width:100%">Available doctors for the given date</h3>
+
+      <form id="searchDoctorsForm">
+        <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Doctors Name"
+               [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringDoctor"  (change)="filterDoctors()"/>
+        <input style="border-radius: 5px;border-style: groove;margin-right: 15px;" placeholder="Minimum rating"
+               [ngModelOptions]="{standalone: true}" [(ngModel)]="filteredStringDoctorRating"  (change)="filterDoctors()"/>
+        <button style="border-radius: 5px;" class="btn-info" type="submit" id="filterDoctorsBtn">Filter</button>
+      </form>
+    </div>
+
+    <div *ngIf="showDoctors">
+
+    <table style="width: 900px" class="table table-bordered table-striped" id="doctorsTable">
+      <thead class = "thead dark">
+      <tr>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Available terms</th>
+        <th scope="col"></th>
+      </tr>
+
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let dr of filterDoctorsByField; let i = index" class="DoctorRow">
+
+        <td style="vertical-align: middle">{{dr.doctor.firstName}}</td>
+        <td style="vertical-align: middle">{{dr.doctor.lastName}}</td>
+        <td style="vertical-align: middle">{{dr.doctor.rating}}</td>
+        <!-- Polje za izlistavanje slobodnih termina-->
+        <td style="vertical-align: middle"><select class="form-control form-group" id="orders"  [(ngModel)]="this.takeTimeFromDropDown" [ngModelOptions]="{standalone: true}">
+          <option value="" disabled selected="selected">--Select time--
+          </option>
+          <option *ngFor="let ap of dr.freeTimes; let i = index" [value]="ap" class="startAppTime">
+            {{ap}}
+          </option>
+        </select></td>
+        <td style="vertical-align: middle"><button class="btn badge-success" id="{{dr.doctor.email}}" name="scheduleBtn" (click)="clickSchedule($event)">Schedule</button></td>
+
+
+      </tr>
+
+      </tbody>
+
+    </table>
+    </div>
+
+
+
+
+  </form>
+</div>
+</body>
+</html>

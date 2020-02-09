@@ -25,11 +25,13 @@ export class LoginComponent {
     this.service.getUser(this.logemail, this.logpassword)
       .subscribe(
         response => {
-        localStorage.setItem('jwt', response.token);
-        localStorage.setItem('role', response.role);
-        localStorage.setItem('firstName', response.firstName);
-        localStorage.setItem('lastName', response.lastName);
-        console.log(this.user.firstName + ' ' + this.user.phoneNumber + ' ' + this.user.role);
+          // tslint:disable-next-line:no-debugger
+          debugger;
+          console.log('usao');
+          localStorage.setItem('jwt', response.token);
+          localStorage.setItem('role', response.role);
+          localStorage.setItem('firstName', response.firstName);
+          localStorage.setItem('lastName', response.lastName);
       },
         err => {
           if (err.status === 400) {

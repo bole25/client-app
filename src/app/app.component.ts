@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
     this.user1 = new User();
     this.createForm();
   }
+
   ngOnInit(): void {
     this.activateinfo = false;
     this.createForm();
@@ -60,9 +61,6 @@ export class AppComponent implements OnInit {
     this.registrationShow = true;
     this.loginShow = false;
   }
-
-
-
 
   onSubmit() {
     this.service.getUser(this.logemail, this.logpassword)

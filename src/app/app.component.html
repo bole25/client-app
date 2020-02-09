@@ -58,7 +58,7 @@
         <li class="nav-item" *ngIf="ccadminloged&& !need_to_change">
           <a class="nav-link" routerLink="/ccadminDrug">Add drug</a>
         </li>
-        <li class="nav-item" *ngIf="ccadminloged&& !need_to_change">
+        <li class="nav-item" *ngIf="ccadminloged">
           <a class="nav-link" routerLink="/ccaDiagnose">Add diagnose</a>
         </li>
 
@@ -147,6 +147,9 @@
         <li class="nav-item">
           <a (click)="logout()" class="nav-link" routerLink="/">Logout</a>
         </li>
+
+
+
       </ul>
     </div>
   </nav>
@@ -160,6 +163,7 @@
 <h2 class="text-center text-dark">WELCOME, {{ulogovanifirstName}}</h2>
   <br><h3 *ngIf="ccadminloged && need_to_change" class="text-center text-dark">To use your account you must change password</h3>
 </div>
+
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
