@@ -39,6 +39,7 @@ import {VacationComponent} from './staff/vacation/vacation.component';
 import {AcceptingAppComponent} from './cadmin/acceptingApp/acceptingApp.component';
 import {FastAppComponent} from './cadmin/fastApp/fastApp.component';
 import {UpcomingEventsComponent} from './patient/upcoming-events/upcoming-events.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   // {path: 'login', component: LoginComponent},
@@ -87,6 +88,7 @@ const routes: Routes = [
   {path: 'appointments', component: AcceptingAppComponent},
   {path: 'fastapp', component: FastAppComponent},
   {path: 'full-calendar', component: WorkCalFinalComponent},
+  {path: 'profile', component: ProfileComponent},
 ];
 
 @NgModule({

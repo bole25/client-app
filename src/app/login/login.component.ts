@@ -25,9 +25,6 @@ export class LoginComponent {
     this.service.getUser(this.logemail, this.logpassword)
       .subscribe(
         response => {
-          // tslint:disable-next-line:no-debugger
-          debugger;
-          console.log('usao');
           localStorage.setItem('jwt', response.token);
           localStorage.setItem('role', response.role);
           localStorage.setItem('firstName', response.firstName);

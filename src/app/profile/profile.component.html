@@ -8,7 +8,7 @@
 <div class="split left">
   <form>
     <div class="form-group">
-      <h5 class="modal-title">Change <b style="color: #33cabb;">admin's personal info</b></h5>
+      <h5 class="modal-title"> <b style="color: #33cabb;">Profile info</b></h5>
     </div>
 
     <div class="input-group form-group">
@@ -17,9 +17,9 @@
             <i class="fa fa-address-book">First Name</i>
           </span>
       </div>
-      <input type="text" [ngModelOptions]="{standalone: true}" id="firstname" class="form-control"
-             placeholder="{{user1.firstName}}"
-             [(ngModel)]="user.firstName"/>
+      <input type="text" contenteditable="false" class="form-control"
+             placeholder="{{user.firstName}}"
+             />
     </div>
 
 
@@ -29,8 +29,8 @@
             <i class="fa fa-address-book" >Last Name</i>
           </span>
       </div>
-      <input  type="text" id="lastname" class="form-control" required
-      placeholder="{{user1.lastName}}"             [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}"/>
+      <input  type="text" id="lastname" contenteditable="false" class="form-control" required
+              placeholder="{{user.lastName}}"/>
     </div>
 
     <div class="input-group form-group">
@@ -39,8 +39,8 @@
             <i class="fa fa-address-book" >Email</i>
           </span>
       </div>
-      <input type="text" [ngModelOptions]="{standalone: true}" id="email" class="form-control input-sm" required placeholder="{{user1.email}}"
-             [(ngModel)]="user.email"/>
+      <input type="text" contenteditable="false" class="form-control input-sm" required placeholder="{{user.email}}"
+             />
     </div>
     <div class="input-group form-group">
       <div class="input-group-prepend">
@@ -48,8 +48,8 @@
             <i class="fa fa-address-book">Address</i>
           </span>
       </div>
-      <input type="text" [ngModelOptions]="{standalone: true}" id="address" class="form-control" required placeholder="{{user1.address}}"
-             [(ngModel)]="user.address"/>
+      <input type="text"  contenteditable="false" class="form-control" required placeholder="{{user.address}}"
+             />
     </div>
     <div class="input-group form-group">
       <div class="input-group-prepend">
@@ -57,12 +57,11 @@
             <i class="fa fa-address-book">SSN</i>
           </span>
       </div>
-      <input type="text" [ngModelOptions]="{standalone: true}" id="ssn" class="form-control" required placeholder="{{user1.ssn}}"
-             [(ngModel)]="user.ssn"/>
+      <input type="text" class="form-control" contenteditable="false" required placeholder="{{user.ssn}}"
+             />
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <input type="submit" class="btn btn-primary" value="Add" />
+
     </div>
 
   </form>

@@ -92,12 +92,17 @@ export class SelectClinicComponent implements OnInit {
   }
 
   bookAppointment(id: string) {
+    this.loading = true;
     this.service.bookFastAppointment(id).subscribe(response => {
       alert('Appointment successfully booked');
-      this.service.getPredefinedAppointments(id).subscribe(data => {
-        this.Appointments = data;
-        this.filteredAppointments = data;
-        this.showAppointments = true;
+      this.service.getClinics().subscribe(data => {
+        this.clinics = data;
+        this.filteredClinics = data;
+        this.filteredClinicsByField = data;
+        this.profile = false;
+        this.showDoctors = false;
+        this.showAppointments = false;
+        this.loading = false;
       });
     });
   }
