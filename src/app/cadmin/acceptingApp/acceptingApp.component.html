@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Accepting appointments</title>
+  <meta charset="UTF-8">
+  <title>Accepting appointments</title>
 </head>
 <body>
 <br>
@@ -15,7 +15,7 @@
     [color]="color"
     [mode]="mode" *ngIf="loading">
   </mat-progress-spinner>
-  <div style="width: 100%; text-align: center" *ngIf="!loading">
+  <div style="width: 100%; text-align: center" *ngIf="showApps">
     <h1 style="margin-bottom: 20px;font-weight: bold;">Appointment and Surgery Requests</h1>
     <table class="table table-light" style="border-color: lightblue;border-style: solid;border-width: thick;">
       <tr>
@@ -31,57 +31,24 @@
         <td style="vertical-align: middle">{{a.doctorsName}}</td>
         <td style="vertical-align: middle">{{a.patientName}}</td>
         <td style="vertical-align: middle">{{a.dateString}}</td>
-        <td style="vertical-align: middle"><button class="btn badge-success">Accept</button></td>
-        <td style="vertical-align: middle"><button class="btn badge-danger" >Reject</button></td>
+        <td style="vertical-align: middle"><button class="btn badge-success" (click)="getfreerooms(a)">Accept</button></td>
+        <td style="vertical-align: middle"><button class="btn badge-danger" (click)="reject(a.id)">Reject</button></td>
       </tr>
     </table>
   </div>
-  <!--<div *ngIf="!showrooms">
-    <h1>List of appointment requests</h1>
-    <table class="table table-light">
-      <tr>
-        <th>Appointment type</th>
-        <th>Doctor</th>
-        <th>Patient</th>
-        <th>Date</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr *ngFor="let a of appointments">
-        <td>{{a.type.type}}</td>
-        <td>{{a.doctor.firstName}} {{a.doctor.lastName}}</td>
-        <td>{{a.patient.firstName}} {{a.patient.lastName}}</td>
-        <td>{{this.converttostr(a.startTime)}}</td>
-        <td><button class="btn badge-primary" (click)="getfreerooms(a.id,'APPOINTMENT')">Assign Room</button></td>
-        <td><button class="btn badge-danger" (click)="reject(a.id,true)">Reject</button></td>
-      </tr>
-      <tr *ngFor="let a of surgeries">
-        <td>'Surgery'</td>
-        <td>{{a.doctors.values().next().value.firstName}}</td>
-        <td>{{a.patient.firstName}} {{a.patient.lastName}}</td>
-        <td>{{this.converttostr(a.startTime)}}</td>
-        <td><button class="btn badge-primary" (click)="getfreerooms(a.id,'SURGERY')">Assign Room</button></td>
-        <td><button class="btn badge-danger" (click)="reject(a.id,false)">Reject</button></td>
-      </tr>
-    </table>
-  </div>
-  <div *ngIf="showrooms">
-    <h1>Free rooms</h1>
-    <table class="table table-light">
+  <div style="text-align: center; margin: 20px" *ngIf="showrooms">
+    <h1 style="margin-bottom: 20px;font-weight: bold;">Available Rooms</h1>
+    <table class="table table-light" style="border-color: lightblue;border-style: solid;border-width: thick;">
       <tr>
         <th>Room Name</th>
         <th></th>
       </tr>
       <tr *ngFor="let r of freerooms">
         <td>{{r.name}}</td>
-        <td><button class="btn badge-success" (click)="bookRoom(r.id, this.idclicked)">Book</button></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><button class="btn badge-dark" (click)="back()">Back</button></td>
+        <td><button class="btn badge-success" (click)="bookRoom(r.id)">Book</button></td>
       </tr>
     </table>
-  </div>-->
+  </div>
 </div>
 </body>
 </html>

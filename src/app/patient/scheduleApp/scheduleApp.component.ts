@@ -117,6 +117,8 @@ export class ScheduleAppComponent implements OnInit {
     this.filteredDoctors = new Set<DoctorFreeTimes>();
     const elementId: string = (event.target as Element).id;
     this.service.getDoctors(this.appType, this.selectedDate, elementId).subscribe(data1 => {
+      // tslint:disable-next-line:no-debugger
+      debugger;
       this.filteredDoctors = data1;
       this.filterDoctorsByField = data1;
       this.showDoctors = true;

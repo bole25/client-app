@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
               // tslint:disable-next-line:max-line-length
               private service: LoginService, private fb: FormBuilder, private regservice: RegistrationService,
               public matDialog: MatDialog) {
+    //localStorage.clear();
     this.user = new User();
     this.user1 = new User();
     this.createForm();
