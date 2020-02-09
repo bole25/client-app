@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DarService} from '../../dar/dar.service';
 import {User} from '../../models/user.model';
-import {Drug} from '../../models/drug.model';
 import {Appointment} from '../../models/appointment.model';
 import {WorkCalFInalService} from './WorkCalFInal.service';
+
 import {getFullYear} from 'ngx-bootstrap';
 import {DatePipe} from '@angular/common';
 import {Vacationrequest} from '../../models/vacationrequest.model';

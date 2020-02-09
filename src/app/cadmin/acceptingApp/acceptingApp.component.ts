@@ -6,6 +6,8 @@ import {Appointment} from '../../models/appointment.model';
 import {DatePipe} from '@angular/common';
 import {Room} from '../../models/room.model';
 import {Surgery} from '../../models/surgery.model';
+import {AppointmentSurgeryDto} from '../../models/dto/appointmentSurgeryDto';
+import {ProgressSpinnerMode, ThemePalette} from '@angular/material';
 
 @Component({
   selector: 'app-appointments',
@@ -14,16 +16,16 @@ import {Surgery} from '../../models/surgery.model';
 })
 
 export class AcceptingAppComponent implements OnInit {
-  showrooms: boolean;
-  appointments: Set<Appointment>;
-  surgeries: Set<Surgery>;
+  appointmentsSurgeries: Array<AppointmentSurgeryDto>;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  loading = true;
   freerooms: Set<Room>;
-  idclicked: string;
+  idclicked
   user: User;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: AcceptingAppService, private datepipe: DatePipe) {
-    this.showrooms = false;
-    this.appointments = new Set<Appointment>();
+    this.appointmentsSurgeries = new Array<AppointmentSurgeryDto>();
     this.user = new User();
     this.freerooms = new Set<Room>();
   }
@@ -31,29 +33,22 @@ export class AcceptingAppComponent implements OnInit {
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
     this.user = user;
-    this.service.getAppRequests(this.user.email).subscribe(data => {
-      this.appointments = data;
-    });
-    this.service.getSurgeries(this.user.email).subscribe(data => {
-      this.surgeries = data;
+    this.service.getRequests().subscribe(data => {
+      this.appointmentsSurgeries = Array.from(data);
+      this.loading=false;
     });
 
   }
 
-  converttostr(apt: any) {
-    const preuzmi = (new Date(apt));
-    return preuzmi.getFullYear() + '-' + preuzmi.getMonth() + 1 + '-' + preuzmi.getDate() + '\n' + preuzmi.getHours() +
-      ':' + preuzmi.getMinutes();
-  }
 
-  getfreerooms(id: string, type: string) {
+  /*getfreerooms(id: string, type: string) {
     this.idclicked = id;
     this.service.getFreeRooms(id, type).subscribe(data => {
       this.freerooms = data;
       this.showrooms = true;
     });
   }
-
+/*
   back() {
     this.showrooms = false;
   }
@@ -91,4 +86,5 @@ export class AcceptingAppComponent implements OnInit {
       });
     }
   }
+  */
 }

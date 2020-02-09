@@ -78,7 +78,7 @@
           <a class="nav-link" routerLink="/historyPatient">History</a>
         </li>
         <li class="nav-item" *ngIf="patientloged">
-          <a class="nav-link" routerLink="/scheduleApp">Schedule an appointment</a>
+          <a class="nav-link" id="scheduleAppA" routerLink="/scheduleApp">Schedule an appointment</a>
         </li>
         <li class="nav-item" *ngIf="patientloged">
           <a class="nav-link" routerLink="/upcomingEvents">Upcoming appointments</a>
@@ -100,7 +100,7 @@
 
 
         <li class="nav-item" *ngIf="doctorloged || nurseloged">
-          <a class="nav-link" routerLink="/workCal">Calendar</a>
+          <a class="nav-link" routerLink="/full-calendar">Calendar</a>
         </li>
 
         <!-- Clinic admin -->
@@ -178,15 +178,15 @@
             <h3 class="text-center text-info">Login</h3>
             <div class="form-group">
               <label class="text-info">Email:</label><br>
-              <input type="text" name="email" class="form-control" [(ngModel)]="logemail" [ngModelOptions]="{standalone:true}">
+              <input type="text" name="email" id="email" class="form-control" [(ngModel)]="logemail" [ngModelOptions]="{standalone:true}">
             </div>
             <div class="form-group">
               <label class="text-info">Password:</label><br>
-              <input type="password" name="password" [(ngModel)]="logpassword" [ngModelOptions]="{standalone:true}" class="form-control">
+              <input type="password" id="password" name="password" [(ngModel)]="logpassword" [ngModelOptions]="{standalone:true}" class="form-control">
             </div>
             <div class="form-group">
 
-              <button type="submit" name="submitlogin" class="btn btn-info btn-md" value="Log in"> Log In </button>
+              <button type="submit" id="loginBtn" name="submitlogin" class="btn btn-info btn-md" value="Log in"> Log In </button>
             </div>
             <div id="register-link" class="text-right">
               <button role="button" (click)="showRegistration()" class="text-info">Register here</button>

@@ -125,7 +125,7 @@ const appRoutes: Routes = [
   {path: 'changePass', component: ChangePassComponent},
   {path: 'docChangePass', component: DocChangePassComponent},
   {path: 'scheduler', component: SchedulerComponent},
-  {path: 'workCal', component: WorkCalFinalComponent},
+  {path: 'full-calendar', component: WorkCalFinalComponent},
   {path: 'scheduleApp', component: ScheduleAppComponent},
   {path: 'upcomingEvents', component: UpcomingEventsComponent},
   {path: 'availableDocs', component: AvailableDocsComponent},

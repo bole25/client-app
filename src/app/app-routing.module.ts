@@ -13,6 +13,7 @@ import {StaffComponent} from './staff/editStaffInfo/staff.component';
 import {SelectClinicComponent} from './patient/listOfClinics/selectClinic.component';
 import {HistoryPatientComponent} from './patient/history/historyPatient.component';
 import {WorkCalendarComponent} from './doctor/workCalendar/workCalendar.component';
+import {WorkCalFinalComponent} from './doctor/WorkCalFinal/WorkCalFinal.component';
 import {HolidayAbsenceComponent} from './doctor/holiday-absence/holiday-absence.component';
 import {BookingComponent} from './doctor/booking/booking.component';
 import {combineAll} from 'rxjs/operators';
@@ -85,6 +86,7 @@ const routes: Routes = [
   {path: 'vacation', component: VacationComponent},
   {path: 'appointments', component: AcceptingAppComponent},
   {path: 'fastapp', component: FastAppComponent},
+  {path: 'full-calendar', component: WorkCalFinalComponent},
 ];
 
 @NgModule({

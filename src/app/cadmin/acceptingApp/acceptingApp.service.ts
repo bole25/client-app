@@ -4,6 +4,7 @@ import {Appointment} from '../../models/appointment.model';
 import {Room} from '../../models/room.model';
 import {Observable} from 'rxjs';
 import {Surgery} from '../../models/surgery.model';
+import {AppointmentSurgeryDto} from '../../models/dto/appointmentSurgeryDto';
 
 @Injectable()
 export class AcceptingAppService {
@@ -15,7 +16,7 @@ export class AcceptingAppService {
   private readonly rejectSurgUrl: string;
 
   constructor(private http: HttpClient) {
-    this.getAllAppRequestsUrl = 'http://localhost:8080/admin/getAppointmentRequests';
+    this.getAllAppRequestsUrl = 'http://localhost:8080/admin/getAppointmentAndSurgeryRequests';
     this.getAllSurgeryRequestsUrl = 'http://localhost:8080/admin/getSurgeryRequests';
     this.getFreeRoomsUrl = 'http://localhost:8080/admin/getFreeRoomsForAppointment';
     this.bookUrl = 'http://localhost:8080/admin/assignRoomToAppointment';
@@ -23,8 +24,8 @@ export class AcceptingAppService {
     this.rejectSurgUrl = 'http://localhost:8080/admin/rejectSurgery';
   }
 
-  getAppRequests(email: string) {
-    return this.http.get<Set<Appointment>>(this.getAllAppRequestsUrl + '/' + email + '/');
+  getRequests() {
+    return this.http.get<Set<AppointmentSurgeryDto>>(this.getAllAppRequestsUrl);
   }
 
   getFreeRooms(id: string, type: string) {
