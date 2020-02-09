@@ -93,6 +93,7 @@ import {SelectClinicServise} from './patient/listOfClinics/selectClinic.servise'
 import {MatProgressSpinnerModule} from '@angular/material';
 import { UpcomingEventsComponent } from './patient/upcoming-events/upcoming-events.component';
 import {EditInfoComponent} from './patient/edit-info/edit-info.component';
+import {ProfileComponent} from './profile/profile.component';
 
 
 const appRoutes: Routes = [
@@ -135,6 +136,7 @@ const appRoutes: Routes = [
   {path: 'vacation', component: VacationComponent},
   {path: 'appointments', component: AcceptingAppComponent},
   {path: 'fastapp', component: FastAppComponent},
+  {path: 'profile', component: ProfileComponent},
   ];
 
 @NgModule({
@@ -142,6 +144,7 @@ const appRoutes: Routes = [
     AppComponent,
     FooterComponent,
     LoginComponent,
+    ProfileComponent,
     RegistrationComponent,
     RequestsComponent,
     RegistrationComponent,
