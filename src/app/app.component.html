@@ -105,7 +105,7 @@
 
         <!-- Clinic admin -->
         <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/holidayReq">Holiday/Abscence request</a>
+          <a class="nav-link" routerLink="/holidayReq">Vacation requests</a>
         </li>
 
         <li class="nav-item" *ngIf="cadminloged">
@@ -127,21 +127,17 @@
         <li class="nav-item" *ngIf="nurseloged">
           <a class="nav-link" routerLink="/recipesValidation">Recipes validation</a>
         </li>
-
         <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/surgery">Surgery requests</a>
+          <a class="nav-link" routerLink="/appointments">App Requests</a>
         </li>
         <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/appointments">Appointment requests</a>
-        </li>
-        <li class="nav-item" *ngIf="cadminloged">
-          <a class="nav-link" routerLink="/fastapp">Create fast appointment</a>
+          <a class="nav-link" routerLink="/fastapp">Fast appointment</a>
         </li>
 
       </ul>
       <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item" *ngIf="patientloged || doctorloged">
+        <li class="nav-item" *ngIf="patientloged || doctorloged || cadminloged">
           <a class="nav-link" routerLink="/profile">Profile</a>
         </li>
         <li class="nav-item">
