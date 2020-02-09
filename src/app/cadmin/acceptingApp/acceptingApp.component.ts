@@ -20,8 +20,10 @@ export class AcceptingAppComponent implements OnInit {
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
   loading = true;
+  showApps = false
+  showrooms = false;
   freerooms: Set<Room>;
-  idclicked
+  selectedAppointementId: string;
   user: User;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: AcceptingAppService, private datepipe: DatePipe) {
@@ -35,56 +37,84 @@ export class AcceptingAppComponent implements OnInit {
     this.user = user;
     this.service.getRequests().subscribe(data => {
       this.appointmentsSurgeries = Array.from(data);
-      this.loading=false;
+      this.loading = false;
+      this.showApps = true;
     });
 
   }
 
 
-  /*getfreerooms(id: string, type: string) {
-    this.idclicked = id;
-    this.service.getFreeRooms(id, type).subscribe(data => {
+  getfreerooms(a: AppointmentSurgeryDto) {
+    this.loading = true;
+    let type: string;
+    if (a.appointmentType === 'Surgery') {
+      type = 'SURGERY';
+    } else {
+      type = 'APPOINTMENT';
+    }
+    this.service.getFreeRooms(a.id, type).subscribe(data => {
+      this.selectedAppointementId = a.id;
       this.freerooms = data;
+      this.loading = false;
       this.showrooms = true;
+      window.scrollTo(0, document.body.scrollHeight);
     });
   }
-/*
+  /*
   back() {
     this.showrooms = false;
   }
-
-  bookRoom(id: number, idclicked: string) {
+*/
+  bookRoom(roomId: number) {
     // tslint:disable-next-line:max-line-length
-    this.service.bookRoom(id, idclicked).subscribe(data => {
-      alert('Room booked');
-      this.service.getAppRequests(this.user.email).subscribe(data1 => {
-        this.appointments = data1;
+    this.loading = true;
+    let type: string;
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.appointmentsSurgeries.length; i++) {
+      if (this.appointmentsSurgeries[i].id === this.selectedAppointementId) {
+        if (this.appointmentsSurgeries[i].appointmentType === 'Surgery'){
+          type = 'Surgery';
+        } else {
+          type = 'Appointment';
+        }
+      }
+    }
+    this.service.bookRoom(roomId, this.selectedAppointementId, type).subscribe(data => {
+      this.service.getRequests().subscribe(data1 => {
+        this.appointmentsSurgeries = Array.from(data1);
+        this.showrooms = false;
+        this.loading = false;
+        alert('Room successfully booked');
       });
-      this.showrooms = false;
     });
   }
 
-  reject(id: string, app: boolean) {
-    // tslint:disable-next-line:max-line-length
-    if (app) {
-      this.service.rejectApp(id).subscribe(data => {
-        this.service.getAppRequests(this.user.email).subscribe(data1 => {
-          this.appointments = data1;
-        });
-        this.service.getSurgeries(this.user.email).subscribe(data1 => {
-          this.surgeries = data1;
+  reject(id: string) {
+    let aps: AppointmentSurgeryDto;
+    // tslint:disable-next-line:max-line-length prefer-for-of
+    for (let i = 0; i < this.appointmentsSurgeries.length; i++) {
+      if (this.appointmentsSurgeries[i].id === id) {
+        aps = this.appointmentsSurgeries[i];
+      }
+    }
+    if (aps.appointmentType === 'Surgery') {
+      this.loading = true;
+      this.service.rejectSurgery(aps.id).subscribe( data => {
+        this.service.getRequests().subscribe(data2 => {
+          this.appointmentsSurgeries = Array.from(data2);
+          this.loading = false;
+          alert('Surgery successfully removed');
         });
       });
     } else {
-      this.service.rejectSurgery(id).subscribe(data => {
-        this.service.getAppRequests(this.user.email).subscribe(data1 => {
-          this.appointments = data1;
-        });
-        this.service.getSurgeries(this.user.email).subscribe(data1 => {
-          this.surgeries = data1;
+      this.loading = true;
+      this.service.rejectApp(aps.id).subscribe( data => {
+        this.service.getRequests().subscribe(data2 => {
+          this.appointmentsSurgeries = Array.from(data2);
+          this.loading = false;
+          alert('Appointment successfully removed');
         });
       });
     }
   }
-  */
 }

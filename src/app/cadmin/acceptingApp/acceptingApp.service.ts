@@ -11,7 +11,8 @@ export class AcceptingAppService {
   private readonly getAllAppRequestsUrl: string;
   private readonly getAllSurgeryRequestsUrl: string;
   private readonly getFreeRoomsUrl: string;
-  private readonly bookUrl: string;
+  private readonly bookAppUrl: string
+  private readonly bookSurUrl: string;
   private readonly rejectAppUrl: string;
   private readonly rejectSurgUrl: string;
 
@@ -19,7 +20,8 @@ export class AcceptingAppService {
     this.getAllAppRequestsUrl = 'http://localhost:8080/admin/getAppointmentAndSurgeryRequests';
     this.getAllSurgeryRequestsUrl = 'http://localhost:8080/admin/getSurgeryRequests';
     this.getFreeRoomsUrl = 'http://localhost:8080/admin/getFreeRoomsForAppointment';
-    this.bookUrl = 'http://localhost:8080/admin/assignRoomToAppointment';
+    this.bookAppUrl = 'http://localhost:8080/admin/assignRoomToAppointment';
+    this.bookSurUrl = 'http://localhost:8080/admin/assignRoomToSurgery';
     this.rejectAppUrl = 'http://localhost:8080/admin/rejectAppointment';
     this.rejectSurgUrl = 'http://localhost:8080/admin/rejectSurgery';
   }
@@ -32,16 +34,16 @@ export class AcceptingAppService {
     return this.http.get<Set<Room>>(this.getFreeRoomsUrl + '/' + id + '/' + type + '/');
   }
 
-  bookRoom(roomid: number, appid: string) {
-    return this.http.get<string>(this.bookUrl + '/' + roomid + '/' + appid + '/');
+  bookRoom(roomid: number, appid: string, type: string) {
+    if (type === 'Surgery') {
+      return this.http.get<string>(this.bookSurUrl + '/' + roomid + '/' + appid + '/');
+    } else {
+      return this.http.get<string>(this.bookAppUrl + '/' + roomid + '/' + appid + '/');
+    }
   }
 
   rejectApp(id: string): Observable<any> {
     return this.http.post(this.rejectAppUrl + '/' + id + '/', {});
-  }
-
-  getSurgeries(email: string) {
-    return this.http.get<Set<Surgery>>(this.getAllSurgeryRequestsUrl + '/' + email + '/');
   }
 
   rejectSurgery(id: string) {
